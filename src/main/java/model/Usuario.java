@@ -11,11 +11,6 @@ package model;
  * @author Shamir Duran, Nicolas Galvan
  * @version 0.1
  */
-public class Usuario extends Persona{
-    private int rol;
+public class Usuario{
 
-    public Usuario(int rol, int id, String nombre, int edad, String email, String telefono, String direccion, String cedula) {
-        super(id, nombre, edad, email, telefono, direccion, cedula);
-        this.rol = rol;
-    }    
 }

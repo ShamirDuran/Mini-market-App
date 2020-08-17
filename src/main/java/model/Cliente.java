@@ -11,10 +11,7 @@ package model;
  * @author Shamir Duran, Nicolas Galvan
  * @version 0.1
  */
-public class Cliente extends Persona {
+public class Cliente {
 
-    public Cliente(int id, String nombre, int edad, String email, String telefono, String direccion, String cedula) {
-        super(id, nombre, edad, email, telefono, direccion, cedula);
-    }
 
 }
