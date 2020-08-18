@@ -5,6 +5,7 @@
  */
 package model;
 
+import model.vo.UsuarioVo;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 public class Venta {
 
     private int id;
-    private Usuario usuario;
+    private UsuarioVo usuario;
     private Cliente cliente;
     private ArrayList<Producto> productosList;
 
@@ -28,7 +29,7 @@ public class Venta {
      * @param cliente Datos del cliente que compro.
      * @param productosList Lista de productos que compro el cliente.
      */
-    public Venta(int id, Usuario usuario, Cliente cliente, ArrayList<Producto> productosList) {
+    public Venta(int id, UsuarioVo usuario, Cliente cliente, ArrayList<Producto> productosList) {
         this.id = id;
         this.usuario = usuario;
         this.cliente = cliente;
