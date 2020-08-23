@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=ProductoDao
+comment0.text=\r\n\r\n\ @author\ NICOLAS\r\n
+comment1.params=
+comment1.target=ProductoDao()
+comment2.params=nombre\ precio\ cant_medida\ uni_medida\ cantidad
+comment2.target=boolean\ guardarProducto(java.lang.String,\ double,\ double,\ java.lang.String,\ int)
+comment3.params=id
+comment3.target=ProductoVo\ obtenerProductoId(int)
+comment4.params=nombre
+comment4.target=java.util.ArrayList\ obtenerProducto(java.lang.String)
+comment5.params=dataProducto
+comment5.target=boolean\ modificarProducto(ProductoVo)
+comment6.params=id
+comment6.target=boolean\ eliminarProducto(int)
+comment7.params=
+comment7.target=java.util.ArrayList\ obtenerProductos()
+numComments=8

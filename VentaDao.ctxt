@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=VentaDao
+comment0.text=\r\n\r\n\ @author\ Shamir\r\n
+comment1.params=
+comment1.target=VentaDao()
+comment2.params=venta
+comment2.target=boolean\ registrarVenta(VentaVo)
+comment3.params=dataVenta
+comment3.target=boolean\ modificarVenta(VentaVo)
+comment4.params=id
+comment4.target=boolean\ eliminarVenta(int)
+comment4.text=\r\n\ Metodo\ que\ elimina\ una\ venta\ ya\ registrada,\ al\ ejecutarse\ tambien\ llama\r\n\ al\ metodo\ de\ restaurar\ cantidad\ para\ sumarle\ las\ unidades\ recuperadas\ al\r\n\ productos\ respectivo\r\n\r\n\ @param\ id\ Id\ de\ la\ venta\ a\ eliminar\r\n\ @return\ Boolean\ indicando\ el\ estado\ de\ la\ transacci\u00F3n\r\n
+comment5.params=ref
+comment5.target=java.util.ArrayList\ buscarVenta(java.lang.String)
+comment6.params=venta
+comment6.target=void\ restaurarCantidad(VentaVo)
+comment6.text=\r\n\ Le\ suma\ a\ las\ unidades\ en\ stock\ del\ producto\ las\ recuperadas\ al\ eliminar\r\n\ un\ producto\ de\ una\ venta\r\n\r\n\ @param\ venta\ Venta\ que\ se\ va\ a\ eliminar\r\n
+comment7.params=
+comment7.target=java.util.ArrayList\ getListaVentas()
+comment8.params=usuarioDao
+comment8.target=void\ setUsuarioDao(UsuarioDao)
+numComments=9

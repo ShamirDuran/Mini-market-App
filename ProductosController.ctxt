@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=ProductosController
+comment1.params=
+comment1.target=java.util.ArrayList\ obtenerListaProductos()
+comment2.params=
+comment2.target=void\ mostrarListaProductos()
+comment3.params=nombre
+comment3.target=java.util.ArrayList\ buscarProducto(java.lang.String)
+comment4.params=id
+comment4.target=ProductoVo\ buscarProductoId(int)
+comment5.params=nombre\ precio\ cant_medida\ uni_medida\ cantidad
+comment5.target=boolean\ a\u00F1adirProducto(java.lang.String,\ double,\ double,\ java.lang.String,\ int)
+comment5.text=\r\n\ Metodo\ que\ pide\ al\ modelo\ que\ se\ a\u00F1ada\ un\ usuario\ a\ la\ db\r\n\r\n\ @return\ true\ si\ se\ realizo\ la\ operaci\u00F3n,\ false\ si\ no\r\n
+comment6.params=producto
+comment6.target=boolean\ modificarProducto(ProductoVo)
+comment6.text=\r\n\ Metodo\ que\ pide\ al\ modelo\ modificar\ un\ usuario\ en\ la\ db\r\n\r\n\ @param\ producto\ Datos\ que\ se\ desean\ actualizar\ para\ el\ usuario.\r\n\ @return\ true\ si\ se\ realizo\ la\ operaci\u00F3n,\ false\ si\ no\r\n
+comment7.params=id
+comment7.target=boolean\ eliminarProducto(int)
+comment7.text=\r\n\ Metodo\ que\ pide\ al\ modelo\ que\ elimine\ un\ usuario\ de\ la\ db\r\n\r\n\ @param\ id\ Id\ del\ usuario\ que\ se\ desea\ eliminar\r\n\ @return\ true\ si\ se\ realizo\ la\ operaci\u00F3n,\ false\ si\ no\r\n
+comment8.params=listaProductos
+comment8.target=void\ mostrarListaProducto(java.util.ArrayList)
+comment9.params=productoDao
+comment9.target=void\ setProductoDao(ProductoDao)
+numComments=10

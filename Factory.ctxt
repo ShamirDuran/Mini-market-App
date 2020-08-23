@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Factory
+comment0.text=\r\n\r\n\ @author\ Shamir\r\n
+comment1.params=usuarioDao
+comment1.target=void\ cargarDatosUsuario(UsuarioDao)
+comment2.params=productoDao
+comment2.target=void\ cargarDatosProducto(ProductoDao)
+comment3.params=ventaDao\ usuarioDao\ productoDao
+comment3.target=void\ cargarDatosVenta(VentaDao,\ UsuarioDao,\ ProductoDao)
+numComments=4

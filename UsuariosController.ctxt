@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=UsuariosController
+comment0.text=\r\n\ Clase\ que\ conecta\ la\ Vista\ con\ el\ Modelo\r\n\r\n\ @author\ Shamir\r\n
+comment1.params=
+comment1.target=java.util.ArrayList\ obtenerListaUsuarios()
+comment1.text=\r\n\ Metodo\ que\ pide\ al\ modelo\ la\ lista\ de\ usuarios\ registrados\ en\ la\ db\ Para\r\n\ esta\ entrega\ se\ utilizara\ para\ mostrar\ la\ lista\ de\ usuarios\r\n\r\n\ @return\ Retorna\ la\ lista\ de\ usuarios\ registrados.\r\n
+comment2.params=
+comment2.target=void\ mostrarListaUsuarios()
+comment3.params=nombre
+comment3.target=java.util.ArrayList\ buscarUsuario(java.lang.String)
+comment4.params=id
+comment4.target=UsuarioVo\ buscarUsuarioId(int)
+comment5.params=rol\ edad\ genero\ nombre\ correo\ direccion
+comment5.target=boolean\ a\u00F1adirUsuario(int,\ int,\ int,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment5.text=\r\n\ Metodo\ que\ pide\ al\ modelo\ que\ se\ a\u00F1ada\ un\ usuario\ a\ la\ db\r\n\r\n\ @return\ true\ si\ se\ realizo\ la\ operaci\u00F3n,\ false\ si\ no\r\n
+comment6.params=user
+comment6.target=boolean\ modificarUsuario(UsuarioVo)
+comment6.text=\r\n\ Metodo\ que\ pide\ al\ modelo\ modificar\ un\ usuario\ en\ la\ db\r\n\r\n\ @param\ user\ Datos\ que\ se\ desean\ actualizar\ para\ el\ usuario.\r\n\ @return\ true\ si\ se\ realizo\ la\ operaci\u00F3n,\ false\ si\ no\r\n
+comment7.params=id
+comment7.target=boolean\ eliminarUsuario(int)
+comment7.text=\r\n\ Metodo\ que\ pide\ al\ modelo\ que\ elimine\ un\ usuario\ de\ la\ db\r\n\r\n\ @param\ id\ Id\ del\ usuario\ que\ se\ desea\ eliminar\r\n\ @return\ true\ si\ se\ realizo\ la\ operaci\u00F3n,\ false\ si\ no\r\n
+comment8.params=listaUsuarios
+comment8.target=void\ mostrarListaUsuario(java.util.ArrayList)
+comment9.params=usuarioDao
+comment9.target=void\ setUsuarioDao(UsuarioDao)
+numComments=10

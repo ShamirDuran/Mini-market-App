@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=UsuarioDao
+comment0.text=\r\n\ Clase\ que\ contiene\ los\ metodos\ de\ acceso\ a\ la\ db.\r\n\r\n\ @author\ Shamir\r\n
+comment1.params=
+comment1.target=UsuarioDao()
+comment1.text=\r\n\ Constructor\ clase\ UsuarioDao\r\n
+comment2.params=rol\ edad\ genero\ nombre\ correo\ direccion
+comment2.target=boolean\ a\u00F1adirUsuario(int,\ int,\ int,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment2.text=\r\n\ Metodo\ que\ agrega\ nuevos\ usuarios\ a\ la\ lista\ de\ registrados.\ Retorna\ un\r\n\ boolean\ dependiendo\ de\ si\ se\ realizo\ la\ operaci\u00F3n\ o\ no.\r\n\r\n\ @param\ id\ \ \ \ \ \ \ \ id\ del\ nuevo\ usuario\r\n\ @param\ rol\ \ \ \ \ \ \ rol\ del\ nuevo\ usuario\r\n\ @param\ edad\ \ \ \ \ \ edad\ del\ nuevo\ usuario\r\n\ @param\ nombre\ \ \ \ nombre\ del\ nuevo\ usuario\r\n\ @param\ correo\ \ \ \ correo\ electronico\ del\ nuevo\ usuario\r\n\ @param\ direccion\ direccion\ del\ nuevo\ usuario\r\n\ @return\ true\ si\ se\ agrego\ correctamente,\ false\ si\ no\r\n
+comment3.params=dataUser
+comment3.target=boolean\ modificarUsuario(UsuarioVo)
+comment3.text=\r\n\ Metodo\ que\ modifica\ un\ Usuario.\ Recibe\ como\ parametro\ el\ Usuario\ con\ los\r\n\ datos\ modificados\ y\ busca\ en\ la\ lista\ al\ Usuario\ que\ tenga\ la\ mimsa\ id,\ al\r\n\ encontrarlo\ modifica\ al\ usuario\ de\ la\ lista.\r\n\r\n\ @param\ dataUser\ Objeto\ Usuario\ con\ la\ nueva\ data\r\n\ @return\ True\ si\ se\ encontro\ el\ usuario,\ False\ si\ no\ se\ encontro\r\n
+comment4.params=id
+comment4.target=boolean\ eliminarUsuario(int)
+comment4.text=\r\n\ Metodo\ que\ busca\ en\ la\ lista\ de\ Usuarios\ registrado\ usando\ el\ Id\ y\ luego\ lo\r\n\ elimina\r\n\r\n\ @param\ id\ Id\ del\ usuario\ que\ se\ desea\ eliminar\r\n\ @return\ True\ si\ se\ pudo\ eliminar,\ False\ si\ no.\r\n
+comment5.params=nombre
+comment5.target=java.util.ArrayList\ buscarUsuario(java.lang.String)
+comment5.text=\r\n\ Metodo\ que\ busca\ un\ usuaruo\ en\ la\ db\ por\ el\ nombre\r\n\r\n\ @param\ nombre\ Nombre\ del\ usuario\ que\ se\ desea\ buscar\r\n\ @return\ Regresa\ la\ lista\ de\ usuarios\ que\ contengan\ el\ string(\ nombre)\ de\r\n\ \ \ \ \ \ \ \ \ busqueda.\r\n
+comment6.params=cedula
+comment6.target=UsuarioVo\ buscarUsuarioId(int)
+comment7.params=
+comment7.target=java.util.ArrayList\ getListaUsuarios()
+numComments=8

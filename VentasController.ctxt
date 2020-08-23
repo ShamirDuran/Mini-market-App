@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=VentasController
+comment0.text=\r\n\r\n\ @author\ Shamir\r\n
+comment1.params=venta
+comment1.target=boolean\ registrarVenta(VentaVo)
+comment2.params=dataVenta
+comment2.target=boolean\ modificarVenta(VentaVo)
+comment3.params=id
+comment3.target=boolean\ eliminarVenta(int)
+comment4.params=ref
+comment4.target=java.util.ArrayList\ buscarVenta(java.lang.String)
+comment5.params=
+comment5.target=java.util.ArrayList\ obtenerListaVentas()
+comment6.params=
+comment6.target=void\ mostrarListaVentas()
+comment7.params=listaVentas
+comment7.target=void\ mostrarListaVenta(java.util.ArrayList)
+comment8.params=ventaDao
+comment8.target=void\ setVentaDao(VentaDao)
+comment9.params=usuarioDao
+comment9.target=void\ setUsuarioDao(UsuarioDao)
+numComments=10

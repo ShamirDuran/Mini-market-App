@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Inventario
+comment0.text=\r\n\r\n\ @author\ Shamir\r\n
+comment1.params=
+comment1.target=void\ mostrarInventario()
+comment2.params=proController
+comment2.target=void\ setProController(ProductosController)
+numComments=3

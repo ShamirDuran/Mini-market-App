@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=Reporte
+comment0.text=\r\n\r\n\ @author\ Shamir\r\n
+comment1.params=
+comment1.target=void\ reporteVentasTotales()
+comment10.params=ventaController
+comment10.target=void\ setVentaController(VentasController)
+comment2.params=
+comment2.target=void\ reporteVentaPorProducto()
+comment3.params=
+comment3.target=void\ reporteVentaPorCajero()
+comment4.params=
+comment4.target=void\ reporteCompraporCliente()
+comment5.params=
+comment5.target=void\ reporteGananciaTotal()
+comment6.params=
+comment6.target=void\ reporteGananciaPorProducto()
+comment7.params=
+comment7.target=void\ hacerReporteCompleto()
+comment8.params=proController
+comment8.target=void\ setProController(ProductosController)
+comment9.params=usuController
+comment9.target=void\ setUsuController(UsuariosController)
+numComments=11
