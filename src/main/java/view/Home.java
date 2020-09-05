@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package view;
-
+import model.conexion.Conexion;
 /**
  *
  * @author Shamir
  */
 public class Home extends javax.swing.JFrame {
 
+   
     /**
      * Creates new form Home
      */
@@ -617,18 +618,21 @@ public class Home extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         Producto producto = new Producto();
+        producto.setLocationRelativeTo(null);
         producto.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         InventarioV inventario = new InventarioV();
+        inventario.setLocationRelativeTo(null);
         inventario.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         Cliente cliente = new Cliente();
+        cliente.setLocationRelativeTo(null);
         cliente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
@@ -757,6 +761,10 @@ public class Home extends javax.swing.JFrame {
                 new Home().setVisible(true);
             }
         });
+        
+        Conexion con = new Conexion();
+        con.getConexion();
+        con.cerrarConexion();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
