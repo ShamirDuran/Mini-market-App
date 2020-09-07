@@ -65,8 +65,8 @@ public class UsuariosController {
      *
      * @return true si se realizo la operación, false si no
      */
-    public boolean añadirUsuario(int rol, int edad, int genero, String nombre, String correo, String direccion) {
-        boolean check = this.usuarioDao.añadirUsuario(rol, edad, genero, nombre, correo, direccion);
+    public boolean añadirUsuario(int rol, int edad, int genero, String nombre, String correo, String direccion, int cedula) {
+        boolean check = this.usuarioDao.añadirUsuario(rol, edad, genero, nombre, correo, direccion, cedula);
         if (check) {
             System.out.println("\nUsuario " + nombre + " registrado correctamente!!");
         } else {

@@ -5,11 +5,18 @@
  */
 package view;
 
+import controller.ProductosController;
+import javax.swing.JOptionPane;
+import model.dao.ProductoDao;
+import model.vo.ProductoVo;
+
 /**
  *
  * @author NICOLAS
  */
 public class RegistrarP extends javax.swing.JFrame {
+
+    ProductosController proCon;
 
     /**
      * Creates new form RegistrarC
@@ -73,7 +80,6 @@ public class RegistrarP extends javax.swing.JFrame {
         });
 
         etCantidad.setForeground(new java.awt.Color(102, 102, 102));
-        etCantidad.setText("Escriba la caintidad del producto aqui.");
         etCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etCantidadActionPerformed(evt);
@@ -85,8 +91,6 @@ public class RegistrarP extends javax.swing.JFrame {
         jLabel3.setText("Cantidad");
 
         etUniMedida.setForeground(new java.awt.Color(102, 102, 102));
-        etUniMedida.setText("Escriba la unidad de medida de la presentacion del producto aqui.");
-        etUniMedida.setPreferredSize(null);
         etUniMedida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etUniMedidaActionPerformed(evt);
@@ -98,7 +102,6 @@ public class RegistrarP extends javax.swing.JFrame {
         jLabel7.setText("Uni. Medida:");
 
         etContNeto.setForeground(new java.awt.Color(102, 102, 102));
-        etContNeto.setText("Escriba el contenido neto del producto aqui.");
         etContNeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etContNetoActionPerformed(evt);
@@ -110,7 +113,6 @@ public class RegistrarP extends javax.swing.JFrame {
         jLabel6.setText("Cont. Neto");
 
         etNombre.setForeground(new java.awt.Color(102, 102, 102));
-        etNombre.setText("Escriba el nombre del producto aqui.");
         etNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etNombreActionPerformed(evt);
@@ -118,7 +120,6 @@ public class RegistrarP extends javax.swing.JFrame {
         });
 
         etPrecio.setForeground(new java.awt.Color(102, 102, 102));
-        etPrecio.setText("Escriba el precio del producto aqui.");
         etPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etPrecioActionPerformed(evt);
@@ -237,7 +238,25 @@ public class RegistrarP extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        // Verificamos que ningun campo este vacio
+        if (!etNombre.getText().equals("") && !etPrecio.getText().equals("") && !etContNeto.getText().equals("") && !etUniMedida.getText().equals("") && !etCantidad.getText().equals("")) {
+            Boolean check = proCon.añadirProducto(
+                    etNombre.getText(),
+                    Double.parseDouble(etPrecio.getText()),
+                    Double.parseDouble(etContNeto.getText()),
+                    etUniMedida.getText(),
+                    Integer.parseInt(etCantidad.getText())
+            );
+
+            if (check) {
+                this.dispose();
+                JOptionPane.showMessageDialog(null, "Producto registrado!");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se registro el producto", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
@@ -274,6 +293,10 @@ public class RegistrarP extends javax.swing.JFrame {
                 new RegistrarP().setVisible(true);
             }
         });
+    }
+
+    public void setControllerPro(ProductosController proCon) {
+        this.proCon = proCon;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

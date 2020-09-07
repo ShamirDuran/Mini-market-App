@@ -24,16 +24,16 @@ public class Factory {
          */
 
         // Añadir trabajadores
-        usuarioDao.añadirUsuario(1, 20, 1, "Shamir Duran", "shamirduran@gmail.com", "La universidad"); // 1
-        usuarioDao.añadirUsuario(2, 25, 1, "Pepito Perez", "pepitoperez@gmail.com", "La cumbre"); // 2
-        usuarioDao.añadirUsuario(3, 40, 1, "Jose Manolo", "josemano@gmail.com", "San alonso"); // 3
-        usuarioDao.añadirUsuario(1, 20, 1, "Nicolas Galvan", "nicolasgalvan@hotmail.com", "Centro"); // 4
-        usuarioDao.añadirUsuario(3, 15, 0, "Marcela Lopez", "marcelolopez@hotmail.com", "Norte"); // 5
+        usuarioDao.añadirUsuario(1, 20, 1, "Shamir Duran", "shamirduran@gmail.com", "La universidad", 1005333241); // 1
+        usuarioDao.añadirUsuario(2, 25, 1, "Pepito Perez", "pepitoperez@gmail.com", "La cumbre", 1009665847); // 2
+        usuarioDao.añadirUsuario(3, 40, 1, "Jose Manolo", "josemano@gmail.com", "San alonso", 1059111567); // 3
+        usuarioDao.añadirUsuario(1, 20, 1, "Nicolas Galvan", "nicolasgalvan@hotmail.com", "Centro", 2005698520); // 4
+        usuarioDao.añadirUsuario(3, 15, 0, "Marcela Lopez", "marcelolopez@hotmail.com", "Norte", 1008951672); // 5
 
         // Añadir clientes
-        usuarioDao.añadirUsuario(4, 55, 0, "Doña carmensa", "carmensita@gmail.com", "Lagos 2"); // 6
-        usuarioDao.añadirUsuario(4, 65, 0, "Eduvigis Sarmiento", "eduvigisar@hotmail.com", "Castellana"); // 7
-        usuarioDao.añadirUsuario(4, 25, 1, "Carlos Gomez", "carlooos@gmail.com", "La cumbre"); // 8
+        usuarioDao.añadirUsuario(4, 55, 0, "Doña carmensa", "carmensita@gmail.com", "Lagos 2", 2016998250); // 6
+        usuarioDao.añadirUsuario(4, 65, 0, "Eduvigis Sarmiento", "eduvigisar@hotmail.com", "Castellana", 1506554951); // 7
+        usuarioDao.añadirUsuario(4, 25, 1, "Carlos Gomez", "carlooos@gmail.com", "La cumbre", 1305334246); // 8
     }
 
     public void cargarDatosProducto(ProductoDao productoDao) {

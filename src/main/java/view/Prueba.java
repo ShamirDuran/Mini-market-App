@@ -1,8 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+///*
+// * To change this license header, choose License Headers in Project Properties.
+// * To change this template file, choose Tools | Templates
+// * and open the template in the editor.
+// */
 //package view;
 //
 //import controller.ProductosController;
@@ -79,7 +79,7 @@
 //        factory.cargarDatosUsuario(usuarioDao); // Se carga los datos de ejemplo en la db
 //        usuController.mostrarListaUsuarios();
 //
-//        usuController.añadirUsuario(3, 28, 1, "Shamir Castro", "shamircastro15@gmail.com", "San Alonso");
+//        usuController.añadirUsuario(3, 28, 1, "Shamir Castro", "shamircastro15@gmail.com", "San Alonso", 1009556241);
 //        usuController.mostrarListaUsuarios();
 //
 //        System.out.println("\n\n********* PRUEBA ELIMINAR USUARIOS *********");

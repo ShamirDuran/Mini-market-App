@@ -20,7 +20,7 @@ public class UsuarioVo {
      *
      * Tipos de genero 0 - Mujer 1 - Hombre
      */
-    private int id, rol, edad, genero, transacciones;
+    private int id, rol, edad, genero, transacciones, cedula;
     private String nombre, correo, direccion;
 
     /**
@@ -33,8 +33,9 @@ public class UsuarioVo {
      * @param nombre Nombre del Usuario
      * @param correo Correo electronico del Usuario
      * @param direccion Dirección en la que reside el Usuario
+     * @param cedula Número de identificación
      */
-    public UsuarioVo(int id, int rol, int edad, int genero, String nombre, String correo, String direccion) {
+    public UsuarioVo(int id, int rol, int edad, int genero, String nombre, String correo, String direccion, int cedula) {
         this.id = id;
         this.rol = rol;
         this.edad = edad;
@@ -43,6 +44,7 @@ public class UsuarioVo {
         this.correo = correo;
         this.direccion = direccion;
         this.transacciones = 0;
+        this.cedula = cedula;
     }
 
     @Override
@@ -54,6 +56,7 @@ public class UsuarioVo {
                 + ", Nombre: " + nombre
                 + ", Correo: " + correo
                 + ", Dirección: " + direccion
+                + ", Cedula: " + cedula
                 + ", Transacciones:  " + transacciones;
 
         return str;

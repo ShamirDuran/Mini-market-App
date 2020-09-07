@@ -9,35 +9,87 @@ package controller;
  *
  * @author NICOLAS
  */
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import model.dao.ProductoDao;
 import model.vo.ProductoVo;
 
 public class ProductosController {
 
     ProductoDao productoDao;
+    JTable table;
 
-    public ArrayList<ProductoVo> obtenerListaProductos() {
-        return productoDao.obtenerProductos();
-    }
+    /**
+     * Este metodo carga los productos registrados en la tabla de la vista
+     * Productos
+     *
+     * @return
+     */
+    public Boolean obtenerListaProductos() {
+        ResultSet rs = productoDao.obtenerProductos();
 
-    public void mostrarListaProductos() {
-        System.out.println("\n/-- Lista de productos registrados --/");
-        mostrarListaProducto(productoDao.obtenerProductos());
-    }
+        if (rs != null) {
+            try {
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                String[] producto = new String[7];
 
-    public ArrayList<ProductoVo> buscarProducto(String nombre) {
-        ArrayList<ProductoVo> findList = new ArrayList<ProductoVo>();
-        findList = this.productoDao.obtenerProducto(nombre);
+                while (rs.next()) {
+                    producto[0] = rs.getString("id");
+                    producto[1] = rs.getString("nombre");
+                    producto[2] = rs.getString("precio");
+                    producto[3] = rs.getString("cant_medida");
+                    producto[4] = rs.getString("uni_medida");
+                    producto[5] = rs.getString("cantidad");
+                    producto[6] = rs.getString("cantidad_vendidos");
 
-        if (!findList.isEmpty()) {
-            System.out.println("\n/-- Productos encontrados para <-" + nombre + "-> --/");
-            mostrarListaProducto(findList);
-            return findList;
+                    model.addRow(producto);
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println("Error al recorrer productos: " + e);;
+            }
         } else {
-            System.out.println("\nNo se encontraron Productos con el nombre " + nombre + "!!");
-            return null;
+            System.out.println("No se recibio datos productos, null");
         }
+        return false;
+    }
+
+//    public void mostrarListaProductos() {
+//        System.out.println("\n/-- Lista de productos registrados --/");
+//        mostrarListaProducto(productoDao.obtenerProductos());
+//    }
+    public Boolean buscarProducto(String nombre) {
+        ResultSet rs = productoDao.buscarProducdo(nombre);
+
+        if (rs != null) {
+            try {
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.setNumRows(0);
+                String[] producto = new String[7];
+
+                while (rs.next()) {
+                    producto[0] = rs.getString("id");
+                    producto[1] = rs.getString("nombre");
+                    producto[2] = rs.getString("precio");
+                    producto[3] = rs.getString("cant_medida");
+                    producto[4] = rs.getString("uni_medida");
+                    producto[5] = rs.getString("cantidad");
+                    producto[6] = rs.getString("cantidad_vendidos");
+
+                    model.addRow(producto);
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println("Error al recorrer productos buscados: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos productos buscados, null");
+        }
+        return false;
     }
 
     public ProductoVo buscarProductoId(int id) {
@@ -58,9 +110,11 @@ public class ProductosController {
      * @return true si se realizo la operación, false si no
      */
     public boolean añadirProducto(String nombre, double precio, double cant_medida, String uni_medida, int cantidad) {
-        boolean check = this.productoDao.guardarProducto(nombre, precio, cant_medida, uni_medida, cantidad);
+        boolean check = productoDao.guardarProducto(nombre, precio, cant_medida, uni_medida, cantidad);
+
         if (check) {
             System.out.println("\nProducto " + nombre + " registrado correctamente!!");
+            obtenerListaProductos();
         } else {
             System.out.println("\nError al registrar nuevo Producto!!");
         }
@@ -115,4 +169,7 @@ public class ProductosController {
         this.productoDao = productoDao;
     }
 
+    public void setTable(JTable table) {
+        this.table = table;
+    }
 }

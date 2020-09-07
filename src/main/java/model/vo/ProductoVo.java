@@ -36,6 +36,7 @@ public class ProductoVo {
         this.cant_medida = cant_medida;
         this.uni_medida = uni_medida;
         this.cantidad = cantidad;
+        this.cantidadVendidos = 0;
     }
 
     // recibir objeto
@@ -123,20 +124,24 @@ public class ProductoVo {
         return id;
     }
 
-    public double getcant_medida() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getCant_medida() {
         return cant_medida;
     }
 
-    public void setcant_medida(double cant_medida) {
+    public void setCant_medida(double cant_medida) {
         this.cant_medida = cant_medida;
 
     }
 
-    public String getuni_medida() {
+    public String getUni_medida() {
         return uni_medida;
     }
 
-    public void setuni_medida(String uni_medida) {
+    public void setUni_medida(String uni_medida) {
         this.uni_medida = uni_medida;
     }
 

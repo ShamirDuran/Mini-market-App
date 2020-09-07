@@ -39,7 +39,7 @@ public class VentaVo {
         vendedor = new UsuarioVo(Singleton.getInstance().getId(), Singleton.getInstance().getRol(),
                 Singleton.getInstance().getEdad(), Singleton.getInstance().getGenero(),
                 Singleton.getInstance().getNombre(), Singleton.getInstance().getCorreo(),
-                Singleton.getInstance().getDireccion());
+                Singleton.getInstance().getDireccion(), Singleton.getInstance().getCedula());
 
         this.cantidadList = new ArrayList<Integer>();
         this.productosList = new ArrayList<ProductoVo>();

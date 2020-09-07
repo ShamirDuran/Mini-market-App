@@ -5,8 +5,13 @@
  */
 package view;
 
-import java.awt.BorderLayout;
+import controller.ProductosController;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
+import javax.swing.table.DefaultTableModel;
+import model.dao.ProductoDao;
+import model.vo.ProductoVo;
 
 /**
  *
@@ -14,11 +19,19 @@ import javax.swing.JRootPane;
  */
 public class Producto extends javax.swing.JFrame {
 
+    ProductosController proCon;
+    ProductoDao proDao;
+
     /**
      * Creates new form Home
      */
     public Producto() {
         initComponents();
+        proDao = new ProductoDao();
+        proCon = new ProductosController();
+        proCon.setProductoDao(proDao);
+
+        mostrarProductos();
     }
 
     /**
@@ -33,9 +46,9 @@ public class Producto extends javax.swing.JFrame {
         parent = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        edBuscarPro = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProductos = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
@@ -72,63 +85,28 @@ public class Producto extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Producto");
+        jLabel7.setText("Productos");
 
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField1.setText("Click aqui y escriba el nombre del producto que desea buscar");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        edBuscarPro.setForeground(new java.awt.Color(102, 102, 102));
+        edBuscarPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                edBuscarProActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Id", "Nombre", "Cont. Neto", "Precio", "Uni. Stock", "Uni. Vendidas"
+                "Id", "Nombre", "Precio", "Cont. Neto", "Uni. Medida", "Uni. Stock", "Uni. Vendidas"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -139,8 +117,12 @@ public class Producto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jTable1);
+        tblProductos.setGridColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(tblProductos);
+        if (tblProductos.getColumnModel().getColumnCount() > 0) {
+            tblProductos.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tblProductos.getColumnModel().getColumn(1).setPreferredWidth(150);
+        }
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
@@ -159,6 +141,16 @@ public class Producto extends javax.swing.JFrame {
         btnBuscar.setBackground(new java.awt.Color(172, 78, 233));
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_search_19px.png"))); // NOI18N
         btnBuscar.setBorderPainted(false);
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseClicked(evt);
+            }
+        });
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -173,7 +165,7 @@ public class Producto extends javax.swing.JFrame {
                         .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addGroup(menuLayout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(edBuscarPro, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -187,7 +179,7 @@ public class Producto extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(edBuscarPro))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -515,13 +507,14 @@ public class Producto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void edBuscarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edBuscarProActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_edBuscarProActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        RegistrarP Rproducto=new RegistrarP();
+        RegistrarP Rproducto = new RegistrarP();
         Rproducto.setLocationRelativeTo(null);
+        Rproducto.setControllerPro(proCon);
         Rproducto.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         Rproducto.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -593,13 +586,24 @@ public class Producto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_plTransaccionesMouseClicked
 
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+
+
+    }//GEN-LAST:event_btnBuscarMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        proCon.setTable(tblProductos);
+        String ref = edBuscarPro.getText();
+
+        if (!proCon.buscarProducto(ref)) {
+            JOptionPane.showMessageDialog(null, "No se encontraron productos con el nombre " + ref + "!");
+
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-                                 
-
-   
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -633,11 +637,22 @@ public class Producto extends javax.swing.JFrame {
                 new Producto().setVisible(true);
             }
         });
+
+    }
+
+    public void mostrarProductos() {
+        proCon.setTable(tblProductos);
+        if (proCon.obtenerListaProductos()) {
+            System.out.println("Productos cargados correctamente");
+        } else {
+            System.out.println("Error al cargar lso productos a la tabla");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JTextField edBuscarPro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
@@ -649,8 +664,6 @@ public class Producto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblClientes;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblInventario;
@@ -668,5 +681,7 @@ public class Producto extends javax.swing.JFrame {
     private javax.swing.JPanel plTransacciones;
     private javax.swing.JPanel plVenta;
     private javax.swing.JPanel sidepanel;
+    private javax.swing.JTable tblProductos;
     // End of variables declaration//GEN-END:variables
+
 }

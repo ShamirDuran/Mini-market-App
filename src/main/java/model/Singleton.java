@@ -12,7 +12,7 @@ package model;
 public class Singleton {
 
     private static Singleton singleton;
-    private int id = 1, rol = 1, edad = 20, genero = 1, total_ventas = 0;
+    private int id = 1, rol = 1, edad = 20, genero = 1, total_ventas = 0, cedula = 1005333241;
     private String nombre = "Shamir Duran", correo = "shamirduran15@gmail.com", direccion = "La universidad";
 
     private Singleton() {
@@ -97,5 +97,13 @@ public class Singleton {
 
     public void setTotal_ventas(int total_ventas) {
         this.total_ventas = total_ventas;
+    }
+
+    public int getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
     }
 }

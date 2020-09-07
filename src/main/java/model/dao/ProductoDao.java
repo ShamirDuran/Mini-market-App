@@ -5,8 +5,12 @@
  */
 package model.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Scanner;
+import model.conexion.Conexion;
 import model.vo.ProductoVo;
 
 /**
@@ -15,20 +19,41 @@ import model.vo.ProductoVo;
  */
 public class ProductoDao {
 
+    Conexion c;
+    Connection con;
+
     int i = 1;
     private ArrayList<ProductoVo> listaProductos;
     Scanner teclado = new Scanner(System.in);
 
     public ProductoDao() {
         this.listaProductos = new ArrayList<ProductoVo>();
+
+        c = new Conexion();
+        con = c.getConexion();
+    }
+
+    public ResultSet obtenerProductos() {
+        String sql = "SELECT * FROM t_productos";
+        return queryWithResultSet(sql);
     }
 
     public boolean guardarProducto(String nombre, double precio, double cant_medida, String uni_medida, int cantidad) {
-        ProductoVo productos = new ProductoVo(i, nombre, precio, cant_medida, uni_medida, cantidad);
-        // listaProductos.mostrar(); muestra el producto que se acaba de crear
-        this.listaProductos.add(productos);
-        i++;
-        return true;
+        String sql = "INSERT INTO t_productos (nombre, precio, cant_medida, uni_medida, cantidad, cantidad_vendidos) "
+                + "VALUES (?,?,?,?,?,?)";
+
+        ProductoVo pro = new ProductoVo(
+                1,
+                nombre,
+                precio,
+                cant_medida,
+                uni_medida,
+                cantidad
+        );
+
+        Boolean check = queryWithBoolean(sql, pro);
+
+        return check;
     }
 
     public ProductoVo obtenerProductoId(int id) {
@@ -40,14 +65,9 @@ public class ProductoDao {
         return null;
     }
 
-    public ArrayList<ProductoVo> obtenerProducto(String nombre) {
-        ArrayList<ProductoVo> findList = new ArrayList<ProductoVo>();
-        for (ProductoVo productos : listaProductos) {
-            if (productos.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
-                findList.add(productos);
-            }
-        }
-        return findList;
+    public ResultSet buscarProducdo(String nombre) {
+        String sql = "SELECT *FROM t_productos WHERE nombre LIKE '"+ nombre + "%'";
+        return queryWithResultSet(sql);
     }
 
     public boolean modificarProducto(ProductoVo dataProducto) {
@@ -79,7 +99,40 @@ public class ProductoDao {
         return check;
     }
 
-     public ArrayList<ProductoVo> obtenerProductos() {
-        return listaProductos;
+    private ResultSet queryWithResultSet(String sql) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Error traer datos productos: " + e);
+        }
+
+        return rs;
+    }
+
+    private Boolean queryWithBoolean(String sql, ProductoVo pro) {
+        PreparedStatement ps = null;
+        
+        try {
+            if (pro != null) {
+                ps = con.prepareStatement(sql);
+                ps.setString(1, pro.getNombre());
+                ps.setDouble(2, pro.getPrecio());
+                ps.setDouble(3, pro.getCant_medida());
+                ps.setString(4, pro.getUni_medida());
+                ps.setInt(5, pro.getCantidad());
+                ps.setInt(6, pro.getCantidadVendidos());
+
+                ps.execute();
+            }
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Error al tratar de agregar producto a la db: " + e);
+        }
+        return false;
     }
 }

@@ -25,19 +25,19 @@ public class Reporte {
         int ventas_totales = 0;
 
         System.out.println("\n/-- VENTAS TOTALES --/");
-        for (ProductoVo producto : proController.obtenerListaProductos()) {
-            ventas_totales = ventas_totales + producto.getCantidadVendidos();
-        }
+//        for (ProductoVo producto : proController.obtenerListaProductos()) {
+//            ventas_totales = ventas_totales + producto.getCantidadVendidos();
+//        }
 
         System.out.println("VENTAS TOTALES: " + ventas_totales);
     }
 
     public void reporteVentaPorProducto() {
         System.out.println("\n/-- VENTAS POR PRODUCTO --/");
-        for (ProductoVo producto : proController.obtenerListaProductos()) {
-            System.out.println(
-                    "ID: " + producto.getId() + "   " + producto.getNombre() + "   " + producto.getCantidadVendidos());
-        }
+//        for (ProductoVo producto : proController.obtenerListaProductos()) {
+//            System.out.println(
+//                    "ID: " + producto.getId() + "   " + producto.getNombre() + "   " + producto.getCantidadVendidos());
+//        }
     }
 
     public void reporteVentaPorCajero() {
@@ -64,18 +64,18 @@ public class Reporte {
         double ganancia_total = 0;
 
         System.out.println("\n/-- GANANCIA TOTAL --/");
-        for (ProductoVo producto : proController.obtenerListaProductos()) {
-            ganancia_total = ganancia_total + (producto.getPrecio() * producto.getCantidadVendidos());
-        }
+//        for (ProductoVo producto : proController.obtenerListaProductos()) {
+//            ganancia_total = ganancia_total + (producto.getPrecio() * producto.getCantidadVendidos());
+//        }
         System.out.println("TOTAL: " + ganancia_total);
     }
 
     public void reporteGananciaPorProducto() {
         System.out.println("\n /-- GANANCIA POR PRODUCTO --/");
-        for (ProductoVo producto : proController.obtenerListaProductos()) {
-            double ganancia = producto.getPrecio() * producto.getCantidadVendidos();
-            System.out.println("ID: " + producto.getId() + "   " + producto.getNombre() + "   TOTAL: " + ganancia);
-        }
+//        for (ProductoVo producto : proController.obtenerListaProductos()) {
+//            double ganancia = producto.getPrecio() * producto.getCantidadVendidos();
+//            System.out.println("ID: " + producto.getId() + "   " + producto.getNombre() + "   TOTAL: " + ganancia);
+//        }
     }
 
     public void hacerReporteCompleto() {

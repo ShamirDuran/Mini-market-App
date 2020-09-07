@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package view;
-import model.conexion.Conexion;
+
 /**
  *
  * @author Shamir
@@ -17,6 +17,7 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -761,10 +762,6 @@ public class Home extends javax.swing.JFrame {
                 new Home().setVisible(true);
             }
         });
-        
-        Conexion con = new Conexion();
-        con.getConexion();
-        con.cerrarConexion();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

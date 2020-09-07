@@ -36,10 +36,11 @@ public class UsuarioDao {
      * @param nombre    nombre del nuevo usuario
      * @param correo    correo electronico del nuevo usuario
      * @param direccion direccion del nuevo usuario
+     * @param cedula Número de identificación
      * @return true si se agrego correctamente, false si no
      */
-    public boolean añadirUsuario(int rol, int edad, int genero, String nombre, String correo, String direccion) {
-        UsuarioVo user = new UsuarioVo(this.contador, rol, edad, genero, nombre, correo, direccion);
+    public boolean añadirUsuario(int rol, int edad, int genero, String nombre, String correo, String direccion, int cedula) {
+        UsuarioVo user = new UsuarioVo(this.contador, rol, edad, genero, nombre, correo, direccion, cedula);
         this.listaUsuarios.add(user);
         this.contador++;
 
