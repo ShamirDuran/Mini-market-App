@@ -118,6 +118,11 @@ public class Producto extends javax.swing.JFrame {
             }
         });
         tblProductos.setGridColor(new java.awt.Color(255, 255, 255));
+        tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProductos);
         if (tblProductos.getColumnModel().getColumnCount() > 0) {
             tblProductos.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -601,6 +606,26 @@ public class Producto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
+        int filaSeleccionada = tblProductos.getSelectedRow();
+        ProductoVo pro = new ProductoVo(
+                Integer.parseInt(tblProductos.getValueAt(filaSeleccionada, 0).toString()),
+                tblProductos.getValueAt(filaSeleccionada, 1).toString(),
+                Double.parseDouble(tblProductos.getValueAt(filaSeleccionada, 2).toString()),
+                Double.parseDouble(tblProductos.getValueAt(filaSeleccionada, 3).toString()),
+                tblProductos.getValueAt(filaSeleccionada, 4).toString(),
+                Integer.parseInt(tblProductos.getValueAt(filaSeleccionada, 5).toString())
+        );
+
+        pro.setCantidadVendidos(Integer.parseInt(tblProductos.getValueAt(filaSeleccionada, 5).toString()));
+
+        ModificarP modPro = new ModificarP();
+        modPro.setPro(pro);
+        modPro.setLocationRelativeTo(null);
+        modPro.setControllerPro(proCon);
+        modPro.setVisible(true);
+    }//GEN-LAST:event_tblProductosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -648,6 +673,7 @@ public class Producto extends javax.swing.JFrame {
             System.out.println("Error al cargar lso productos a la tabla");
         }
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

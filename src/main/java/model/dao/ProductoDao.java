@@ -44,14 +44,14 @@ public class ProductoDao {
 
         ProductoVo pro = new ProductoVo(
                 1,
-                nombre,
+                nombre.toUpperCase(),
                 precio,
                 cant_medida,
                 uni_medida,
                 cantidad
         );
 
-        Boolean check = queryWithBoolean(sql, pro);
+        Boolean check = queryWithBoolean(sql, pro, "execute");
 
         return check;
     }
@@ -66,37 +66,33 @@ public class ProductoDao {
     }
 
     public ResultSet buscarProducdo(String nombre) {
-        String sql = "SELECT *FROM t_productos WHERE nombre LIKE '"+ nombre + "%'";
+        String sql = "SELECT *FROM t_productos WHERE nombre LIKE '" + nombre + "%'";
         return queryWithResultSet(sql);
     }
 
     public boolean modificarProducto(ProductoVo dataProducto) {
         boolean check = false;
 
-        for (ProductoVo productos : listaProductos) {
-            if (productos.getId() == dataProducto.getId()) {
-                productos = dataProducto;
-                check = true;
-                break;
-            }
-        }
+        String sql = "UPDATE t_productos SET nombre = ?, precio = ?, cant_medida = ?, uni_medida = ?, cantidad = ?, cantidad_vendidos = ? WHERE id = ?";
+        check = queryWithBoolean(sql, dataProducto, "executeUpdate");
+
         return check;
     }
 
     public boolean eliminarProducto(int id) {
-        boolean check = false;
-        int index = 0;
+        String sql = "DELETE FROM t_productos WHERE id = ?";
+        PreparedStatement ps = null;
 
-        for (ProductoVo productos : listaProductos) {
-            if (productos.getId() == id) {
-                listaProductos.remove(index);
-                check = true;
-                break;
-            } else {
-                index++;
-            }
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+            
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error al eliminar producto: " + e);
+            return false;
         }
-        return check;
     }
 
     private ResultSet queryWithResultSet(String sql) {
@@ -113,9 +109,9 @@ public class ProductoDao {
         return rs;
     }
 
-    private Boolean queryWithBoolean(String sql, ProductoVo pro) {
+    private Boolean queryWithBoolean(String sql, ProductoVo pro, String type) {
         PreparedStatement ps = null;
-        
+
         try {
             if (pro != null) {
                 ps = con.prepareStatement(sql);
@@ -126,13 +122,26 @@ public class ProductoDao {
                 ps.setInt(5, pro.getCantidad());
                 ps.setInt(6, pro.getCantidadVendidos());
 
-                ps.execute();
+                switch (type) {
+                    case "execute":
+                        ps.execute();
+                        break;
+
+                    case "executeUpdate":
+                        ps.setInt(7, pro.getId());
+                        ps.executeUpdate();
+                        break;
+
+                    default:
+                        break;
+                }
             }
             return true;
 
         } catch (Exception e) {
-            System.out.println("Error al tratar de agregar producto a la db: " + e);
+            System.out.println("Error en la petición de la db: " + e);
         }
+
         return false;
     }
 }

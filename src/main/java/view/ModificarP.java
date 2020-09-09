@@ -17,6 +17,7 @@ import model.vo.ProductoVo;
 public class ModificarP extends javax.swing.JFrame {
 
     ProductosController proCon;
+    ProductoVo pro;
 
     /**
      * Creates new form RegistrarC
@@ -37,17 +38,18 @@ public class ModificarP extends javax.swing.JFrame {
         body = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        etCantidad = new javax.swing.JTextField();
+        edCantidad = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        etUniMedida = new javax.swing.JTextField();
+        edUniMedida = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        etContNeto = new javax.swing.JTextField();
+        edContNeto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        etNombre = new javax.swing.JTextField();
-        etPrecio = new javax.swing.JTextField();
+        edNombre = new javax.swing.JTextField();
+        edPrecio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -79,16 +81,16 @@ public class ModificarP extends javax.swing.JFrame {
             }
         });
 
-        etCantidad.setForeground(new java.awt.Color(102, 102, 102));
-        etCantidad.setEnabled(false);
-        etCantidad.addMouseListener(new java.awt.event.MouseAdapter() {
+        edCantidad.setForeground(new java.awt.Color(102, 102, 102));
+        edCantidad.setEnabled(false);
+        edCantidad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etCantidadMouseClicked(evt);
+                edCantidadMouseClicked(evt);
             }
         });
-        etCantidad.addActionListener(new java.awt.event.ActionListener() {
+        edCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etCantidadActionPerformed(evt);
+                edCantidadActionPerformed(evt);
             }
         });
 
@@ -96,16 +98,16 @@ public class ModificarP extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Cantidad");
 
-        etUniMedida.setForeground(new java.awt.Color(102, 102, 102));
-        etUniMedida.setEnabled(false);
-        etUniMedida.addMouseListener(new java.awt.event.MouseAdapter() {
+        edUniMedida.setForeground(new java.awt.Color(102, 102, 102));
+        edUniMedida.setEnabled(false);
+        edUniMedida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etUniMedidaMouseClicked(evt);
+                edUniMedidaMouseClicked(evt);
             }
         });
-        etUniMedida.addActionListener(new java.awt.event.ActionListener() {
+        edUniMedida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etUniMedidaActionPerformed(evt);
+                edUniMedidaActionPerformed(evt);
             }
         });
 
@@ -113,16 +115,16 @@ public class ModificarP extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Uni. Medida:");
 
-        etContNeto.setForeground(new java.awt.Color(102, 102, 102));
-        etContNeto.setEnabled(false);
-        etContNeto.addMouseListener(new java.awt.event.MouseAdapter() {
+        edContNeto.setForeground(new java.awt.Color(102, 102, 102));
+        edContNeto.setEnabled(false);
+        edContNeto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etContNetoMouseClicked(evt);
+                edContNetoMouseClicked(evt);
             }
         });
-        etContNeto.addActionListener(new java.awt.event.ActionListener() {
+        edContNeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etContNetoActionPerformed(evt);
+                edContNetoActionPerformed(evt);
             }
         });
 
@@ -130,29 +132,29 @@ public class ModificarP extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Cont. Neto");
 
-        etNombre.setForeground(new java.awt.Color(102, 102, 102));
-        etNombre.setEnabled(false);
-        etNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+        edNombre.setForeground(new java.awt.Color(102, 102, 102));
+        edNombre.setEnabled(false);
+        edNombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etNombreMouseClicked(evt);
+                edNombreMouseClicked(evt);
             }
         });
-        etNombre.addActionListener(new java.awt.event.ActionListener() {
+        edNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etNombreActionPerformed(evt);
+                edNombreActionPerformed(evt);
             }
         });
 
-        etPrecio.setForeground(new java.awt.Color(102, 102, 102));
-        etPrecio.setEnabled(false);
-        etPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
+        edPrecio.setForeground(new java.awt.Color(102, 102, 102));
+        edPrecio.setEnabled(false);
+        edPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etPrecioMouseClicked(evt);
+                edPrecioMouseClicked(evt);
             }
         });
-        etPrecio.addActionListener(new java.awt.event.ActionListener() {
+        edPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etPrecioActionPerformed(evt);
+                edPrecioActionPerformed(evt);
             }
         });
 
@@ -164,10 +166,20 @@ public class ModificarP extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Nombre:");
 
+        jLabel1.setBackground(new java.awt.Color(243, 243, 243));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Detalles Producto");
+
+        btnClose.setBackground(new java.awt.Color(243, 243, 243));
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_cancel_40px.png"))); // NOI18N
+        btnClose.setBorder(null);
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
@@ -177,30 +189,39 @@ public class ModificarP extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etContNeto, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edContNeto, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(etUniMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edUniMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(62, Short.MAX_VALUE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(46, 46, 46))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(btnCancelar)
-                .addGap(20, 20, 20)
-                .addComponent(btnGuardar)
-                .addGap(293, 293, 293))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
+                        .addComponent(btnCancelar)
+                        .addGap(20, 20, 20)
+                        .addComponent(btnGuardar)
+                        .addGap(293, 293, 293))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
+                        .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addContainerGap()
+                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(58, 58, 58)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -208,20 +229,20 @@ public class ModificarP extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etContNeto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etUniMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addComponent(edContNeto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edUniMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(etCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(edCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
@@ -243,71 +264,86 @@ public class ModificarP extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void etPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etPrecioActionPerformed
+    private void edPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edPrecioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_etPrecioActionPerformed
+    }//GEN-LAST:event_edPrecioActionPerformed
 
-    private void etNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etNombreActionPerformed
+    private void edNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_etNombreActionPerformed
+    }//GEN-LAST:event_edNombreActionPerformed
 
-    private void etContNetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etContNetoActionPerformed
+    private void edContNetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edContNetoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_etContNetoActionPerformed
+    }//GEN-LAST:event_edContNetoActionPerformed
 
-    private void etUniMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etUniMedidaActionPerformed
+    private void edUniMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edUniMedidaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_etUniMedidaActionPerformed
+    }//GEN-LAST:event_edUniMedidaActionPerformed
 
-    private void etCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etCantidadActionPerformed
+    private void edCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edCantidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_etCantidadActionPerformed
+    }//GEN-LAST:event_edCantidadActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
+
+        int click = JOptionPane.showConfirmDialog(this, "¿Esta seguro de que desea eliminar este producto?", "Confirmación", JOptionPane.YES_NO_OPTION);
+
+        if (click == JOptionPane.YES_OPTION) {
+            if (proCon.eliminarProducto(pro.getId())) {
+                this.dispose();
+                JOptionPane.showMessageDialog(null, "Producto eliminado correctamente!");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se elimino el producto", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // Verificamos que ningun campo este vacio
-        if (!etNombre.getText().equals("") && !etPrecio.getText().equals("") && !etContNeto.getText().equals("") && !etUniMedida.getText().equals("") && !etCantidad.getText().equals("")) {
-            Boolean check = proCon.añadirProducto(
-                    etNombre.getText(),
-                    Double.parseDouble(etPrecio.getText()),
-                    Double.parseDouble(etContNeto.getText()),
-                    etUniMedida.getText(),
-                    Integer.parseInt(etCantidad.getText())
+        if (!edNombre.getText().equals("") && !edPrecio.getText().equals("") && !edContNeto.getText().equals("") && !edUniMedida.getText().equals("") && !edCantidad.getText().equals("")) {
+            ProductoVo proData = new ProductoVo(
+                    edNombre.getText(),
+                    Double.parseDouble(edPrecio.getText()),
+                    Double.parseDouble(edContNeto.getText()),
+                    edUniMedida.getText(),
+                    Integer.parseInt(edCantidad.getText())
             );
 
-            if (check) {
+            proData.setId(pro.getId());
+            if (proCon.modificarProducto(proData)) {
                 this.dispose();
-                JOptionPane.showMessageDialog(null, "Producto registrado!");
+                JOptionPane.showMessageDialog(null, "Producto modificado correctamente!");
             } else {
-                JOptionPane.showMessageDialog(this, "No se registro el producto", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se modifico el producto", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void etNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etNombreMouseClicked
-        etNombre.setEnabled(true);
-    }//GEN-LAST:event_etNombreMouseClicked
+    private void edNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edNombreMouseClicked
+        edNombre.setEnabled(true);
+    }//GEN-LAST:event_edNombreMouseClicked
 
-    private void etPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etPrecioMouseClicked
-        etPrecio.setEnabled(true);
-    }//GEN-LAST:event_etPrecioMouseClicked
+    private void edPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edPrecioMouseClicked
+        edPrecio.setEnabled(true);
+    }//GEN-LAST:event_edPrecioMouseClicked
 
-    private void etContNetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etContNetoMouseClicked
-        etContNeto.setEnabled(true);
-    }//GEN-LAST:event_etContNetoMouseClicked
+    private void edContNetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edContNetoMouseClicked
+        edContNeto.setEnabled(true);
+    }//GEN-LAST:event_edContNetoMouseClicked
 
-    private void etUniMedidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etUniMedidaMouseClicked
-        etUniMedida.setEnabled(true);
-    }//GEN-LAST:event_etUniMedidaMouseClicked
+    private void edUniMedidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edUniMedidaMouseClicked
+        edUniMedida.setEnabled(true);
+    }//GEN-LAST:event_edUniMedidaMouseClicked
 
-    private void etCantidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etCantidadMouseClicked
-        etCantidad.setEnabled(true);
-    }//GEN-LAST:event_etCantidadMouseClicked
+    private void edCantidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edCantidadMouseClicked
+        edCantidad.setEnabled(true);
+    }//GEN-LAST:event_edCantidadMouseClicked
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,15 +387,26 @@ public class ModificarP extends javax.swing.JFrame {
         this.proCon = proCon;
     }
 
+    public void setPro(ProductoVo pro) {
+        this.pro = pro;
+
+        edNombre.setText(pro.getNombre());
+        edPrecio.setText(String.valueOf(pro.getPrecio()));
+        edContNeto.setText(String.valueOf(pro.getCant_medida()));
+        edUniMedida.setText(pro.getUni_medida());
+        edCantidad.setText(String.valueOf(pro.getCantidad()));
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel body;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JTextField etCantidad;
-    private javax.swing.JTextField etContNeto;
-    private javax.swing.JTextField etNombre;
-    private javax.swing.JTextField etPrecio;
-    private javax.swing.JTextField etUniMedida;
+    private javax.swing.JTextField edCantidad;
+    private javax.swing.JTextField edContNeto;
+    private javax.swing.JTextField edNombre;
+    private javax.swing.JTextField edPrecio;
+    private javax.swing.JTextField edUniMedida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

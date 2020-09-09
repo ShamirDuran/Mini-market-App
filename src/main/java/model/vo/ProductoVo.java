@@ -39,6 +39,15 @@ public class ProductoVo {
         this.cantidadVendidos = 0;
     }
 
+    public ProductoVo(String nombre, double precio, double cant_medida, String uni_medida, int cantidad) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.cant_medida = cant_medida;
+        this.uni_medida = uni_medida;
+        this.cantidad = cantidad;
+        this.cantidadVendidos = 0;
+    }
+
     // recibir objeto
     public void modificar(int id, String nombre, double precio, double cant_medida, String uni_medida, int cantidad) {
         this.id = id;

@@ -129,9 +129,10 @@ public class ProductosController {
      * @return true si se realizo la operación, false si no
      */
     public boolean modificarProducto(ProductoVo producto) {
-        boolean check = this.productoDao.modificarProducto(producto);
+        boolean check = productoDao.modificarProducto(producto);
         if (check) {
             System.out.println("\nProducto modificado correctamente!!");
+            obtenerListaProductos();
         } else {
             System.out.println("\nNo se encontro el Producto!!");
         }
@@ -149,6 +150,7 @@ public class ProductosController {
         boolean check = this.productoDao.eliminarProducto(id);
         if (check) {
             System.out.println("\nProducto con id " + id + " eliminado correctamente!!");
+            obtenerListaProductos();
         } else {
             System.out.println("\nNo se encontro producto con id " + id);
         }
