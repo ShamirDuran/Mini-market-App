@@ -670,7 +670,7 @@ public class Producto extends javax.swing.JFrame {
         if (proCon.obtenerListaProductos()) {
             System.out.println("Productos cargados correctamente");
         } else {
-            System.out.println("Error al cargar lso productos a la tabla");
+            System.out.println("Error al cargar los productos a la tabla");
         }
     }
 

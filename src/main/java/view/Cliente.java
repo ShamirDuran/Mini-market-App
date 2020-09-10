@@ -5,6 +5,12 @@
  */
 package view;
 
+import controller.UsuariosController;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
+import model.dao.UsuarioDao;
+import model.vo.UsuarioVo;
+
 /**
  *
  * @author Shamir
@@ -14,8 +20,15 @@ public class Cliente extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+    UsuariosController userCon;
+    UsuarioDao userDao;
     public Cliente() {
         initComponents();
+        userDao = new UsuarioDao();
+        userCon = new UsuariosController();
+        userCon.setUsuarioDao(userDao);
+        
+        mostrarUsuarios();
     }
 
     /**
@@ -29,12 +42,12 @@ public class Cliente extends javax.swing.JFrame {
 
         parent = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        etBuscar = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         btnRegistrar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblUsuario = new javax.swing.JTable();
         btnBuscarPro = new javax.swing.JButton();
         sidepanel = new javax.swing.JPanel();
         plIinicio = new javax.swing.JPanel();
@@ -66,8 +79,13 @@ public class Cliente extends javax.swing.JFrame {
 
         menu.setBackground(new java.awt.Color(243, 243, 243));
 
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField1.setText("Click aqui y escriba el nombre del cliente que desea buscar");
+        etBuscar.setForeground(new java.awt.Color(102, 102, 102));
+        etBuscar.setText("Click aqui y escriba el nombre del cliente que desea buscar");
+        etBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                etBuscarMouseClicked(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
@@ -87,50 +105,16 @@ public class Cliente extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("CLIENTE");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Id", "Nombre", "Edad", "Genero", "Correo", "Direccion", "Telefono", "# Compras"
+                "Id", "Cedula", "Nombre", "Correo", "Direccion", "Edad", "Genero", "# Compras"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false
@@ -144,12 +128,28 @@ public class Cliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setGridColor(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setViewportView(jTable2);
+        tblUsuario.setGridColor(new java.awt.Color(255, 255, 255));
+        tblUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsuarioMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblUsuario);
+        if (tblUsuario.getColumnModel().getColumnCount() > 0) {
+            tblUsuario.getColumnModel().getColumn(2).setMinWidth(150);
+            tblUsuario.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tblUsuario.getColumnModel().getColumn(2).setMaxWidth(150);
+            tblUsuario.getColumnModel().getColumn(3).setMinWidth(200);
+        }
 
         btnBuscarPro.setBackground(new java.awt.Color(172, 78, 233));
         btnBuscarPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_search_19px.png"))); // NOI18N
         btnBuscarPro.setBorderPainted(false);
+        btnBuscarPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarProActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -160,7 +160,7 @@ public class Cliente extends javax.swing.JFrame {
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addGroup(menuLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(etBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(btnBuscarPro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -179,7 +179,7 @@ public class Cliente extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnBuscarPro, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(etBuscar))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,6 +515,8 @@ public class Cliente extends javax.swing.JFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         RegistrarC Rcliente=new RegistrarC();
         Rcliente.setLocationRelativeTo(null);
+        Rcliente.setUserCon(userCon);
+        Rcliente.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         Rcliente.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -584,6 +586,43 @@ public class Cliente extends javax.swing.JFrame {
         transac.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_plTransaccionesMouseClicked
+
+    private void tblUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuarioMouseClicked
+        int filaSeleccionada = tblUsuario.getSelectedRow();
+        UsuarioVo user = new UsuarioVo(
+                Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 0).toString()),
+                1,
+                Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 5).toString()),
+                Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 6).toString()),
+                tblUsuario.getValueAt(filaSeleccionada, 2).toString(),
+                tblUsuario.getValueAt(filaSeleccionada, 3).toString(),
+                tblUsuario.getValueAt(filaSeleccionada, 4).toString(),            
+                Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 1).toString())
+                
+        );
+        user.setTransacciones(Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 7).toString()));
+        
+
+        ModificarC moduser = new ModificarC();
+        moduser.setUser(user);
+        moduser.setLocationRelativeTo(null);
+        moduser.setUsercon(userCon);
+        moduser.setVisible(true);
+    }//GEN-LAST:event_tblUsuarioMouseClicked
+
+    private void btnBuscarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProActionPerformed
+        userCon.setTable(tblUsuario);
+        String ref = etBuscar.getText();
+
+        if (!userCon.buscarUsuario(ref)) {
+            JOptionPane.showMessageDialog(null, "No se encontraron productos con el nombre " + ref + "!");
+
+        }
+    }//GEN-LAST:event_btnBuscarProActionPerformed
+
+    private void etBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etBuscarMouseClicked
+        etBuscar.setText(null);
+    }//GEN-LAST:event_etBuscarMouseClicked
                                    
 
                                       
@@ -623,10 +662,20 @@ public class Cliente extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void mostrarUsuarios() {
+        userCon.setTable(tblUsuario);
+        if (userCon.obtenerListaUsuarios()) {
+            System.out.println("Usuarios cargados correctamente");
+        } else {
+            System.out.println("Error al cargar los usuarios a la tabla");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarPro;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JTextField etBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -638,8 +687,6 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblClientes;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblInventario;
@@ -657,5 +704,6 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JPanel plTransacciones;
     private javax.swing.JPanel plVenta;
     private javax.swing.JPanel sidepanel;
+    private javax.swing.JTable tblUsuario;
     // End of variables declaration//GEN-END:variables
 }

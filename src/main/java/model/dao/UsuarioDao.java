@@ -5,8 +5,13 @@
  */
 package model.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import model.vo.UsuarioVo;
 import java.util.ArrayList;
+import model.conexion.Conexion;
+
 
 /**
  * Clase que contiene los metodos de acceso a la db.
@@ -14,7 +19,8 @@ import java.util.ArrayList;
  * @author Shamir
  */
 public class UsuarioDao {
-
+    Conexion c;
+    Connection con;
     int contador = 1;
 
     private ArrayList<UsuarioVo> listaUsuarios;
@@ -22,10 +28,21 @@ public class UsuarioDao {
     /**
      * Constructor clase UsuarioDao
      */
+    
+    
     public UsuarioDao() {
         this.listaUsuarios = new ArrayList<UsuarioVo>();
+        c = new Conexion();
+        con = c.getConexion();
     }
 
+    
+    
+    public ResultSet obtenerUsuarios() {
+        String sql = "SELECT * FROM t_usuarios";
+        return queryWithResultSet(sql);
+    }
+    
     /**
      * Metodo que agrega nuevos usuarios a la lista de registrados. Retorna un
      * boolean dependiendo de si se realizo la operación o no.
@@ -39,12 +56,17 @@ public class UsuarioDao {
      * @param cedula Número de identificación
      * @return true si se agrego correctamente, false si no
      */
+    
+    
     public boolean añadirUsuario(int rol, int edad, int genero, String nombre, String correo, String direccion, int cedula) {
-        UsuarioVo user = new UsuarioVo(this.contador, rol, edad, genero, nombre, correo, direccion, cedula);
-        this.listaUsuarios.add(user);
-        this.contador++;
+        String sql = "INSERT INTO t_usuarios (rol, edad, genero, transacciones, nombre, correo, direccion,cedula) "
+                + "VALUES (?,?,?,?,?,?,?,?)";
+        
+        UsuarioVo user = new UsuarioVo(1,rol, edad, genero, nombre, correo, direccion, cedula);
+ 
+        Boolean check = queryWithBoolean(sql, user, "execute");
 
-        return true;
+        return check;
     }
 
     /**
@@ -58,13 +80,8 @@ public class UsuarioDao {
     public boolean modificarUsuario(UsuarioVo dataUser) {
         boolean check = false;
 
-        for (UsuarioVo user : listaUsuarios) {
-            if (user.getId() == dataUser.getId()) {
-                user = dataUser;
-                check = true;
-                break;
-            }
-        }
+        String sql = "UPDATE t_usuarios SET rol = ?, edad = ?, genero = ?, transacciones = ?, nombre = ?, correo = ?, direccion = ?, cedula = ? WHERE id = ?";
+        check = queryWithBoolean(sql, dataUser, "executeUpdate");
         return check;
     }
 
@@ -76,19 +93,19 @@ public class UsuarioDao {
      * @return True si se pudo eliminar, False si no.
      */
     public boolean eliminarUsuario(int id) {
-        boolean check = false;
-        int index = 0;
+        String sql = "DELETE FROM t_usuarios WHERE id = ?";
+        PreparedStatement ps = null;
 
-        for (UsuarioVo user : listaUsuarios) {
-            if (user.getId() == id) {
-                listaUsuarios.remove(index);
-                check = true;
-                break;
-            } else {
-                index++;
-            }
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+            
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error al eliminar usuario: " + e);
+            return false;
         }
-        return check;
     }
 
     /**
@@ -98,16 +115,10 @@ public class UsuarioDao {
      * @return Regresa la lista de usuarios que contengan el string( nombre) de
      *         busqueda.
      */
-    public ArrayList<UsuarioVo> buscarUsuario(String nombre) {
-        ArrayList<UsuarioVo> findList = new ArrayList<UsuarioVo>();
-
-        for (UsuarioVo user : listaUsuarios) {
-            if (user.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
-                findList.add(user);
-            }
-        }
-
-        return findList;
+    public ResultSet buscarUsuario(String nombre) {
+        String sql = "SELECT *FROM t_usuarios WHERE nombre LIKE '" + nombre + "%'";
+        return queryWithResultSet(sql);
+    
     }
 
     public UsuarioVo buscarUsuarioId(int cedula) {
@@ -123,5 +134,58 @@ public class UsuarioDao {
 
     public ArrayList<UsuarioVo> getListaUsuarios() {
         return listaUsuarios;
+    }
+    
+    private ResultSet queryWithResultSet(String sql) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Error traer datos productos: " + e);
+        }
+
+        return rs;
+    }
+    
+    private Boolean queryWithBoolean(String sql, UsuarioVo user, String type) {
+        PreparedStatement ps = null;
+
+        try {
+            if (user != null) {
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, user.getRol());
+                ps.setInt(2, user.getEdad());
+                ps.setInt(3, user.getGenero());
+                ps.setInt(4, user.getTransacciones());
+                ps.setString(5, user.getNombre());
+                ps.setString(6, user.getCorreo());
+                ps.setString(7, user.getDireccion());
+                ps.setInt(8, user.getCedula());
+
+                switch (type) {
+                    case "execute":
+                        ps.execute();
+                        break;
+
+                    case "executeUpdate":
+                        System.out.println(user.getId());
+                        ps.setInt(9, user.getId());
+                        ps.executeUpdate();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Error en la petición de la db: " + e);
+        }
+
+        return false;
     }
 }
