@@ -12,12 +12,15 @@ view\Producto$12.class
 view\RealizarVenta$1.class
 view\Producto$5.class
 view\ReporteTotal$13.class
+view\RegistrarC$16.class
 model\vo\UsuarioVo.class
+view\Cliente$14.class
 view\ReporteTotal$8.class
 view\RealizarVenta$7.class
 model\vo\VentaVo.class
 view\Cliente$2.class
 view\ModificarP$5.class
+view\RegistrarC$10.class
 view\Transacciones$1.class
 view\InventarioV$4.class
 view\RegistrarP$1.class
@@ -28,6 +31,7 @@ view\ModificarC$4.class
 view\ModificarP$11.class
 view\ReporteDiario$5.class
 view\Transacciones$10.class
+view\RegistrarC$11.class
 view\ReporteDiario$4.class
 view\ReporteTotal$3.class
 view\Home$11.class
@@ -40,6 +44,7 @@ view\InventarioV$9.class
 view\Producto$6.class
 view\ReporteDiario$3.class
 view\ModificarC$10.class
+view\RegistrarC$12.class
 view\ModificarC$2.class
 model\Singleton.class
 view\Cliente$3.class
@@ -70,6 +75,7 @@ view\Transacciones$4.class
 view\ReporteTotal$7.class
 view\RealizarVenta$6.class
 view\ReporteDiario$12.class
+view\RegistrarC$14.class
 view\ReporteDiario$1.class
 view\Cliente$1.class
 model\dao\ProductoDao.class
@@ -83,6 +89,7 @@ view\Transacciones$5.class
 view\Producto$3.class
 view\ReporteDiario.class
 view\InventarioV$10.class
+view\RegistrarC$15.class
 view\ReporteDiario$11.class
 view\RealizarVenta$5.class
 view\Home$14.class
@@ -98,6 +105,7 @@ view\Producto$2.class
 view\Transacciones$12.class
 view\InventarioV$12.class
 view\RealizarVenta$10.class
+view\RegistrarC$13.class
 view\ReporteDiario$2.class
 view\InventarioV$7.class
 view\ReporteTotal$10.class
@@ -155,6 +163,7 @@ view\ModificarC$5.class
 view\ModificarP$13.class
 view\Producto.class
 view\Producto$16.class
+view\ModificarC$15.class
 view\ModificarP$14.class
 view\ModificarC$7.class
 view\RealizarVenta$12.class
@@ -163,14 +172,17 @@ view\Producto$17.class
 model\dao\UsuarioDao.class
 view\RegistrarP$5.class
 view\ReporteTotal$11.class
+view\Cliente$15.class
 view\ReporteDiario$8.class
 view\Home$3.class
 view\Home.class
 view\InventarioV$5.class
 view\ReporteTotal$1.class
+view\ModificarC$16.class
 view\RealizarVenta$13.class
 view\Home$2.class
 view\RegistrarC$9.class
+view\Cliente$16.class
 view\RegistrarP.class
 view\ReporteTotal$12.class
 view\ModificarP$3.class

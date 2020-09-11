@@ -57,12 +57,13 @@ public class ProductosController {
         }
         return false;
     }
-    private void limpiarTabla(){
-     DefaultTableModel model = (DefaultTableModel) table.getModel();
-     int rowCount = model.getRowCount();
-    for (int i = rowCount - 1; i >= 0; i--) {
-        model.removeRow(i);
-    }
+
+    private void limpiarTabla() {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        int rowCount = model.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
     }
 
 //    public void mostrarListaProductos() {
@@ -121,7 +122,7 @@ public class ProductosController {
 
         if (check) {
             System.out.println("\nProducto " + nombre + " registrado correctamente!!");
-            limpiarTabla();
+//            limpiarTabla();
             obtenerListaProductos();
         } else {
             System.out.println("\nError al registrar nuevo Producto!!");
@@ -140,7 +141,7 @@ public class ProductosController {
         boolean check = productoDao.modificarProducto(producto);
         if (check) {
             System.out.println("\nProducto modificado correctamente!!");
-            limpiarTabla();
+//            limpiarTabla();
             obtenerListaProductos();
         } else {
             System.out.println("\nNo se encontro el Producto!!");
@@ -159,7 +160,7 @@ public class ProductosController {
         boolean check = this.productoDao.eliminarProducto(id);
         if (check) {
             System.out.println("\nProducto con id " + id + " eliminado correctamente!!");
-            limpiarTabla();
+//            limpiarTabla();
             obtenerListaProductos();
         } else {
             System.out.println("\nNo se encontro producto con id " + id);
