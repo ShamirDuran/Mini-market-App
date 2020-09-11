@@ -33,8 +33,10 @@ public class ProductosController {
         ResultSet rs = productoDao.obtenerProductos();
 
         if (rs != null) {
+
             try {
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.setNumRows(0);
                 String[] producto = new String[7];
 
                 while (rs.next()) {
