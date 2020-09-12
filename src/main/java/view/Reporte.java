@@ -42,22 +42,22 @@ public class Reporte {
 
     public void reporteVentaPorCajero() {
         System.out.println("\n/-- REPORTE VENTA POR CAJERO --/");
-        for (UsuarioVo user : usuController.obtenerListaUsuarios()) {
-            if (user.getRol() != 4) {
-                System.out.println("ID: " + user.getId() + "   ROL: " + user.getRol() + "   " + user.getNombre()
-                        + "   VENTAS: " + user.getTransacciones());
-            }
-        }
+//        for (UsuarioVo user : usuController.obtenerListaUsuarios()) {
+//            if (user.getRol() != 4) {
+//                System.out.println("ID: " + user.getId() + "   ROL: " + user.getRol() + "   " + user.getNombre()
+//                        + "   VENTAS: " + user.getTransacciones());
+//            }
+//        }
     }
 
     public void reporteCompraporCliente() {
         System.out.println("\n/-- REPORTE VENTA POR CLIENTE --/");
-        for (UsuarioVo user : usuController.obtenerListaUsuarios()) {
-            if (user.getRol() == 4) {
-                System.out.println(
-                        "ID: " + user.getId() + "   " + user.getNombre() + "   COMRPRAS: " + user.getTransacciones());
-            }
-        }
+//        for (UsuarioVo user : usuController.obtenerListaUsuarios()) {
+//            if (user.getRol() == 4) {
+//                System.out.println(
+//                        "ID: " + user.getId() + "   " + user.getNombre() + "   COMRPRAS: " + user.getTransacciones());
+//            }
+//        }
     }
 
     public void reporteGananciaTotal() {

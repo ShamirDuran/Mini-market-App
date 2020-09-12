@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS t_usuarios (
 	id		INT AUTO_INCREMENT NOT NULL,
     rol				INT NOT NULL,
     edad			INT NULL,
-    genero			CHAR(1) NULL,
+    genero			INT NULL,
     transacciones	INT NOT NULL,
     nombre			VARCHAR(65) NOT NULL,
     correo			VARCHAR(60) NULL,

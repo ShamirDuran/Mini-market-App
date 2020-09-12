@@ -67,7 +67,7 @@ public class InventarioV extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Inventario");
+        jLabel7.setText("INVENTARIO");
 
         jTextField1.setForeground(new java.awt.Color(102, 102, 102));
         jTextField1.setText("Click aqui y escriba el nombre del producto que desea buscar");

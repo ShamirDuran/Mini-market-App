@@ -5,12 +5,17 @@
  */
 package view;
 
+import controller.UsuariosController;
+import javax.swing.JOptionPane;
+
+
+
 /**
  *
  * @author NICOLAS
  */
 public class RegistrarC extends javax.swing.JFrame {
-
+    private UsuariosController userCon;
     /**
      * Creates new form RegistrarC
      */
@@ -30,9 +35,6 @@ public class RegistrarC extends javax.swing.JFrame {
         body = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        etTelefono = new javax.swing.JTextField();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         etEdad = new javax.swing.JTextField();
@@ -44,16 +46,19 @@ public class RegistrarC extends javax.swing.JFrame {
         etCorreo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        etGenero = new javax.swing.JTextField();
+        etCedula = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(243, 243, 243));
-        setMinimumSize(new java.awt.Dimension(779, 603));
+        setMinimumSize(new java.awt.Dimension(779, 560));
         setUndecorated(true);
-        setPreferredSize(null);
+        setSize(new java.awt.Dimension(650, 650));
 
         body.setBackground(new java.awt.Color(243, 243, 243));
         body.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.lightGray));
+        body.setMinimumSize(new java.awt.Dimension(811, 598));
 
         btnGuardar.setBackground(new java.awt.Color(172, 78, 233));
         btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -75,33 +80,20 @@ public class RegistrarC extends javax.swing.JFrame {
             }
         });
 
-        etTelefono.setForeground(new java.awt.Color(102, 102, 102));
-        etTelefono.setText("Escriba el telefono del cliente aqui.");
-        etTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etTelefonoActionPerformed(evt);
-            }
-        });
-
-        jRadioButton2.setText("Masculino");
-
-        jRadioButton1.setText("Femenino");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Genero");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel3.setText("Telefono");
+        jLabel3.setText("Cedula");
 
         etEdad.setForeground(new java.awt.Color(102, 102, 102));
-        etEdad.setText("Escriba la edad del cliente aqui.");
+        etEdad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                etEdadMouseClicked(evt);
+            }
+        });
         etEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etEdadActionPerformed(evt);
@@ -109,7 +101,11 @@ public class RegistrarC extends javax.swing.JFrame {
         });
 
         etDireccion.setForeground(new java.awt.Color(102, 102, 102));
-        etDireccion.setText("Escriba la direccion del cliente aqui.");
+        etDireccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                etDireccionMouseClicked(evt);
+            }
+        });
         etDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etDireccionActionPerformed(evt);
@@ -125,7 +121,11 @@ public class RegistrarC extends javax.swing.JFrame {
         jLabel8.setText("Edad");
 
         etNombre.setForeground(new java.awt.Color(102, 102, 102));
-        etNombre.setText("Escriba el nombre del cliente aqui.");
+        etNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                etNombreMouseClicked(evt);
+            }
+        });
         etNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etNombreActionPerformed(evt);
@@ -137,7 +137,11 @@ public class RegistrarC extends javax.swing.JFrame {
         jLabel4.setText("Nombre:");
 
         etCorreo.setForeground(new java.awt.Color(102, 102, 102));
-        etCorreo.setText("Escriba el correo del cliente aqui.");
+        etCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                etCorreoMouseClicked(evt);
+            }
+        });
         etCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etCorreoActionPerformed(evt);
@@ -154,75 +158,109 @@ public class RegistrarC extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registrar Cliente");
 
+        etGenero.setForeground(new java.awt.Color(102, 102, 102));
+        etGenero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                etGeneroMouseClicked(evt);
+            }
+        });
+        etGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                etGeneroActionPerformed(evt);
+            }
+        });
+        etGenero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                etGeneroKeyTyped(evt);
+            }
+        });
+
+        etCedula.setForeground(new java.awt.Color(102, 102, 102));
+        etCedula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                etCedulaMouseClicked(evt);
+            }
+        });
+        etCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                etCedulaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancelar)
-                .addGap(20, 20, 20)
-                .addComponent(btnGuardar)
-                .addGap(280, 280, 280))
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(bodyLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(etNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel4)
+                .addGap(292, 292, 292)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(etNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(bodyLayout.createSequentialGroup()
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(51, 51, 51))
+                .addComponent(etCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(265, 265, 265)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(etDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(265, 265, 265)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(296, 296, 296)
+                .addComponent(btnCancelar)
+                .addGap(20, 20, 20)
+                .addComponent(btnGuardar))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
+            .addGroup(bodyLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jLabel1)
                 .addGap(58, 58, 58)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(6, 6, 6)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(etNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addGap(6, 6, 6)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(etDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton2)
-                        .addComponent(jRadioButton1))
-                    .addComponent(etTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(45, 45, 45))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7))
+                .addGap(6, 6, 6)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnGuardar)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -243,10 +281,6 @@ public class RegistrarC extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void etTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_etTelefonoActionPerformed
-
     private void etNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_etNombreActionPerformed
@@ -264,16 +298,71 @@ public class RegistrarC extends javax.swing.JFrame {
     }//GEN-LAST:event_etEdadActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        // Verificamos que ningun campo este vacio
+        if (!etNombre.getText().equals("") && !etCorreo.getText().equals("") && !etDireccion.getText().equals("") && !etEdad.getText().equals("") &&  !etGenero.getText().equals("")&& !etCedula.getText().equals("")) {
+            Boolean check = userCon.añadirUsuario(
+                    1,
+                    Integer.parseInt(etEdad.getText()),
+                    Integer.parseInt(etGenero.getText()),
+                    etNombre.getText(),
+                    etCorreo.getText(),
+                    etDireccion.getText(),
+                    Integer.parseInt(etCedula.getText())
+                   
+            );
+
+            if (check) {
+                this.dispose();
+                JOptionPane.showMessageDialog(null, "Cliente registrado!");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se registro el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void etNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etNombreMouseClicked
+        etNombre.setText(null);
+    }//GEN-LAST:event_etNombreMouseClicked
+
+    private void etCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etCorreoMouseClicked
+        etCorreo.setText(null);
+    }//GEN-LAST:event_etCorreoMouseClicked
+
+    private void etDireccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etDireccionMouseClicked
+        etDireccion.setText(null);
+    }//GEN-LAST:event_etDireccionMouseClicked
+
+    private void etEdadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etEdadMouseClicked
+        etEdad.setText(null);
+    }//GEN-LAST:event_etEdadMouseClicked
+
+    private void etGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etGeneroMouseClicked
+        etGenero.setText(null);
+    }//GEN-LAST:event_etGeneroMouseClicked
+
+    private void etGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etGeneroActionPerformed
+
+    }//GEN-LAST:event_etGeneroActionPerformed
+
+    private void etGeneroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_etGeneroKeyTyped
+        if (etGenero.getText().length()== 1) 
+         evt.consume();
+    }//GEN-LAST:event_etGeneroKeyTyped
+
+    private void etCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etCedulaMouseClicked
+        etCedula.setText(null);
+    }//GEN-LAST:event_etCedulaMouseClicked
+
+    private void etCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etCedulaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_etCedulaActionPerformed
 
     /**
      * @param args the command line arguments
      */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -313,11 +402,12 @@ public class RegistrarC extends javax.swing.JFrame {
     private javax.swing.JPanel body;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JTextField etCedula;
     private javax.swing.JTextField etCorreo;
     private javax.swing.JTextField etDireccion;
     private javax.swing.JTextField etEdad;
+    private javax.swing.JTextField etGenero;
     private javax.swing.JTextField etNombre;
-    private javax.swing.JTextField etTelefono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -325,7 +415,12 @@ public class RegistrarC extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @param userCon the userCon to set
+     */
+    public void setUserCon(UsuariosController userCon) {
+        this.userCon = userCon;
+    }
 }

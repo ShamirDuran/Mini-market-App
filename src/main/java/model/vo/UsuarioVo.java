@@ -15,6 +15,20 @@ package model.vo;
 public class UsuarioVo {
 
     /**
+     * @return the cedula
+     */
+    public int getCedula() {
+        return cedula;
+    }
+
+    /**
+     * @param cedula the cedula to set
+     */
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
+
+    /**
      * Tipos de rol 1 - Admin 2 - Jefe de bodega 3 - Cajero 4 - Cliente
      *
      *
@@ -46,6 +60,16 @@ public class UsuarioVo {
         this.transacciones = 0;
         this.cedula = cedula;
     }
+    public UsuarioVo( int rol, int edad, int genero, String nombre, String correo, String direccion, int cedula) {
+        this.rol = rol;
+        this.edad = edad;
+        this.genero = genero;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.direccion = direccion;
+        this.transacciones = 0;
+        this.cedula = cedula;
+    }
 
     @Override
     public String toString() {
@@ -56,20 +80,20 @@ public class UsuarioVo {
                 + ", Nombre: " + nombre
                 + ", Correo: " + correo
                 + ", Dirección: " + direccion
-                + ", Cedula: " + cedula
-                + ", Transacciones:  " + transacciones;
+                + ", Cedula: " + getCedula()
+                + ", Transacciones:  " + getTransacciones();
 
         return str;
     }
 
     public int sumarCantidadC() {
-        this.transacciones = this.transacciones + 1;
-        return this.transacciones;
+        this.setTransacciones(this.getTransacciones() + 1);
+        return this.getTransacciones();
     }
 
     public int restarCantidadC() {
-        transacciones = transacciones - 1;
-        return transacciones;
+        setTransacciones(getTransacciones() - 1);
+        return getTransacciones();
     }
 
     public int getId() {
@@ -130,6 +154,13 @@ public class UsuarioVo {
 
     public int getTransacciones() {
         return transacciones;
+    }
+
+    /**
+     * @param transacciones the transacciones to set
+     */
+    public void setTransacciones(int transacciones) {
+        this.transacciones = transacciones;
     }
 
 }

@@ -20,8 +20,9 @@ import model.vo.ProductoVo;
 
 public class ProductosController {
 
-    ProductoDao productoDao;
-    JTable table;
+    private ProductoDao productoDao;
+    private JTable table;
+    private DefaultTableModel model;
 
     /**
      * Este metodo carga los productos registrados en la tabla de la vista
@@ -58,6 +59,14 @@ public class ProductosController {
         }
         return false;
     }
+//
+//    private void limpiarTabla() {
+//        DefaultTableModel model = (DefaultTableModel) table.getModel();
+//        int rowCount = model.getRowCount();
+//        for (int i = rowCount - 1; i >= 0; i--) {
+//            model.removeRow(i);
+//        }
+//    }
 
 //    public void mostrarListaProductos() {
 //        System.out.println("\n/-- Lista de productos registrados --/");
@@ -68,7 +77,6 @@ public class ProductosController {
 
         if (rs != null) {
             try {
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
                 model.setNumRows(0);
                 String[] producto = new String[7];
 
@@ -93,17 +101,17 @@ public class ProductosController {
         return false;
     }
 
-    public ProductoVo buscarProductoId(int id) {
-        ProductoVo producto = productoDao.obtenerProductoId(id);
-
-        if (producto != null) {
-            System.out.println("\n/-- Producto con id " + id + " encontrado");
-            return producto;
-        } else {
-            System.out.println("\nProducto con id " + id + " no encontrado!!");
-            return null;
-        }
-    }
+//    public ProductoVo buscarProductoId(int id) {
+//        ProductoVo producto = productoDao.obtenerProductoId(id);
+//
+//        if (producto != null) {
+//            System.out.println("\n/-- Producto con id " + id + " encontrado");
+//            return producto;
+//        } else {
+//            System.out.println("\nProducto con id " + id + " no encontrado!!");
+//            return null;
+//        }
+//    }
 
     /**
      * Metodo que pide al modelo que se añada un usuario a la db
@@ -115,6 +123,7 @@ public class ProductosController {
 
         if (check) {
             System.out.println("\nProducto " + nombre + " registrado correctamente!!");
+//            limpiarTabla();
             obtenerListaProductos();
         } else {
             System.out.println("\nError al registrar nuevo Producto!!");
@@ -133,6 +142,7 @@ public class ProductosController {
         boolean check = productoDao.modificarProducto(producto);
         if (check) {
             System.out.println("\nProducto modificado correctamente!!");
+//            limpiarTabla();
             obtenerListaProductos();
         } else {
             System.out.println("\nNo se encontro el Producto!!");
@@ -151,6 +161,7 @@ public class ProductosController {
         boolean check = this.productoDao.eliminarProducto(id);
         if (check) {
             System.out.println("\nProducto con id " + id + " eliminado correctamente!!");
+//            limpiarTabla();
             obtenerListaProductos();
         } else {
             System.out.println("\nNo se encontro producto con id " + id);
@@ -159,14 +170,14 @@ public class ProductosController {
         return check;
     }
 
-    // Esto se hace desde la vista, pero de momento para esta entrega se hara aca.
-    private void mostrarListaProducto(ArrayList<ProductoVo> listaProductos) {
-//        System.out.println("Total: " + listaProductos.size());
-
-        for (ProductoVo producto : listaProductos) {
-            System.out.println(producto);
-        }
-    }
+//    // Esto se hace desde la vista, pero de momento para esta entrega se hara aca.
+//    private void mostrarListaProducto(ArrayList<ProductoVo> listaProductos) {
+////        System.out.println("Total: " + listaProductos.size());
+//
+//        for (ProductoVo producto : listaProductos) {
+//            System.out.println(producto);
+//        }
+//    }
 
     public void setProductoDao(ProductoDao productoDao) {
         this.productoDao = productoDao;
@@ -174,5 +185,6 @@ public class ProductosController {
 
     public void setTable(JTable table) {
         this.table = table;
+        model = (DefaultTableModel) table.getModel();
     }
 }
