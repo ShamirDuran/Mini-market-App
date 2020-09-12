@@ -35,7 +35,7 @@ public class ProductoDao {
 
     public ResultSet obtenerProductos() {
         String sql = "SELECT * FROM t_productos";
-        return queryWithResultSet(sql);
+        return queryWithResultSet(sql, 0);
     }
 
     public boolean guardarProducto(String nombre, double precio, double cant_medida, String uni_medida, int cantidad) {
@@ -56,18 +56,23 @@ public class ProductoDao {
         return check;
     }
 
-    public ProductoVo obtenerProductoId(int id) {
-        for (ProductoVo producto : listaProductos) {
-            if (producto.getId() == id) {
-                return producto;
-            }
-        }
-        return null;
-    }
+//    public ProductoVo obtenerProductoId(int id) {
+//        for (ProductoVo producto : listaProductos) {
+//            if (producto.getId() == id) {
+//                return producto;
+//            }
+//        }
+//        return null;
+//    }
 
-    public ResultSet buscarProducdo(String nombre) {
+    public ResultSet buscarProducto(String nombre) {
         String sql = "SELECT *FROM t_productos WHERE nombre LIKE '" + nombre + "%'";
-        return queryWithResultSet(sql);
+        return queryWithResultSet(sql, 0);
+    }
+    
+    public ResultSet buscarProductoId(int id) {
+        String sql = "SELECT *FROM t_productos WHERE id = ?";
+        return queryWithResultSet(sql, id);
     }
 
     public boolean modificarProducto(ProductoVo dataProducto) {
@@ -95,12 +100,18 @@ public class ProductoDao {
         }
     }
 
-    private ResultSet queryWithResultSet(String sql) {
+    private ResultSet queryWithResultSet(String sql, int id) {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         try {
             ps = con.prepareStatement(sql);
+            
+            // Al ser mayor de cero se entiende que se quiere buscar por id
+            if (id > 0) {
+                ps.setInt(1, id);
+            }
+            
             rs = ps.executeQuery();
         } catch (Exception e) {
             System.out.println("Error traer datos productos: " + e);

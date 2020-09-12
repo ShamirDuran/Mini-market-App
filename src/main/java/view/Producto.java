@@ -20,16 +20,13 @@ import model.vo.ProductoVo;
 public class Producto extends javax.swing.JFrame {
 
     ProductosController proCon;
-    ProductoDao proDao;
 
     /**
      * Creates new form Home
      */
     public Producto() {
         initComponents();
-        proDao = new ProductoDao();
         proCon = new ProductosController();
-        proCon.setProductoDao(proDao);
 
         mostrarProductos();
     }
@@ -151,11 +148,6 @@ public class Producto extends javax.swing.JFrame {
         btnBuscar.setBackground(new java.awt.Color(172, 78, 233));
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_search_19px.png"))); // NOI18N
         btnBuscar.setBorderPainted(false);
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseClicked(evt);
-            }
-        });
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -537,13 +529,13 @@ public class Producto extends javax.swing.JFrame {
     }//GEN-LAST:event_plIinicioMouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        Cliente cliente = new Cliente();
+        Usuario cliente = new Usuario();
         cliente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void plClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseClicked
-        Cliente cliente = new Cliente();
+        Usuario cliente = new Usuario();
         cliente.setVisible(true);
         cliente.setLocationRelativeTo(null);
         this.dispose();
@@ -577,13 +569,13 @@ public class Producto extends javax.swing.JFrame {
     }//GEN-LAST:event_plReportesMouseClicked
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        InventarioV inventario = new InventarioV();
+        Inventario inventario = new Inventario();
         inventario.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void plInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseClicked
-        InventarioV inventario = new InventarioV();
+        Inventario inventario = new Inventario();
         inventario.setVisible(true);
         inventario.setLocationRelativeTo(null);
         this.dispose();
@@ -596,16 +588,11 @@ public class Producto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_plTransaccionesMouseClicked
 
-    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-
-
-    }//GEN-LAST:event_btnBuscarMouseClicked
-
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         proCon.setTable(tblProductos);
         String ref = edBuscarPro.getText();
 
-        if (!proCon.buscarProducto(ref)) {
+        if (!proCon.buscarProducto(ref, "producto")) {
             JOptionPane.showMessageDialog(null, "No se encontraron productos con el nombre " + ref + "!");
 
         }
@@ -671,10 +658,9 @@ public class Producto extends javax.swing.JFrame {
                 new Producto().setVisible(true);
             }
         });
-
     }
 
-    public void mostrarProductos() {
+    private void mostrarProductos() {
         proCon.setTable(tblProductos);
         if (proCon.obtenerListaProductos()) {
             System.out.println("Productos cargados correctamente");

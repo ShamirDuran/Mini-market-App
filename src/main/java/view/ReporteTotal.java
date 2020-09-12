@@ -531,13 +531,13 @@ public class ReporteTotal extends javax.swing.JFrame {
     }//GEN-LAST:event_plIinicioMouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        Cliente cliente = new Cliente();
+        Usuario cliente = new Usuario();
         cliente.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void plClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseClicked
-        Cliente cliente = new Cliente();
+        Usuario cliente = new Usuario();
         cliente.setVisible(true);
         cliente.setLocationRelativeTo(null);
         this.dispose();
@@ -571,13 +571,13 @@ public class ReporteTotal extends javax.swing.JFrame {
     }//GEN-LAST:event_plReportesMouseClicked
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        InventarioV inventario = new InventarioV();
+        Inventario inventario = new Inventario();
         inventario.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void plInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseClicked
-        InventarioV inventario = new InventarioV();
+        Inventario inventario = new Inventario();
         inventario.setVisible(true);
         inventario.setLocationRelativeTo(null);
         this.dispose();

@@ -625,14 +625,14 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        InventarioV inventario = new InventarioV();
+        Inventario inventario = new Inventario();
         inventario.setLocationRelativeTo(null);
         inventario.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        Cliente cliente = new Cliente();
+        Usuario cliente = new Usuario();
         cliente.setLocationRelativeTo(null);
         cliente.setVisible(true);
         this.dispose();
@@ -667,7 +667,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_plIinicioMouseClicked
 
     private void plClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseClicked
-        Cliente cliente = new Cliente();
+        Usuario cliente = new Usuario();
         cliente.setVisible(true);
         cliente.setLocationRelativeTo(null);
         this.dispose();
@@ -681,14 +681,14 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_plProductosMouseClicked
 
     private void plInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseClicked
-        InventarioV inventario = new InventarioV();
+        Inventario inventario = new Inventario();
         inventario.setVisible(true);
         inventario.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_plInventarioMouseClicked
 
     private void menClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menClientesMouseClicked
-        Cliente cliente = new Cliente();
+        Usuario cliente = new Usuario();
         cliente.setLocationRelativeTo(null);
         cliente.setVisible(true);
         this.dispose();
@@ -702,7 +702,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_menProductosMouseClicked
 
     private void menInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menInventarioMouseClicked
-        InventarioV inventario = new InventarioV();
+        Inventario inventario = new Inventario();
         inventario.setLocationRelativeTo(null);
         inventario.setVisible(true);
         this.dispose();

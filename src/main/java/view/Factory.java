@@ -51,38 +51,38 @@ public class Factory {
 
     public void cargarDatosVenta(VentaDao ventaDao, UsuarioDao usuarioDao, ProductoDao productoDao) {
 
-        if (usuarioDao.buscarUsuarioId(6) != null) {
-            VentaVo venta1 = new VentaVo(usuarioDao.buscarUsuarioId(6));
-            venta1.añadirProducto(productoDao.obtenerProductoId(2), 5);
-            venta1.añadirProducto(productoDao.obtenerProductoId(4), 2);
-            venta1.añadirProducto(productoDao.obtenerProductoId(7), 1);
-            ventaDao.registrarVenta(venta1); // 1
-        }
-
-        if (usuarioDao.buscarUsuarioId(7) != null) {
-            VentaVo venta2 = new VentaVo(usuarioDao.buscarUsuarioId(7));
-            venta2.añadirProducto(productoDao.obtenerProductoId(10), 10);
-            venta2.añadirProducto(productoDao.obtenerProductoId(5), 1);
-            ventaDao.registrarVenta(venta2); // 2
-        }
-
-        if (usuarioDao.buscarUsuarioId(8) != null) {
-            VentaVo venta3 = new VentaVo(usuarioDao.buscarUsuarioId(8));
-            venta3.añadirProducto(productoDao.obtenerProductoId(1), 4);
-            venta3.añadirProducto(productoDao.obtenerProductoId(2), 3);
-            venta3.añadirProducto(productoDao.obtenerProductoId(3), 2);
-            venta3.añadirProducto(productoDao.obtenerProductoId(4), 1);
-            venta3.añadirProducto(productoDao.obtenerProductoId(10), 1);
-            ventaDao.registrarVenta(venta3); // 3
-        }
-
-        if (usuarioDao.buscarUsuarioId(6) != null) {
-            VentaVo venta4 = new VentaVo(usuarioDao.buscarUsuarioId(6));
-            venta4.añadirProducto(productoDao.obtenerProductoId(10), 5);
-            venta4.añadirProducto(productoDao.obtenerProductoId(9), 2);
-            venta4.añadirProducto(productoDao.obtenerProductoId(8), 4);
-            venta4.añadirProducto(productoDao.obtenerProductoId(7), 7);
-            ventaDao.registrarVenta(venta4); // 4
-        }
+//        if (usuarioDao.buscarUsuarioId(6) != null) {
+//            VentaVo venta1 = new VentaVo(usuarioDao.buscarUsuarioId(6));
+//            venta1.añadirProducto(productoDao.obtenerProductoId(2), 5);
+//            venta1.añadirProducto(productoDao.obtenerProductoId(4), 2);
+//            venta1.añadirProducto(productoDao.obtenerProductoId(7), 1);
+//            ventaDao.registrarVenta(venta1); // 1
+//        }
+//
+//        if (usuarioDao.buscarUsuarioId(7) != null) {
+//            VentaVo venta2 = new VentaVo(usuarioDao.buscarUsuarioId(7));
+//            venta2.añadirProducto(productoDao.obtenerProductoId(10), 10);
+//            venta2.añadirProducto(productoDao.obtenerProductoId(5), 1);
+//            ventaDao.registrarVenta(venta2); // 2
+//        }
+//
+//        if (usuarioDao.buscarUsuarioId(8) != null) {
+//            VentaVo venta3 = new VentaVo(usuarioDao.buscarUsuarioId(8));
+//            venta3.añadirProducto(productoDao.obtenerProductoId(1), 4);
+//            venta3.añadirProducto(productoDao.obtenerProductoId(2), 3);
+//            venta3.añadirProducto(productoDao.obtenerProductoId(3), 2);
+//            venta3.añadirProducto(productoDao.obtenerProductoId(4), 1);
+//            venta3.añadirProducto(productoDao.obtenerProductoId(10), 1);
+//            ventaDao.registrarVenta(venta3); // 3
+//        }
+//
+//        if (usuarioDao.buscarUsuarioId(6) != null) {
+//            VentaVo venta4 = new VentaVo(usuarioDao.buscarUsuarioId(6));
+//            venta4.añadirProducto(productoDao.obtenerProductoId(10), 5);
+//            venta4.añadirProducto(productoDao.obtenerProductoId(9), 2);
+//            venta4.añadirProducto(productoDao.obtenerProductoId(8), 4);
+//            venta4.añadirProducto(productoDao.obtenerProductoId(7), 7);
+//            ventaDao.registrarVenta(venta4); // 4
+//        }
     }
 }

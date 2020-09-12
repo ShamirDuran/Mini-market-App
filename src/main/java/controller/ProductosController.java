@@ -24,6 +24,10 @@ public class ProductosController {
     private JTable table;
     private DefaultTableModel model;
 
+    public ProductosController() {
+        productoDao = new ProductoDao();
+    }
+
     /**
      * Este metodo carga los productos registrados en la tabla de la vista
      * Productos
@@ -34,7 +38,6 @@ public class ProductosController {
         ResultSet rs = productoDao.obtenerProductos();
 
         if (rs != null) {
-
             try {
                 model.setNumRows(0);
                 String[] producto = new String[7];
@@ -59,6 +62,33 @@ public class ProductosController {
         }
         return false;
     }
+
+    public Boolean obtenerListaInventario() {
+        ResultSet rs = productoDao.obtenerProductos();
+
+        if (rs != null) {
+            try {
+                model.setNumRows(0);
+                String[] producto = new String[4];
+
+                while (rs.next()) {
+                    producto[0] = rs.getString("id");
+                    producto[1] = rs.getString("nombre");
+                    producto[2] = rs.getString("cant_medida");
+                    producto[3] = rs.getString("cantidad");
+
+                    model.addRow(producto);
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println("Error al recorrer productos: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos productos, null");
+        }
+        return false;
+    }
+
 //
 //    private void limpiarTabla() {
 //        DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -67,13 +97,9 @@ public class ProductosController {
 //            model.removeRow(i);
 //        }
 //    }
-
-//    public void mostrarListaProductos() {
-//        System.out.println("\n/-- Lista de productos registrados --/");
-//        mostrarListaProducto(productoDao.obtenerProductos());
-//    }
-    public Boolean buscarProducto(String nombre) {
-        ResultSet rs = productoDao.buscarProducdo(nombre);
+    
+    public Boolean buscarProducto(String nombre, String vista) {
+        ResultSet rs = productoDao.buscarProducto(nombre);
 
         if (rs != null) {
             try {
@@ -81,14 +107,24 @@ public class ProductosController {
                 String[] producto = new String[7];
 
                 while (rs.next()) {
-                    producto[0] = rs.getString("id");
-                    producto[1] = rs.getString("nombre");
-                    producto[2] = rs.getString("precio");
-                    producto[3] = rs.getString("cant_medida");
-                    producto[4] = rs.getString("uni_medida");
-                    producto[5] = rs.getString("cantidad");
-                    producto[6] = rs.getString("cantidad_vendidos");
-
+                    switch (vista) {
+                        case "producto":
+                            producto[0] = rs.getString("id");
+                            producto[1] = rs.getString("nombre");
+                            producto[2] = rs.getString("precio");
+                            producto[3] = rs.getString("cant_medida");
+                            producto[4] = rs.getString("uni_medida");
+                            producto[5] = rs.getString("cantidad");
+                            producto[6] = rs.getString("cantidad_vendidos");
+                            break;
+                        case "inventario":
+                            producto[0] = rs.getString("id");
+                            producto[1] = rs.getString("nombre");
+                            producto[2] = rs.getString("cant_medida");
+                            producto[3] = rs.getString("cantidad");
+                            break;
+                    }
+                    
                     model.addRow(producto);
                 }
                 return true;
@@ -101,17 +137,29 @@ public class ProductosController {
         return false;
     }
 
-//    public ProductoVo buscarProductoId(int id) {
-//        ProductoVo producto = productoDao.obtenerProductoId(id);
-//
-//        if (producto != null) {
-//            System.out.println("\n/-- Producto con id " + id + " encontrado");
-//            return producto;
-//        } else {
-//            System.out.println("\nProducto con id " + id + " no encontrado!!");
-//            return null;
-//        }
-//    }
+    public ProductoVo buscarProductoId(int id) {
+        ResultSet rs = productoDao.buscarProductoId(id);
+
+        if (rs != null) {
+            try {
+                while (rs.next()) {
+                    ProductoVo pro = new ProductoVo(
+                            rs.getInt("id"),
+                            rs.getString("nombre"),
+                            rs.getDouble("precio"),
+                            rs.getDouble("cant_medida"),
+                            rs.getString("uni_medida"),
+                            rs.getInt("cantidad")
+                    );
+                    pro.setCantidadVendidos(rs.getInt("cantidad_vendidos"));
+                    return pro;
+                }
+            } catch (Exception e) {
+                System.out.println("Error al buscar producto por id " + e);
+            }
+        }
+        return null;
+    }
 
     /**
      * Metodo que pide al modelo que se añada un usuario a la db
@@ -169,15 +217,6 @@ public class ProductosController {
 
         return check;
     }
-
-//    // Esto se hace desde la vista, pero de momento para esta entrega se hara aca.
-//    private void mostrarListaProducto(ArrayList<ProductoVo> listaProductos) {
-////        System.out.println("Total: " + listaProductos.size());
-//
-//        for (ProductoVo producto : listaProductos) {
-//            System.out.println(producto);
-//        }
-//    }
 
     public void setProductoDao(ProductoDao productoDao) {
         this.productoDao = productoDao;
