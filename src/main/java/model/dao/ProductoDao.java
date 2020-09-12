@@ -44,7 +44,7 @@ public class ProductoDao {
 
         ProductoVo pro = new ProductoVo(
                 1,
-                nombre.toUpperCase(),
+                nombre,
                 precio,
                 cant_medida,
                 uni_medida,

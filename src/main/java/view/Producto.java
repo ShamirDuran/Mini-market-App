@@ -85,9 +85,14 @@ public class Producto extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Productos");
+        jLabel7.setText("PRODUCTOS");
 
         edBuscarPro.setForeground(new java.awt.Color(102, 102, 102));
+        edBuscarPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                edBuscarProMouseClicked(evt);
+            }
+        });
         edBuscarPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edBuscarProActionPerformed(evt);
@@ -625,6 +630,10 @@ public class Producto extends javax.swing.JFrame {
         modPro.setControllerPro(proCon);
         modPro.setVisible(true);
     }//GEN-LAST:event_tblProductosMouseClicked
+
+    private void edBuscarProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edBuscarProMouseClicked
+        edBuscarPro.setText(null);
+    }//GEN-LAST:event_edBuscarProMouseClicked
 
     /**
      * @param args the command line arguments

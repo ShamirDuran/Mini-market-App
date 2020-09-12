@@ -5,7 +5,6 @@
  */
 package controller;
 
-
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -21,21 +20,22 @@ import model.vo.UsuarioVo;
  */
 public class UsuariosController {
 
-    UsuarioDao usuarioDao;
+    private UsuarioDao usuarioDao;
     private JTable table;
+    private DefaultTableModel model;
+
     /**
      * Metodo que pide al modelo la lista de usuarios registrados en la db Para
      * esta entrega se utilizara para mostrar la lista de usuarios
      *
      * @return Retorna la lista de usuarios registrados.
      */
-    
-    public Boolean obtenerListaUsuarios(){
+    public Boolean obtenerListaUsuarios() {
         ResultSet rs = usuarioDao.obtenerUsuarios();
 
         if (rs != null) {
             try {
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.setNumRows(0);
                 String[] usuario = new String[8];
 
                 while (rs.next()) {
@@ -59,29 +59,29 @@ public class UsuariosController {
         }
         return false;
     }
-    private void limpiarTabla(){
-     DefaultTableModel model = (DefaultTableModel) table.getModel();
-     int rowCount = model.getRowCount();
-    for (int i = rowCount - 1; i >= 0; i--) {
-        model.removeRow(i);
-    }
-    }
-    
-    public void mostrarListaUsuarios() {
-        System.out.println("\n/-- Lista de usuarios registrados --/");
-        mostrarListaUsuario(usuarioDao.getListaUsuarios());
-    }
 
+//    private void limpiarTabla() {
+//        DefaultTableModel model = (DefaultTableModel) table.getModel();
+//        int rowCount = model.getRowCount();
+//        for (int i = rowCount - 1; i >= 0; i--) {
+//            model.removeRow(i);
+//        }
+//    }
+//
+//    public void mostrarListaUsuarios() {
+//        System.out.println("\n/-- Lista de usuarios registrados --/");
+//        mostrarListaUsuario(usuarioDao.getListaUsuarios());
+//    }
+    
     public Boolean buscarUsuario(String nombre) {
         ResultSet rs = usuarioDao.buscarUsuario(nombre);
 
         if (rs != null) {
             try {
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
                 model.setNumRows(0);
                 String[] usuario = new String[8];
 
-                 while (rs.next()) {
+                while (rs.next()) {
                     usuario[0] = rs.getString("id");
                     usuario[1] = rs.getString("cedula");
                     usuario[2] = rs.getString("nombre");
@@ -103,17 +103,17 @@ public class UsuariosController {
         return false;
     }
 
-    public UsuarioVo buscarUsuarioId(int id) {
-        UsuarioVo user = usuarioDao.buscarUsuarioId(id);
-
-        if (user != null) {
-            System.out.println("\n/-- Usuario con id " + id + " encontrado --/");
-            return user;
-        } else {
-            System.out.println("\n Usuario con id " + id + " no encontrado!!");
-            return null;
-        }
-    }
+//    public UsuarioVo buscarUsuarioId(int id) {
+//        UsuarioVo user = usuarioDao.buscarUsuarioId(id);
+//
+//        if (user != null) {
+//            System.out.println("\n/-- Usuario con id " + id + " encontrado --/");
+//            return user;
+//        } else {
+//            System.out.println("\n Usuario con id " + id + " no encontrado!!");
+//            return null;
+//        }
+//    }
 
     /**
      * Metodo que pide al modelo que se añada un usuario a la db
@@ -124,7 +124,7 @@ public class UsuariosController {
         boolean check = usuarioDao.añadirUsuario(rol, edad, genero, nombre, correo, direccion, cedula);
         if (check) {
             System.out.println("\nUsuario " + nombre + " registrado correctamente!!");
-            limpiarTabla();
+//            limpiarTabla();
             obtenerListaUsuarios();
         } else {
             System.out.println("\nError al registrar nuevo usuario!!");
@@ -143,7 +143,7 @@ public class UsuariosController {
         boolean check = this.usuarioDao.modificarUsuario(user);
         if (check) {
             System.out.println("\nUsuario modificado correctamente!!");
-            limpiarTabla();
+//            limpiarTabla();
             obtenerListaUsuarios();
         } else {
             System.out.println("\nNo se encontro el usuario!!");
@@ -162,7 +162,7 @@ public class UsuariosController {
         boolean check = this.usuarioDao.eliminarUsuario(id);
         if (check) {
             System.out.println("\nUsuario con id " + id + " eliminado correctamente!!");
-            limpiarTabla();
+//            limpiarTabla();
             obtenerListaUsuarios();
         } else {
             System.out.println("\nNo se encontro usuario con id " + id);
@@ -171,15 +171,15 @@ public class UsuariosController {
         return check;
     }
 
-    // Esto se hace desde la vista, pero de momento para esta entrega se hara aca.
-    private void mostrarListaUsuario(ArrayList<UsuarioVo> listaUsuarios) {
-//        System.out.println("Total: " + listaUsuarios.size());
-
-        for (UsuarioVo user : listaUsuarios) {
-            System.out.println(user);
-        }
-    }
-
+//    // Esto se hace desde la vista, pero de momento para esta entrega se hara aca.
+//    private void mostrarListaUsuario(ArrayList<UsuarioVo> listaUsuarios) {
+////        System.out.println("Total: " + listaUsuarios.size());
+//
+//        for (UsuarioVo user : listaUsuarios) {
+//            System.out.println(user);
+//        }
+//    }
+    
     public void setUsuarioDao(UsuarioDao usuarioDao) {
         this.usuarioDao = usuarioDao;
     }
@@ -189,5 +189,6 @@ public class UsuariosController {
      */
     public void setTable(JTable table) {
         this.table = table;
+        model = (DefaultTableModel) table.getModel();
     }
 }

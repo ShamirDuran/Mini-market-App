@@ -54,13 +54,11 @@ public class RegistrarC extends javax.swing.JFrame {
         setBackground(new java.awt.Color(243, 243, 243));
         setMinimumSize(new java.awt.Dimension(779, 560));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(811, 700));
         setSize(new java.awt.Dimension(650, 650));
 
         body.setBackground(new java.awt.Color(243, 243, 243));
         body.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.lightGray));
         body.setMinimumSize(new java.awt.Dimension(811, 598));
-        body.setLayout(null);
 
         btnGuardar.setBackground(new java.awt.Color(172, 78, 233));
         btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -71,8 +69,6 @@ public class RegistrarC extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        body.add(btnGuardar);
-        btnGuardar.setBounds(417, 530, 95, 31);
 
         btnCancelar.setBackground(new java.awt.Color(255, 0, 0));
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -83,23 +79,16 @@ public class RegistrarC extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        body.add(btnCancelar);
-        btnCancelar.setBounds(298, 530, 99, 31);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("Genero");
-        body.add(jLabel7);
-        jLabel7.setBounds(438, 392, 180, 32);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Cedula");
-        body.add(jLabel3);
-        jLabel3.setBounds(53, 392, 120, 32);
 
         etEdad.setForeground(new java.awt.Color(102, 102, 102));
-        etEdad.setText("Escriba la edad del cliente aqui.");
         etEdad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 etEdadMouseClicked(evt);
@@ -110,11 +99,8 @@ public class RegistrarC extends javax.swing.JFrame {
                 etEdadActionPerformed(evt);
             }
         });
-        body.add(etEdad);
-        etEdad.setBounds(438, 320, 320, 40);
 
         etDireccion.setForeground(new java.awt.Color(102, 102, 102));
-        etDireccion.setText("Escriba la direccion del cliente aqui.");
         etDireccion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 etDireccionMouseClicked(evt);
@@ -125,23 +111,16 @@ public class RegistrarC extends javax.swing.JFrame {
                 etDireccionActionPerformed(evt);
             }
         });
-        body.add(etDireccion);
-        etDireccion.setBounds(53, 320, 320, 40);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Direccion:");
-        body.add(jLabel6);
-        jLabel6.setBounds(53, 282, 120, 32);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Edad");
-        body.add(jLabel8);
-        jLabel8.setBounds(438, 282, 180, 32);
 
         etNombre.setForeground(new java.awt.Color(102, 102, 102));
-        etNombre.setText("Escriba el nombre del cliente aqui.");
         etNombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 etNombreMouseClicked(evt);
@@ -152,17 +131,12 @@ public class RegistrarC extends javax.swing.JFrame {
                 etNombreActionPerformed(evt);
             }
         });
-        body.add(etNombre);
-        etNombre.setBounds(53, 210, 320, 40);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Nombre:");
-        body.add(jLabel4);
-        jLabel4.setBounds(53, 172, 93, 32);
 
         etCorreo.setForeground(new java.awt.Color(102, 102, 102));
-        etCorreo.setText("Escriba el correo del cliente aqui.");
         etCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 etCorreoMouseClicked(evt);
@@ -173,25 +147,18 @@ public class RegistrarC extends javax.swing.JFrame {
                 etCorreoActionPerformed(evt);
             }
         });
-        body.add(etCorreo);
-        etCorreo.setBounds(438, 210, 320, 40);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Correo:");
-        body.add(jLabel5);
-        jLabel5.setBounds(438, 172, 110, 32);
 
         jLabel1.setBackground(new java.awt.Color(243, 243, 243));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registrar Cliente");
-        body.add(jLabel1);
-        jLabel1.setBounds(2, 50, 807, 64);
 
         etGenero.setForeground(new java.awt.Color(102, 102, 102));
-        etGenero.setText("Escriba (1) masculino (0) femenino");
         etGenero.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 etGeneroMouseClicked(evt);
@@ -207,11 +174,8 @@ public class RegistrarC extends javax.swing.JFrame {
                 etGeneroKeyTyped(evt);
             }
         });
-        body.add(etGenero);
-        etGenero.setBounds(438, 430, 320, 40);
 
         etCedula.setForeground(new java.awt.Color(102, 102, 102));
-        etCedula.setText("Escriba la cedula del cliente aqui");
         etCedula.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 etCedulaMouseClicked(evt);
@@ -222,18 +186,92 @@ public class RegistrarC extends javax.swing.JFrame {
                 etCedulaActionPerformed(evt);
             }
         });
-        body.add(etCedula);
-        etCedula.setBounds(53, 430, 320, 40);
+
+        javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
+        body.setLayout(bodyLayout);
+        bodyLayout.setHorizontalGroup(
+            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel4)
+                .addGap(292, 292, 292)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(etNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(etCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(265, 265, 265)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(etDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(265, 265, 265)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(296, 296, 296)
+                .addComponent(btnCancelar)
+                .addGap(20, 20, 20)
+                .addComponent(btnGuardar))
+        );
+        bodyLayout.setVerticalGroup(
+            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jLabel1)
+                .addGap(58, 58, 58)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(6, 6, 6)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addGap(6, 6, 6)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7))
+                .addGap(6, 6, 6)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnGuardar)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(body, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
+            .addComponent(body, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(body, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+            .addComponent(body, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

@@ -7,7 +7,6 @@ package view;
 
 import controller.ProductosController;
 import javax.swing.JOptionPane;
-import model.dao.ProductoDao;
 import model.vo.ProductoVo;
 
 /**
@@ -300,10 +299,10 @@ public class ModificarP extends javax.swing.JFrame {
         // Verificamos que ningun campo este vacio
         if (!edNombre.getText().equals("") && !edPrecio.getText().equals("") && !edContNeto.getText().equals("") && !edUniMedida.getText().equals("") && !edCantidad.getText().equals("")) {
             ProductoVo proData = new ProductoVo(
-                    edNombre.getText(),
+                    edNombre.getText().toUpperCase(),
                     Double.parseDouble(edPrecio.getText()),
                     Double.parseDouble(edContNeto.getText()),
-                    edUniMedida.getText(),
+                    edUniMedida.getText().toLowerCase(),
                     Integer.parseInt(edCantidad.getText())
             );
 

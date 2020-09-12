@@ -237,10 +237,10 @@ public class RegistrarP extends javax.swing.JFrame {
         // Verificamos que ningun campo este vacio
         if (!etNombre.getText().equals("") && !etPrecio.getText().equals("") && !etContNeto.getText().equals("") && !etUniMedida.getText().equals("") && !etCantidad.getText().equals("")) {
             Boolean check = proCon.añadirProducto(
-                    etNombre.getText(),
+                    etNombre.getText().toUpperCase(),
                     Double.parseDouble(etPrecio.getText()),
                     Double.parseDouble(etContNeto.getText()),
-                    etUniMedida.getText(),
+                    etUniMedida.getText().toLowerCase(),
                     Integer.parseInt(etCantidad.getText())
             );
 

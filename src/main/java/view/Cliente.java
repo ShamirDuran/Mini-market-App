@@ -80,7 +80,6 @@ public class Cliente extends javax.swing.JFrame {
         menu.setBackground(new java.awt.Color(243, 243, 243));
 
         etBuscar.setForeground(new java.awt.Color(102, 102, 102));
-        etBuscar.setText("Click aqui y escriba el nombre del cliente que desea buscar");
         etBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 etBuscarMouseClicked(evt);
@@ -103,7 +102,7 @@ public class Cliente extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("CLIENTE");
+        jLabel10.setText("CLIENTES");
 
         tblUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -624,8 +623,6 @@ public class Cliente extends javax.swing.JFrame {
         etBuscar.setText(null);
     }//GEN-LAST:event_etBuscarMouseClicked
                                    
-
-                                      
 
     /**
      * @param args the command line arguments
