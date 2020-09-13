@@ -5,6 +5,13 @@
  */
 package view;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+
 /**
  *
  * @author Shamir
@@ -14,6 +21,8 @@ public class ReporteTotal extends javax.swing.JFrame {
     /**
      * Creates new form Reportes
      */
+  
+    
     public ReporteTotal() {
         initComponents();
     }
@@ -42,6 +51,11 @@ public class ReporteTotal extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         btnReporteDiario = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        Graph1 = new javax.swing.JPanel();
+        Graph2 = new javax.swing.JPanel();
+        Graph3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         sidepanel = new javax.swing.JPanel();
         plIinicio = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -72,12 +86,17 @@ public class ReporteTotal extends javax.swing.JFrame {
         parent.setBackground(new java.awt.Color(243, 243, 243));
 
         body.setBackground(new java.awt.Color(243, 243, 243));
+        body.setMinimumSize(new java.awt.Dimension(1026, 730));
+        body.setPreferredSize(new java.awt.Dimension(1026, 730));
+        body.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel7.setText("REPORTE TOTAL");
+        body.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 33, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Los siguientes son valores totales, desde el inicio hasta el día de hoy.");
+        body.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 87, -1, -1));
 
         tblVentasProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,8 +111,11 @@ public class ReporteTotal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblVentasProductos);
 
+        body.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 183, -1, 544));
+
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel10.setText("VENTAS POR PRODUCTO");
+        body.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 152, -1, -1));
 
         tblVentasVendedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,8 +130,11 @@ public class ReporteTotal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblVentasVendedor);
 
+        body.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 183, -1, 245));
+
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setText("VENTAS POR VENDEDOR");
+        body.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 152, -1, -1));
 
         tblComprasCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,8 +149,11 @@ public class ReporteTotal extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblComprasCliente);
 
+        body.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 482, -1, 245));
+
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel14.setText("COMPRAS POR CLIENTE");
+        body.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 451, -1, -1));
 
         btnReporteDiario.setBackground(new java.awt.Color(172, 78, 233));
         btnReporteDiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_right_19px.png"))); // NOI18N
@@ -140,58 +168,72 @@ public class ReporteTotal extends javax.swing.JFrame {
                 btnReporteDiarioActionPerformed(evt);
             }
         });
+        body.add(btnReporteDiario, new org.netbeans.lib.awtextra.AbsoluteConstraints(942, 87, 42, 38));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel21.setText("REPORTE DIARIO");
+        body.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(711, 33, -1, -1));
 
-        javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
-        body.setLayout(bodyLayout);
-        bodyLayout.setHorizontalGroup(
-            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel14)
-                        .addComponent(jLabel13))
-                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnReporteDiario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60))
+        jLabel2.setText("Ver graficos");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        body.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
+
+        Graph1.setBackground(new java.awt.Color(243, 243, 243));
+
+        javax.swing.GroupLayout Graph1Layout = new javax.swing.GroupLayout(Graph1);
+        Graph1.setLayout(Graph1Layout);
+        Graph1Layout.setHorizontalGroup(
+            Graph1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
         );
-        bodyLayout.setVerticalGroup(
-            bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(btnReporteDiario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(bodyLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(59, Short.MAX_VALUE))
+        Graph1Layout.setVerticalGroup(
+            Graph1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
+
+        body.add(Graph1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 460, 550));
+
+        Graph2.setBackground(new java.awt.Color(243, 243, 243));
+
+        javax.swing.GroupLayout Graph2Layout = new javax.swing.GroupLayout(Graph2);
+        Graph2.setLayout(Graph2Layout);
+        Graph2Layout.setHorizontalGroup(
+            Graph2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
+        );
+        Graph2Layout.setVerticalGroup(
+            Graph2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+
+        body.add(Graph2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 460, 250));
+
+        Graph3.setBackground(new java.awt.Color(243, 243, 243));
+
+        javax.swing.GroupLayout Graph3Layout = new javax.swing.GroupLayout(Graph3);
+        Graph3.setLayout(Graph3Layout);
+        Graph3Layout.setHorizontalGroup(
+            Graph3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
+        );
+        Graph3Layout.setVerticalGroup(
+            Graph3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+
+        body.add(Graph3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 480, 460, 250));
+
+        jLabel4.setText("Ver tablas");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        body.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, -1, -1));
 
         sidepanel.setBackground(new java.awt.Color(172, 78, 233));
         sidepanel.setPreferredSize(new java.awt.Dimension(230, 785));
@@ -590,6 +632,118 @@ public class ReporteTotal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_plTransaccionesMouseClicked
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        //DESHABILITAR las tablas
+        jScrollPane1.setVisible(false);
+        jScrollPane2.setVisible(false);
+        jScrollPane3.setVisible(false);
+        tblComprasCliente.setVisible(false);
+        tblVentasProductos.setVisible(false);
+        tblVentasVendedor.setVisible(false);
+        Graph1.setVisible(true);
+        Graph2.setVisible(true);
+        Graph3.setVisible(true);
+        //GRAFICO1
+        DefaultPieDataset pieDataset = new DefaultPieDataset();
+        
+        pieDataset.setValue("PSOE", new Integer(31));
+        pieDataset.setValue("PP", new Integer(34));
+        pieDataset.setValue("PODEMOS", new Integer(25));
+        pieDataset.setValue("IU", new Integer(8));
+        pieDataset.setValue("Otros", new Integer(3));
+        
+        JFreeChart chart = ChartFactory.createPieChart3D(
+                "Elecciones Generales",
+                pieDataset,
+                true,
+                true,
+                false
+        );
+        ChartPanel chartPanel= new ChartPanel(chart);
+        chartPanel.setBounds(5,10,440,530);
+        Graph1.add(chartPanel);
+        Graph1.repaint();
+        //GRAFICO2
+//        DefaultPieDataset pieDataset2 = new DefaultPieDataset();
+//        
+//        pieDataset2.setValue("PSOE", new Integer(31));
+//        pieDataset2.setValue("PP", new Integer(34));
+//        pieDataset2.setValue("PODEMOS", new Integer(25));
+//        pieDataset2.setValue("IU", new Integer(8));
+//        pieDataset2.setValue("Otros", new Integer(3));
+//        
+//        JFreeChart chart2 = ChartFactory.createPieChart3D(
+//                "Elecciones Generales",
+//                pieDataset2,
+//                true,
+//                true,
+//                false
+//        );
+//        ChartPanel chartPanel2 = new ChartPanel(chart2);
+//        chartPanel2.setBounds(5,10,440,240);
+//        Graph2.add(chartPanel2);
+//        Graph2.repaint();
+
+
+        DefaultCategoryDataset  pieDataset2 = new DefaultCategoryDataset();
+        
+        pieDataset2.addValue(1.0, "Row 1", "Column 1");
+        pieDataset2.addValue(1.0, "Row 2", "Column 1");
+        pieDataset2.addValue(1.0, "Row 3", "Column 1");
+        pieDataset2.addValue(1.0, "Row 4", "Column 1");
+        pieDataset2.addValue(1.0, "Row 5", "Column 1");
+
+        JFreeChart chart2 = ChartFactory.createBarChart(
+                "Elecciones Generales",
+                "CATEGORIAS",
+                "vALORES",
+                pieDataset2,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+        ChartPanel chartPanel2 = new ChartPanel(chart2);
+        chartPanel2.setBounds(5,10,440,240);
+        Graph2.add(chartPanel2);
+        Graph2.repaint();
+
+
+        //GRAFICO3
+        DefaultPieDataset pieDataset3 = new DefaultPieDataset();
+        
+        pieDataset3.setValue("PSOE", new Integer(31));
+        pieDataset3.setValue("PP", new Integer(34));
+        pieDataset3.setValue("PODEMOS", new Integer(25));
+        pieDataset3.setValue("IU", new Integer(8));
+        pieDataset3.setValue("Otros", new Integer(3));
+        
+        JFreeChart chart3 = ChartFactory.createPieChart3D(
+                "Elecciones Generales",
+                pieDataset3,
+                true,
+                true,
+                false
+        );
+        ChartPanel chartPanel3 = new ChartPanel(chart3);
+        chartPanel3.setBounds(5,10,440,240);
+        Graph3.add(chartPanel3);
+        Graph3.repaint();
+        
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        jScrollPane1.setVisible(true);
+        jScrollPane2.setVisible(true);
+        jScrollPane3.setVisible(true);
+        tblComprasCliente.setVisible(true);
+        tblVentasProductos.setVisible(true);
+        tblVentasVendedor.setVisible(true);
+        Graph1.setVisible(false);
+        Graph2.setVisible(false);
+        Graph3.setVisible(false);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -627,6 +781,9 @@ public class ReporteTotal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Graph1;
+    private javax.swing.JPanel Graph2;
+    private javax.swing.JPanel Graph3;
     private javax.swing.JPanel body;
     private javax.swing.JButton btnReporteDiario;
     private javax.swing.JLabel jLabel1;
@@ -637,8 +794,10 @@ public class ReporteTotal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
