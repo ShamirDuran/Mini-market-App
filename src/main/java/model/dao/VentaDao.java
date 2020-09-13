@@ -5,8 +5,13 @@
  */
 package model.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Singleton;
+import model.conexion.Conexion;
 import model.vo.ProductoVo;
 import model.vo.UsuarioVo;
 import model.vo.VentaVo;
@@ -17,6 +22,8 @@ import model.vo.VentaVo;
  */
 public class VentaDao {
 
+    Conexion c;
+    Connection con;
     UsuarioDao usuarioDao;
 
     int contador = 1;
@@ -25,6 +32,9 @@ public class VentaDao {
 
     public VentaDao() {
         this.listaVentas = new ArrayList<VentaVo>();
+        
+        c = new Conexion();
+        con = c.getConexion();
     }
 
     public boolean registrarVenta(VentaVo venta) {
@@ -101,6 +111,16 @@ public class VentaDao {
         return findList;
     }
 
+    public ResultSet buscarProductos(String nombre) {
+        String sql = "SELECT *FROM t_productos WHERE nombre LIKE '" + nombre + "%'";
+        return queryWithResultSet(sql);
+    }
+
+    public ResultSet buscarClientes(String nombre) {
+        String sql = "SELECT * FROM t_usuarios WHERE nombre LIKE '" + nombre + "%'";
+        return queryWithResultSet(sql);
+    }
+    
     /**
      * Le suma a las unidades en stock del producto las recuperadas al eliminar
      * un producto de una venta
@@ -122,4 +142,18 @@ public class VentaDao {
         this.usuarioDao = usuarioDao;
     }
 
+    private ResultSet queryWithResultSet(String sql) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+        } catch (SQLException e) {
+            System.out.println("VentaDao: Error al traer datos " + e);
+        }
+
+        return rs;
+    }
 }

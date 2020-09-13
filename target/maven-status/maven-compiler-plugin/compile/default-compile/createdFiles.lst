@@ -8,9 +8,11 @@ view\RegistrarU$8.class
 view\ModificarP$12.class
 view\Producto$12.class
 view\RealizarVenta$1.class
+view\RealizarVenta$18.class
 view\Producto$5.class
 view\ReporteTotal$13.class
 view\Usuario$15.class
+view\RealizarVenta$20.class
 model\vo\UsuarioVo.class
 view\ReporteTotal$8.class
 view\RealizarVenta$7.class
@@ -39,10 +41,12 @@ view\Usuario$2.class
 view\RealizarVenta$8.class
 view\RegistrarU$7.class
 view\RealizarVenta$2.class
+view\RealizarVenta$21.class
 view\Producto$6.class
 view\ReporteDiario$3.class
 model\Singleton.class
 view\Inventario$10.class
+view\RealizarVenta$17.class
 model\vo\ProductoVo.class
 view\ModificarU$7.class
 view\Factory.class
@@ -88,6 +92,7 @@ view\ReporteDiario.class
 view\ReporteDiario$11.class
 view\RealizarVenta$5.class
 view\Home$14.class
+view\RealizarVenta$19.class
 view\Producto$11.class
 view\RegistrarU$5.class
 view\ModificarP.class
@@ -125,11 +130,13 @@ view\ReporteTotal$4.class
 view\Home$6.class
 view\RegistrarU$6.class
 view\Usuario$3.class
+view\RealizarVenta$15.class
 view\ModificarP$7.class
 view\Transacciones$3.class
 view\RegistrarP$3.class
 view\RegistrarU$16.class
 view\RegistrarU$10.class
+view\RealizarVenta$16.class
 view\Inventario$8.class
 view\Inventario$11.class
 view\ReporteTotal.class
@@ -163,6 +170,7 @@ view\RealizarVenta$11.class
 view\ModificarP$13.class
 view\Producto.class
 view\Producto$16.class
+view\RealizarVenta$14.class
 view\Inventario$15.class
 view\ModificarP$14.class
 view\RegistrarU$14.class

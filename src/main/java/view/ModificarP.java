@@ -282,7 +282,6 @@ public class ModificarP extends javax.swing.JFrame {
     }//GEN-LAST:event_edCantidadActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
         int click = JOptionPane.showConfirmDialog(this, "¿Esta seguro de que desea eliminar este producto?", "Confirmación", JOptionPane.YES_NO_OPTION);
 
         if (click == JOptionPane.YES_OPTION) {

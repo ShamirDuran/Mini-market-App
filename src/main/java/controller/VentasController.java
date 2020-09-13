@@ -5,7 +5,11 @@
  */
 package controller;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import model.dao.UsuarioDao;
 import model.dao.VentaDao;
 import model.vo.VentaVo;
@@ -18,6 +22,13 @@ public class VentasController {
 
     UsuarioDao usuarioDao;
     VentaDao ventaDao;
+    private JTable tblPro, tblCli;
+    private DefaultTableModel modelPro, modelCli;
+
+    public VentasController() {
+        usuarioDao = new UsuarioDao();
+        ventaDao = new VentaDao();
+    }
 
     public boolean registrarVenta(VentaVo venta) {
         boolean check = ventaDao.registrarVenta(venta);
@@ -82,18 +93,82 @@ public class VentasController {
         }
     }
 
+    public Boolean buscarProductos(String nombre) {
+        ResultSet rs = ventaDao.buscarProductos(nombre);
+
+        if (rs != null) {
+            try {
+                modelPro.setNumRows(0);
+                String[] pro = new String[5];
+
+                while (rs.next()) {
+                    pro[0] = rs.getString("id");
+                    pro[1] = rs.getString("nombre");
+                    pro[2] = rs.getString("precio");
+                    pro[3] = rs.getString("cantidad");
+                    
+                    modelPro.addRow(pro);
+                }
+                return true;
+
+            } catch (Exception e) {
+                System.out.println("VentaCon: Error al recorrer los productos " + e);
+            }
+        } else {
+            System.out.println("VentaCon: No se recibieron datos de productos, null");
+        }
+        return false;
+    }
+
+    public Boolean buscarClientes(String nombre) {
+        ResultSet rs = ventaDao.buscarClientes(nombre);
+
+        if (rs != null) {
+            try {
+                modelCli.setNumRows(0);
+                String[] cli = new String[4];
+
+                while (rs.next()) {
+                    cli[0] = rs.getString("id");
+                    cli[1] = rs.getString("nombre");
+                    cli[2] = rs.getString("edad");
+                    cli[3] = rs.getString("cedula");
+                    modelCli.addRow(cli);
+                }
+                return true;
+                
+            } catch (SQLException e) {
+                System.out.println("VentaCon: Error al recorrer los clientes " + e);
+            }
+
+        } else {
+            System.out.println("VentaCon: No se recibieron datos de clientes, null");
+        }
+
+        return false;
+    }
+
     private void mostrarListaVenta(ArrayList<VentaVo> listaVentas) {
         for (VentaVo venta : listaVentas) {
             venta.mostrarVenta();
         }
     }
 
-    public void setVentaDao(VentaDao ventaDao) {
-        this.ventaDao = ventaDao;
+//    public void setVentaDao(VentaDao ventaDao) {
+//        this.ventaDao = ventaDao;
+//    }
+//
+//    public void setUsuarioDao(UsuarioDao usuarioDao) {
+//        this.usuarioDao = usuarioDao;
+//    }
+    
+    public void setTableProductos(JTable table) {
+        this.tblPro = table;
+        modelPro = (DefaultTableModel) tblPro.getModel();
     }
 
-    public void setUsuarioDao(UsuarioDao usuarioDao) {
-        this.usuarioDao = usuarioDao;
+    public void setTableClientes(JTable table) {
+        this.tblCli = table;
+        modelCli = (DefaultTableModel) tblCli.getModel();
     }
-
 }

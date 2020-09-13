@@ -54,6 +54,7 @@ public class ProductosController {
                     model.addRow(producto);
                 }
                 return true;
+                
             } catch (Exception e) {
                 System.out.println("Error al recorrer productos: " + e);;
             }
@@ -218,9 +219,9 @@ public class ProductosController {
         return check;
     }
 
-    public void setProductoDao(ProductoDao productoDao) {
-        this.productoDao = productoDao;
-    }
+//    public void setProductoDao(ProductoDao productoDao) {
+//        this.productoDao = productoDao;
+//    }
 
     public void setTable(JTable table) {
         this.table = table;

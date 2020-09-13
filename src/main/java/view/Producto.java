@@ -594,7 +594,6 @@ public class Producto extends javax.swing.JFrame {
 
         if (!proCon.buscarProducto(ref, "producto")) {
             JOptionPane.showMessageDialog(null, "No se encontraron productos con el nombre " + ref + "!");
-
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -666,6 +665,7 @@ public class Producto extends javax.swing.JFrame {
             System.out.println("Productos cargados correctamente");
         } else {
             System.out.println("Error al cargar los productos a la tabla");
+            JOptionPane.showMessageDialog(null, "Error al cargar los productos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
