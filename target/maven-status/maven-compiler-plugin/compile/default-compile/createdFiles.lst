@@ -3,6 +3,7 @@ view\RegistrarP$7.class
 view\Home$8.class
 view\Home$17.class
 view\ReporteTotal$2.class
+view\ReporteDiario$14.class
 view\Transacciones$6.class
 view\RegistrarU$8.class
 view\ModificarP$12.class
@@ -26,11 +27,13 @@ view\RegistrarP$1.class
 view\RegistrarU$2.class
 view\Home$12.class
 view\Usuario$14.class
+view\ReporteTotal$14.class
 view\RegistrarP$2.class
 view\ModificarP$11.class
 view\ReporteDiario$5.class
 view\Transacciones$10.class
 view\ModificarU$5.class
+view\ReporteDiario$15.class
 view\ReporteDiario$4.class
 view\Inventario.class
 view\ReporteTotal$3.class
@@ -126,6 +129,7 @@ view\Home$6.class
 view\RegistrarU$6.class
 view\Usuario$3.class
 view\RealizarVenta$15.class
+view\ReporteTotal$15.class
 view\ModificarP$7.class
 view\Transacciones$3.class
 view\RegistrarP$3.class
