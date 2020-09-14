@@ -33,9 +33,9 @@ public class VentasController {
     public boolean registrarVenta(VentaVo venta) {
         boolean check = ventaDao.registrarVenta(venta);
         if (check) {
-            System.out.println("\nSe registro la venta correctamente!!");
+            System.out.println("\nVentasCon: Se registro la venta correctamente!!");
         } else {
-            System.out.println("\nNo se pudo registrar la venta!!");
+            System.out.println("\nVentasCon: No se pudo registrar la venta!!");
         }
 
         return check;
@@ -44,9 +44,9 @@ public class VentasController {
     public boolean modificarVenta(VentaVo dataVenta) {
         boolean check = ventaDao.modificarVenta(dataVenta);
         if (check) {
-            System.out.println("\nVenta con id" + dataVenta.getId() + " modificada correctamente!!");
+            System.out.println("\nVentaCon: Venta con id" + dataVenta.getId() + " modificada correctamente!!");
         } else {
-            System.out.println("\nNo se encontro la venta!!");
+            System.out.println("\nVentaCon: No se encontro la venta!!");
         }
 
         return check;
@@ -68,11 +68,11 @@ public class VentasController {
         findList = ventaDao.buscarVenta(ref);
 
         if (!findList.isEmpty()) {
-            System.out.println("\n/-- Venta encontrada --/");
+            System.out.println("VentaCon: \n/-- Venta encontrada --/");
             mostrarListaVenta(findList);
             return findList;
         } else {
-            System.out.println("\nNo se encontro venta con id " + ref);
+            System.out.println("VentaCon: \nNo se encontro venta con id " + ref);
             return null;
         }
     }
@@ -86,10 +86,10 @@ public class VentasController {
         listaVentas = ventaDao.getListaVentas();
 
         if (!listaVentas.isEmpty()) {
-            System.out.println("\n/-- Lista de ventas registradas --/");
+            System.out.println("VentaCon: \n/-- Lista de ventas registradas --/");
             mostrarListaVenta(listaVentas);
         } else {
-            System.out.println("\n No hay ventas registradas!!");
+            System.out.println("VentaCon: \n No hay ventas registradas!!");
         }
     }
 

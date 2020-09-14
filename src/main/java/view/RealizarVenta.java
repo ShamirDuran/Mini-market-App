@@ -68,7 +68,7 @@ public class RealizarVenta extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
         edBuscarCli = new javax.swing.JTextField();
         btnBuscarCli = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -273,10 +273,10 @@ public class RealizarVenta extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        jButton1.setText("CONFIRMAR VENTA");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnConfirmar.setText("CONFIRMAR VENTA");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnConfirmarActionPerformed(evt);
             }
         });
 
@@ -446,7 +446,7 @@ public class RealizarVenta extends javax.swing.JFrame {
                                         .addComponent(btnAgregarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addComponent(jLabel36)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(bodyLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(284, 284, 284)
@@ -498,7 +498,7 @@ public class RealizarVenta extends javax.swing.JFrame {
                     .addGroup(bodyLayout.createSequentialGroup()
                         .addComponent(factura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -919,14 +919,10 @@ public class RealizarVenta extends javax.swing.JFrame {
         ventaCon.setTableProductos(tblProductos);
         String nombre = edBuscarPro.getText();
 
-        if (!nombre.equals("")) {
-            if (ventaCon.buscarProductos(nombre)) {
-                System.out.println("VentaView: Productos obtenidos correctamente");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontraron produtos con el nombre " + nombre);
-            }
+        if (ventaCon.buscarProductos(nombre)) {
+            System.out.println("VentaView: Productos obtenidos correctamente");
         } else {
-            JOptionPane.showMessageDialog(null, "Debe escribir el nombre de un producto");
+            JOptionPane.showMessageDialog(null, "No se encontraron produtos con el nombre " + nombre);
         }
     }//GEN-LAST:event_btnBuscarProActionPerformed
 
@@ -938,14 +934,10 @@ public class RealizarVenta extends javax.swing.JFrame {
         ventaCon.setTableClientes(tblClientes);
         String nombre = edBuscarCli.getText();
 
-        if (!nombre.equals("")) {
-            if (ventaCon.buscarClientes(nombre)) {
-                System.out.println("VentaView: Clientes obtenidos correctamente");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontraron clientes con el nombre " + nombre);
-            }
+        if (ventaCon.buscarClientes(nombre)) {
+            System.out.println("VentaView: Clientes obtenidos correctamente");
         } else {
-            JOptionPane.showMessageDialog(null, "Debe escribir un nombre");
+            JOptionPane.showMessageDialog(null, "No se encontraron clientes con el nombre " + nombre);
         }
     }//GEN-LAST:event_btnBuscarCliActionPerformed
 
@@ -986,7 +978,7 @@ public class RealizarVenta extends javax.swing.JFrame {
         reUser.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         if (model.getRowCount() > 0) {
             if (!clienteData.isEmpty()) { //se verifica que se haya seleccionado un cliente
                 if (confirmarVenta()) {
@@ -994,6 +986,11 @@ public class RealizarVenta extends javax.swing.JFrame {
                     cargarDatosVenta(venta);
                     if (ventaCon.registrarVenta(venta)) {
                         JOptionPane.showMessageDialog(this, "Venta registrada correctamente");
+                        RealizarVenta reVenta = new RealizarVenta();
+                        reVenta.setLocationRelativeTo(null);
+                        reVenta.setVisible(true);
+                        this.dispose();
+
                     } else {
                         JOptionPane.showMessageDialog(this, "Error al registrar la venta", "Aviso", JOptionPane.ERROR_MESSAGE);
                     }
@@ -1004,7 +1001,7 @@ public class RealizarVenta extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Debe agregar productos", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1085,6 +1082,7 @@ public class RealizarVenta extends javax.swing.JFrame {
             int cantidad = Integer.parseInt(model.getValueAt(i, 3).toString());
             venta.addProducto(producto, cantidad);
         }
+        System.out.println("tamaño cantidad al btn: " + venta.getCantidad().size());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1093,11 +1091,11 @@ public class RealizarVenta extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarPro;
     private javax.swing.JButton btnBuscarCli;
     private javax.swing.JButton btnBuscarPro;
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JTextField edBuscarCli;
     private javax.swing.JTextField edBuscarPro;
     private javax.swing.JPanel factura;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;

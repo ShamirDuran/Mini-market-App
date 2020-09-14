@@ -19,7 +19,7 @@ DELIMITER $$
 CREATE PROCEDURE registrar_venta_producto(IN venta INT, producto INT, comprados INT)
 BEGIN
 	INSERT INTO t_venta_producto(fk_venta, fk_producto, cantidad)
-    VALUES (venta, producto, cantidad);
+    VALUES (venta, producto, comprados);
     
     UPDATE t_productos SET cantidad = cantidad - comprados, cantidad_vendidos = cantidad_vendidos + comprados WHERE id = producto;
 END; $$
