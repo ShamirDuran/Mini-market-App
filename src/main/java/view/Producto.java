@@ -120,6 +120,7 @@ public class Producto extends javax.swing.JFrame {
             }
         });
         tblProductos.setGridColor(new java.awt.Color(255, 255, 255));
+        tblProductos.getTableHeader().setReorderingAllowed(false);
         tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblProductosMouseClicked(evt);

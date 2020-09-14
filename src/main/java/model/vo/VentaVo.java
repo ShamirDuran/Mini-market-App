@@ -18,150 +18,33 @@ import java.util.Date;
  */
 public class VentaVo {
 
-    private int id;
-    private UsuarioVo vendedor;
-    private UsuarioVo comprador;
-    private ArrayList<ProductoVo> productosList;
-    private ArrayList<Integer> cantidadList;
+    private int id, vendedor, comprador;
+    private ArrayList productos;
+    private ArrayList cantidad;
     private double total;
-    private String fecha;
-    private String fecha_mod;
-
+    private String fecha, fecha_mod;
     private Date date;
     private SimpleDateFormat format;
 
     /**
      * Constructor de la clase Venta
-     *
-     * @param comprador Datos del cliente que compro.
      */
-    public VentaVo(UsuarioVo comprador) {
-        vendedor = new UsuarioVo(Singleton.getInstance().getId(), Singleton.getInstance().getRol(),
-                Singleton.getInstance().getEdad(), Singleton.getInstance().getGenero(),
-                Singleton.getInstance().getNombre(), Singleton.getInstance().getCorreo(),
-                Singleton.getInstance().getDireccion(), Singleton.getInstance().getCedula());
-
-        this.cantidadList = new ArrayList<Integer>();
-        this.productosList = new ArrayList<ProductoVo>();
-        this.comprador = comprador;
+    public VentaVo() {
+        // se inicializan para luego irse agregando a medida de que progresa la venta
+        this.vendedor = Singleton.getInstance().getId();
+        this.comprador = 0;
+        this.total = 0;
+        this.cantidad = new ArrayList<Integer>();
+        this.productos = new ArrayList<Integer>();
         this.fecha_mod = null;
-
-        format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        this.format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
     }
 
-    /**
-     * Metodo que agrega un producto a la venta
-     * 
-     * @param producto Producto que se va a agregar a la venta
-     * @param cantidad Cantidad del producto que se desea comprar
-     */
-    public void añadirProducto(ProductoVo producto, int cantidad) {
-        if (producto != null) {
-            if (validarVentaProducto(producto, cantidad)) {
-                this.productosList.add(producto);
-                this.cantidadList.add(cantidad);
-                this.total = calcularTotal();
-                producto.sumarCantidadV(cantidad); //aqui se suman la cantidad total de ventas de un producto
-                System.out.println("Producto " + producto.getNombre() + " añadido!");
-            }
-        } else {
-            System.out.println("No se pudo añadir el producto!");
-        }
+    public void addProducto(int producto, int cantidad) {
+        this.productos.add(producto);
+        this.cantidad.add(cantidad);
     }
-
-    /**
-     * Elimina un producto de esta venta Al eliminar el producto de la venta se suma
-     * a la cantidad en stock la cantidad que se habia comprado.
-     * 
-     * @param id Id del producto que se quiere eliminar de la venta
-     */
-    public void eliminarProducto(int id) {
-        boolean check = false;
-        int index = 0;
-
-        for (ProductoVo producto : productosList) {
-            if (producto.getId() == id) {
-                check = true;
-                break;
-            }
-            index++;
-        }
-
-        if (check) {
-            System.out.println("\nSe elimino " + productosList.get(index).getNombre() + " de la factura.");
-            productosList.get(index).restaurarCantidad(cantidadList.get(index));
-            productosList.get(index).restarCantidadV(cantidadList.get(index));
-            productosList.remove(index);
-            cantidadList.remove(index);
-            this.total = calcularTotal();
-        } else {
-            System.out.println("\nNo se pudo eliminar el producto con id " + id + " de la venta " + this.id);
-        }
-    }
-
-    public void mostrarVenta() {
-        String str = "\nVentaID: " + this.id + ", Vendedor: " + this.vendedor.getNombre() + ", Comprador: "
-                + this.comprador.getNombre() + "\n" + "Fecha: " + this.fecha;
-
-        System.out.println(str);
-
-        if (fecha_mod != null) {
-            System.out.println("Fecha modificación; " + this.fecha_mod);
-        }
-        System.out.println("\n<- PRODUCTOS COMPRADOS ->");
-
-        listarProductos();
-
-        System.out.println(" TOTAL: " + total);
-    }
-
-    /**
-     * Metodo que verifica si quedan unidades suficientes para satisfacer las
-     * unidades solicitadas
-     * 
-     * @param producto El producto que se desea comprar
-     * @param cantidad La cantidad del producto que se desea comprar
-     * @return
-     */
-    private boolean validarVentaProducto(ProductoVo producto, int cantidad) {
-        boolean check = false;
-
-        if (producto.restarCantidad(cantidad)) {
-            check = true;
-        }
-
-        return check;
-    }
-
-    private void listarProductos() {
-        int cont = 1;
-        int index = 0;
-
-        for (ProductoVo producto : productosList) {
-            System.out.println(" * " + cont + " " + producto.getNombre() + " " + producto.getPrecio() + " "
-                    + cantidadList.get(index) + " " + producto.getPrecio() * cantidadList.get(index));
-            cont++;
-            index++;
-        }
-    }
-
-    /**
-     * Calcula el precio total de esta venta
-     * 
-     * @return la cantidad que se debe cobrar
-     */
-    private double calcularTotal() {
-        double total = 0;
-        int index = 0;
-
-        for (ProductoVo producto : this.productosList) {
-            total = total + (producto.getPrecio() * cantidadList.get(index));
-            index++;
-        }
-
-        return total;
-    }
-
+    
     /**
      * Obtiene la hora y fecha exacta en la que se realiza la venta
      */
@@ -170,11 +53,22 @@ public class VentaVo {
         this.fecha = this.format.format(this.date);
     }
 
+    /**
+     * Obtiene la hora y fecha exacta en la que se modifico la venta
+     */
     public void date_mod() {
         this.date = new Date();
         this.fecha_mod = this.format.format(this.date);
     }
 
+    @Override
+    public String toString() {
+        String venta = "Venta: \n"
+                + "# pro: " + productos.size();
+        
+        return venta;
+    }
+    
     public int getId() {
         return id;
     }
@@ -183,28 +77,40 @@ public class VentaVo {
         this.id = id;
     }
 
-    public UsuarioVo getVendedor() {
+    public int getVendedor() {
         return vendedor;
     }
 
-    public void setVendedor(UsuarioVo vendedor) {
-        this.vendedor = vendedor;
-    }
-
-    public UsuarioVo getComprador() {
+    public int getComprador() {
         return comprador;
     }
 
-    public void setComprador(UsuarioVo comprador) {
+    public void setComprador(int comprador) {
         this.comprador = comprador;
     }
 
-    public ArrayList<ProductoVo> getProductosList() {
-        return productosList;
+    public ArrayList getProductos() {
+        return productos;
     }
 
-    public void setProductosList(ArrayList<ProductoVo> productosList) {
-        this.productosList = productosList;
+    public void setProductos(ArrayList productos) {
+        this.productos = productos;
+    }
+
+    public ArrayList getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(ArrayList cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public String getFecha() {
@@ -223,15 +129,19 @@ public class VentaVo {
         this.fecha_mod = fecha_mod;
     }
 
-    public double getTotal() {
-        return total;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public ArrayList<Integer> getCantidadList() {
-        return cantidadList;
+    public SimpleDateFormat getFormat() {
+        return format;
+    }
+
+    public void setFormat(SimpleDateFormat format) {
+        this.format = format;
     }
 }

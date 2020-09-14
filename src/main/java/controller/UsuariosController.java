@@ -26,6 +26,8 @@ public class UsuariosController {
 
     public UsuariosController() {
         usuarioDao = new UsuarioDao();
+        table = null;
+        model = null;
     }
 
     /**
@@ -37,7 +39,7 @@ public class UsuariosController {
     public Boolean obtenerListaUsuarios() {
         ResultSet rs = usuarioDao.obtenerUsuarios();
 
-        if (rs != null) {
+        if (rs != null && table != null && model != null) {
             try {
                 model.setNumRows(0);
                 String[] usuario = new String[8];
@@ -64,14 +66,6 @@ public class UsuariosController {
         return false;
     }
 
-//    private void limpiarTabla() {
-//        DefaultTableModel model = (DefaultTableModel) table.getModel();
-//        int rowCount = model.getRowCount();
-//        for (int i = rowCount - 1; i >= 0; i--) {
-//            model.removeRow(i);
-//        }
-//    }
-    
     public Boolean buscarUsuario(String nombre) {
         ResultSet rs = usuarioDao.buscarUsuario(nombre);
 
@@ -111,7 +105,6 @@ public class UsuariosController {
         boolean check = usuarioDao.añadirUsuario(rol, edad, genero, nombre, correo, direccion, cedula);
         if (check) {
             System.out.println("\nUsuario " + nombre + " registrado correctamente!!");
-//            limpiarTabla();
             obtenerListaUsuarios();
         } else {
             System.out.println("\nError al registrar nuevo usuario!!");
@@ -130,7 +123,6 @@ public class UsuariosController {
         boolean check = this.usuarioDao.modificarUsuario(user);
         if (check) {
             System.out.println("\nUsuario modificado correctamente!!");
-//            limpiarTabla();
             obtenerListaUsuarios();
         } else {
             System.out.println("\nNo se encontro el usuario!!");
@@ -149,7 +141,6 @@ public class UsuariosController {
         boolean check = this.usuarioDao.eliminarUsuario(id);
         if (check) {
             System.out.println("\nUsuario con id " + id + " eliminado correctamente!!");
-//            limpiarTabla();
             obtenerListaUsuarios();
         } else {
             System.out.println("\nNo se encontro usuario con id " + id);
@@ -157,13 +148,15 @@ public class UsuariosController {
 
         return check;
     }
-    
-    public void setUsuarioDao(UsuarioDao usuarioDao) {
-        this.usuarioDao = usuarioDao;
-    }
 
+//    public void setUsuarioDao(UsuarioDao usuarioDao) {
+//        this.usuarioDao = usuarioDao;
+//    }
     /**
-     * @param table the table to set
+     * Asigna una vista al controlador para que este pueda cargar los datos
+     * recibidos
+     *
+     * @param table Tabla de la vista que se desea actualizar
      */
     public void setTable(JTable table) {
         this.table = table;

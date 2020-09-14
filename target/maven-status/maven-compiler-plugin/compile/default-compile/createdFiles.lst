@@ -30,9 +30,7 @@ view\RegistrarP$2.class
 view\ModificarP$11.class
 view\ReporteDiario$5.class
 view\Transacciones$10.class
-view\ModificarU$12.class
 view\ModificarU$5.class
-view\ModificarU$11.class
 view\ReporteDiario$4.class
 view\Inventario.class
 view\ReporteTotal$3.class
@@ -70,10 +68,8 @@ view\Home$16.class
 view\RealizarVenta$3.class
 view\RealizarVenta.class
 view\Producto$4.class
-view\ModificarU$13.class
 view\Home$7.class
 view\Usuario$16.class
-view\ModificarU$16.class
 view\ModificarU$9.class
 view\Transacciones$4.class
 view\ReporteTotal$7.class
@@ -82,7 +78,6 @@ view\ReporteDiario$12.class
 view\ModificarU.class
 view\ReporteDiario$1.class
 model\dao\ProductoDao.class
-view\ModificarU$15.class
 view\Home$15.class
 view\Producto$10.class
 view\Home$9.class
@@ -100,16 +95,15 @@ view\RealizarVenta$4.class
 view\Inventario$2.class
 model\conexion\Conexion.class
 view\Home$5.class
-view\ModificarU$14.class
 view\ModificarU$8.class
 view\Usuario$12.class
 view\Producto$15.class
 view\Producto$2.class
 view\Transacciones$12.class
 view\RealizarVenta$10.class
+view\RealizarVenta$23.class
 view\ReporteDiario$2.class
 view\ReporteTotal$10.class
-view\RegistrarU$11.class
 view\ModificarU$3.class
 view\Producto$8.class
 view\ModificarP$2.class
@@ -123,6 +117,7 @@ view\Producto$7.class
 view\ModificarP$8.class
 model\dao\VentaDao.class
 view\Inventario$7.class
+view\RealizarVenta$22.class
 view\Inventario$12.class
 view\RealizarVenta$9.class
 view\Transacciones$8.class
@@ -134,7 +129,6 @@ view\RealizarVenta$15.class
 view\ModificarP$7.class
 view\Transacciones$3.class
 view\RegistrarP$3.class
-view\RegistrarU$16.class
 view\RegistrarU$10.class
 view\RealizarVenta$16.class
 view\Inventario$8.class
@@ -154,7 +148,6 @@ view\RegistrarU$1.class
 view\Usuario$8.class
 controller\UsuariosController.class
 view\Home$10.class
-view\RegistrarU$12.class
 view\Transacciones.class
 view\ReporteDiario$9.class
 view\RegistrarP$8.class
@@ -162,7 +155,6 @@ view\Inventario$6.class
 view\Inventario$16.class
 view\Home$4.class
 view\Usuario$13.class
-view\RegistrarU$15.class
 view\Inventario$3.class
 controller\VentasController.class
 view\Inventario$13.class
@@ -173,7 +165,6 @@ view\Producto$16.class
 view\RealizarVenta$14.class
 view\Inventario$15.class
 view\ModificarP$14.class
-view\RegistrarU$14.class
 view\RegistrarU$3.class
 view\ModificarU$2.class
 view\RealizarVenta$12.class
@@ -188,7 +179,6 @@ view\ReporteDiario$8.class
 view\Home$3.class
 view\Home.class
 view\ReporteTotal$1.class
-view\RegistrarU$13.class
 view\RealizarVenta$13.class
 view\Home$2.class
 view\Usuario$6.class

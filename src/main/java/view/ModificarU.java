@@ -17,6 +17,7 @@ public class ModificarU extends javax.swing.JFrame {
 
     private UsuariosController usercon;
     private UsuarioVo user;
+
     /**
      * Creates new form RegistrarC
      */
@@ -50,6 +51,7 @@ public class ModificarU extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         etGenero = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -81,13 +83,6 @@ public class ModificarU extends javax.swing.JFrame {
         });
 
         etCedula.setForeground(new java.awt.Color(102, 102, 102));
-        etCedula.setText("Escriba el telefono del cliente aqui.");
-        etCedula.setEnabled(false);
-        etCedula.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etCedulaMouseClicked(evt);
-            }
-        });
         etCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etCedulaActionPerformed(evt);
@@ -96,20 +91,13 @@ public class ModificarU extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Genero");
+        jLabel7.setText("Genero*");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Cedula");
 
         etEdad.setForeground(new java.awt.Color(102, 102, 102));
-        etEdad.setText("Escriba la edad del cliente aqui.");
-        etEdad.setEnabled(false);
-        etEdad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etEdadMouseClicked(evt);
-            }
-        });
         etEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etEdadActionPerformed(evt);
@@ -117,13 +105,6 @@ public class ModificarU extends javax.swing.JFrame {
         });
 
         etDireccion.setForeground(new java.awt.Color(102, 102, 102));
-        etDireccion.setText("Escriba la direccion del cliente aqui.");
-        etDireccion.setEnabled(false);
-        etDireccion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etDireccionMouseClicked(evt);
-            }
-        });
         etDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etDireccionActionPerformed(evt);
@@ -132,20 +113,13 @@ public class ModificarU extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Direccion:");
+        jLabel6.setText("Direccion");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Edad");
 
         etNombre.setForeground(new java.awt.Color(102, 102, 102));
-        etNombre.setText("Escriba el nombre del cliente aqui.");
-        etNombre.setEnabled(false);
-        etNombre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etNombreMouseClicked(evt);
-            }
-        });
         etNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etNombreActionPerformed(evt);
@@ -154,16 +128,9 @@ public class ModificarU extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Nombre:");
+        jLabel4.setText("Nombre*");
 
         etCorreo.setForeground(new java.awt.Color(102, 102, 102));
-        etCorreo.setText("Escriba el correo del cliente aqui.");
-        etCorreo.setEnabled(false);
-        etCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etCorreoMouseClicked(evt);
-            }
-        });
         etCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etCorreoActionPerformed(evt);
@@ -172,7 +139,7 @@ public class ModificarU extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Correo:");
+        jLabel5.setText("Correo");
 
         jLabel1.setBackground(new java.awt.Color(243, 243, 243));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
@@ -188,42 +155,20 @@ public class ModificarU extends javax.swing.JFrame {
         });
 
         etGenero.setForeground(new java.awt.Color(102, 102, 102));
-        etGenero.setText("Escriba el telefono del cliente aqui.");
-        etGenero.setEnabled(false);
-        etGenero.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etGeneroMouseClicked(evt);
-            }
-        });
         etGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etGeneroActionPerformed(evt);
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setText("Los campos con * son obligatorios");
+
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(etNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,15 +180,38 @@ public class ModificarU extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addContainerGap())))
+            .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(etNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65)
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
-                .addGap(58, 58, 58)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel9)
+                .addGap(32, 32, 32)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
@@ -322,57 +290,53 @@ public class ModificarU extends javax.swing.JFrame {
     }//GEN-LAST:event_etEdadActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (!etNombre.getText().equals("") && !etCorreo.getText().equals("") && !etDireccion.getText().equals("") && !etEdad.getText().equals("") &&  !etGenero.getText().equals("")&& !etCedula.getText().equals("")) {
-            UsuarioVo userData = new UsuarioVo(
-                    1,
-                    Integer.parseInt(etEdad.getText()),
-                    Integer.parseInt(etGenero.getText()),
-                    etNombre.getText(),
-                    etCorreo.getText(),
-                    etDireccion.getText(),
-                    Integer.parseInt(etCedula.getText())
-                   
-            );
-            userData.setId(user.getId());
-            if (usercon.modificarUsuario(userData)) {
+        user.setId(user.getId());
+
+        // Los else setenado null y 0 es para representar cuando el usuario quiere eliminar ese dato
+        // entoncesal recibir 0 o null el UsuarioDao los manda a la db como null y asi se eliminan.
+        if (!etNombre.getText().equals("") && !etGenero.getText().equals("")) {
+            user.setNombre(etNombre.getText());
+
+            if (!etCorreo.getText().equals("")) {
+                user.setCorreo(etCorreo.getText());
+            } else {
+                user.setCorreo(null);
+            }
+
+            if (!etDireccion.getText().equals("")) {
+                user.setDireccion(etDireccion.getText());
+            } else {
+                user.setDireccion(null);
+            }
+
+            if (!etEdad.getText().equals("")) {
+                user.setEdad(Integer.parseInt(etEdad.getText()));
+            } else {
+                user.setEdad(0);
+            }
+
+            user.setGenero(Integer.parseInt(etGenero.getText()));
+
+            if (!etCedula.getText().equals("")) {
+                user.setCedula(Integer.parseInt(etCedula.getText()));
+            } else {
+                user.setCedula(0);
+            }
+
+            if (usercon.modificarUsuario(user)) {
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Usuario modificado correctamente!");
             } else {
                 JOptionPane.showMessageDialog(this, "No se modifico el usuario", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
+            JOptionPane.showMessageDialog(this, "Debe llenar todos los campos obligatorios");
         }
-            
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void etNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etNombreMouseClicked
-        etNombre.setEnabled(true);
-    }//GEN-LAST:event_etNombreMouseClicked
-
-    private void etCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etCorreoMouseClicked
-        etCorreo.setEnabled(true);
-    }//GEN-LAST:event_etCorreoMouseClicked
-
-    private void etDireccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etDireccionMouseClicked
-        etDireccion.setEnabled(true);
-    }//GEN-LAST:event_etDireccionMouseClicked
-
-    private void etEdadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etEdadMouseClicked
-        etEdad.setEnabled(true);
-    }//GEN-LAST:event_etEdadMouseClicked
-
-    private void etCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etCedulaMouseClicked
-        etCedula.setEnabled(true);
-    }//GEN-LAST:event_etCedulaMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void etGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etGeneroMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_etGeneroMouseClicked
 
     private void etGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etGeneroActionPerformed
         // TODO add your handling code here:
@@ -446,6 +410,7 @@ public class ModificarU extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -453,13 +418,24 @@ public class ModificarU extends javax.swing.JFrame {
      */
     public void setUser(UsuarioVo user) {
         this.user = user;
-        etCorreo.setText(user.getCorreo());
-        etDireccion.setText(user.getDireccion());
-        etEdad.setText(String.valueOf(user.getEdad()));
         etNombre.setText(user.getNombre());
-        etCedula.setText(String.valueOf(user.getCedula()));
         etGenero.setText(String.valueOf(user.getGenero()));
-       
+
+        if (user.getCorreo() != null) {
+            etCorreo.setText(user.getCorreo());
+        }
+
+        if (user.getDireccion() != null) {
+            etDireccion.setText(user.getDireccion());
+        }
+
+        if (user.getEdad() != 0) {
+            etEdad.setText(String.valueOf(user.getEdad()));
+        }
+
+        if (user.getCedula() != 0) {
+            etCedula.setText(String.valueOf(user.getCedula()));
+        }
     }
 
     /**

@@ -6,6 +6,8 @@
 package view;
 
 import controller.UsuariosController;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 import model.dao.UsuarioDao;
@@ -21,7 +23,7 @@ public class Usuario extends javax.swing.JFrame {
      * Creates new form Home
      */
     UsuariosController userCon;
-    
+
     public Usuario() {
         initComponents();
 
@@ -127,6 +129,7 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
         tblUsuario.setGridColor(new java.awt.Color(255, 255, 255));
+        tblUsuario.getTableHeader().setReorderingAllowed(false);
         tblUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblUsuarioMouseClicked(evt);
@@ -511,7 +514,7 @@ public class Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        RegistrarU Rcliente=new RegistrarU();
+        RegistrarU Rcliente = new RegistrarU();
         Rcliente.setLocationRelativeTo(null);
         Rcliente.setUserCon(userCon);
         Rcliente.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
@@ -587,19 +590,29 @@ public class Usuario extends javax.swing.JFrame {
 
     private void tblUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuarioMouseClicked
         int filaSeleccionada = tblUsuario.getSelectedRow();
-        UsuarioVo user = new UsuarioVo(
-                Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 0).toString()),
-                1,
-                Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 5).toString()),
-                Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 6).toString()),
-                tblUsuario.getValueAt(filaSeleccionada, 2).toString(),
-                tblUsuario.getValueAt(filaSeleccionada, 3).toString(),
-                tblUsuario.getValueAt(filaSeleccionada, 4).toString(),            
-                Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 1).toString())
-                
-        );
+
+        UsuarioVo user = new UsuarioVo();
+
+        user.setId(Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 0).toString()));
+        user.setNombre(tblUsuario.getValueAt(filaSeleccionada, 2).toString());
+
+        if (validarColumnas(filaSeleccionada, 1)) { //validando cedula
+            user.setCedula(Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 1).toString()));
+        }
+
+        if (validarColumnas(filaSeleccionada, 3)) { //correo
+            user.setCorreo(tblUsuario.getValueAt(filaSeleccionada, 3).toString());
+        }
+
+        if (validarColumnas(filaSeleccionada, 4)) { //direccion
+            user.setDireccion(tblUsuario.getValueAt(filaSeleccionada, 4).toString());
+        }
+        if (validarColumnas(filaSeleccionada, 5)) { //edad
+            user.setEdad(Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 5).toString()));
+        }
+
+        user.setGenero(Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 6).toString()));
         user.setTransacciones(Integer.parseInt(tblUsuario.getValueAt(filaSeleccionada, 7).toString()));
-        
 
         ModificarU moduser = new ModificarU();
         moduser.setUser(user);
@@ -621,7 +634,6 @@ public class Usuario extends javax.swing.JFrame {
     private void etBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etBuscarMouseClicked
         etBuscar.setText(null);
     }//GEN-LAST:event_etBuscarMouseClicked
-                                   
 
     /**
      * @param args the command line arguments
@@ -660,7 +672,7 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void mostrarUsuarios() {
         userCon.setTable(tblUsuario);
         if (userCon.obtenerListaUsuarios()) {
@@ -668,6 +680,19 @@ public class Usuario extends javax.swing.JFrame {
         } else {
             System.out.println("Error al cargar los usuarios a la tabla");
         }
+    }
+
+    public Boolean validarColumnas(int row, int col) {
+
+        try {
+            String column = tblUsuario.getValueAt(row, col).toString();
+            if (column.trim().length() != 0) {
+                return true;
+            }
+        } catch (Exception e) {
+        }
+
+        return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

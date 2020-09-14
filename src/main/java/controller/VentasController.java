@@ -150,7 +150,7 @@ public class VentasController {
 
     private void mostrarListaVenta(ArrayList<VentaVo> listaVentas) {
         for (VentaVo venta : listaVentas) {
-            venta.mostrarVenta();
+//            venta.mostrarVenta();
         }
     }
 

@@ -56,9 +56,7 @@ public class UsuarioDao {
                 + "VALUES (?,?,?,?,?,?,?,?)";
 
         UsuarioVo user = new UsuarioVo(4, rol, edad, genero, nombre, correo, direccion, cedula);
-
-        Boolean check = queryWithBoolean(sql, user, "execute");
-
+        Boolean check = queryInsert(sql, user);
         return check;
     }
 
@@ -72,9 +70,8 @@ public class UsuarioDao {
      */
     public boolean modificarUsuario(UsuarioVo dataUser) {
         boolean check = false;
-
-        String sql = "UPDATE t_usuarios SET rol = ?, edad = ?, genero = ?, transacciones = ?, nombre = ?, correo = ?, direccion = ?, cedula = ? WHERE id = ?";
-        check = queryWithBoolean(sql, dataUser, "executeUpdate");
+        String sql = "UPDATE t_usuarios SET edad = ?, genero = ?, nombre = ?, correo = ?, direccion = ?, cedula = ? WHERE id = ?";
+        check = queryUpdate(sql, dataUser);
         return check;
     }
 
@@ -88,7 +85,6 @@ public class UsuarioDao {
     public boolean eliminarUsuario(int id) {
         String sql = "DELETE FROM t_usuarios WHERE id = ?";
         PreparedStatement ps = null;
-
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -114,17 +110,6 @@ public class UsuarioDao {
 
     }
 
-    public UsuarioVo buscarUsuarioId(int cedula) {
-        UsuarioVo find = null;
-
-        for (UsuarioVo user : listaUsuarios) {
-            if (user.getId() == cedula) {
-                find = user;
-            }
-        }
-        return find;
-    }
-
     public ArrayList<UsuarioVo> getListaUsuarios() {
         return listaUsuarios;
     }
@@ -132,53 +117,93 @@ public class UsuarioDao {
     private ResultSet queryWithResultSet(String sql) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
         } catch (Exception e) {
             System.out.println("Error traer datos productos: " + e);
         }
-
         return rs;
     }
 
-    private Boolean queryWithBoolean(String sql, UsuarioVo user, String type) {
+    private Boolean queryInsert(String sql, UsuarioVo user) {
         PreparedStatement ps = null;
-
         try {
             if (user != null) {
                 ps = con.prepareStatement(sql);
+
                 ps.setInt(1, user.getRol());
-                ps.setInt(2, user.getEdad());
-                ps.setInt(3, user.getGenero());
-                ps.setInt(4, user.getTransacciones());
-                ps.setString(5, user.getNombre());
-                ps.setString(6, user.getCorreo());
-                ps.setString(7, user.getDireccion());
-                ps.setInt(8, user.getCedula());
 
-                switch (type) {
-                    case "execute":
-                        ps.execute();
-                        break;
+                if (user.getEdad() != 0) {
+                    ps.setInt(2, user.getEdad());
 
-                    case "executeUpdate":
-                        System.out.println(user.getId());
-                        ps.setInt(9, user.getId());
-                        ps.executeUpdate();
-                        break;
-
-                    default:
-                        break;
+                } else {
+                    ps.setString(2, null);
                 }
+
+                ps.setInt(3, user.getGenero());
+
+                ps.setInt(4, 0); //transacciones
+
+                ps.setString(5, user.getNombre());
+
+                if (user.getCorreo() != null) {
+                    ps.setString(6, user.getCorreo());
+                } else {
+                    ps.setString(6, null);
+                }
+
+                if (user.getDireccion() != null) {
+                    ps.setString(7, user.getDireccion());
+                } else {
+                    ps.setString(7, null);
+                }
+
+                if (user.getCedula() != 0) {
+                    ps.setInt(8, user.getCedula());
+                } else {
+                    ps.setString(8, null);
+                }
+
+                ps.execute();
             }
             return true;
-
         } catch (Exception e) {
             System.out.println("Error en la petición de la db: " + e);
         }
+        return false;
+    }
 
+    private Boolean queryUpdate(String sql, UsuarioVo user) {
+        PreparedStatement ps = null;
+        try {
+            if (user != null) {
+                ps = con.prepareStatement(sql);
+
+                if (user.getEdad() != 0) {
+                    ps.setInt(1, user.getEdad());
+                } else {
+                    ps.setString(1, null);
+                }
+
+                ps.setInt(2, user.getGenero());
+                ps.setString(3, user.getNombre());
+                ps.setString(4, user.getCorreo());
+                ps.setString(5, user.getDireccion());
+
+                if (user.getCedula() != 0) {
+                    ps.setInt(6, user.getCedula());
+                } else {
+                    ps.setString(6, null);
+                }
+
+                ps.setInt(7, user.getId());
+                ps.executeUpdate();
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error en actualizar usuaruo de la db: " + e);
+        }
         return false;
     }
 }

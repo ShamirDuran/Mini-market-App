@@ -38,16 +38,8 @@ public class VentaDao {
     }
 
     public boolean registrarVenta(VentaVo venta) {
-        venta.setId(contador);
-        venta.date();
-        listaVentas.add(venta);
-        contador++;
-        Singleton.getInstance().sumarCantidadV();
-        UsuarioVo user = usuarioDao.buscarUsuarioId(venta.getVendedor().getId());
-        if (user != null) {
-            user.sumarCantidadC();
-        }
-        venta.getComprador().sumarCantidadC();
+//        String sql = "{CALL registrar_venta(?)}"
+        
         return true;
     }
 
@@ -82,11 +74,11 @@ public class VentaDao {
             if (venta.getId() == id) {
                 restaurarCantidad(venta);
                 Singleton.getInstance().restarCantidadV();
-                UsuarioVo user = usuarioDao.buscarUsuarioId(venta.getVendedor().getId());
-                if (user != null) {
-                    user.restarCantidadC();
-                }
-                venta.getComprador().restarCantidadC();
+//                UsuarioVo user = usuarioDao.buscarUsuarioId(venta.getVendedor().getId());
+//                if (user != null) {
+//                    user.restarCantidadC();
+//                }
+//                venta.getComprador().restarCantidadC();
                 listaVentas.remove(index);
                 check = true;
                 break;
@@ -129,18 +121,18 @@ public class VentaDao {
      */
     private void restaurarCantidad(VentaVo venta) {
         int index = 0;
-        for (ProductoVo producto : venta.getProductosList()) {
-            producto.restaurarCantidad(venta.getCantidadList().get(index));
-        }
+//        for (ProductoVo producto : venta.getProductosList()) {
+//            producto.restaurarCantidad(venta.getCantidadList().get(index));
+//        }
     }
 
     public ArrayList<VentaVo> getListaVentas() {
         return listaVentas;
     }
 
-    public void setUsuarioDao(UsuarioDao usuarioDao) {
-        this.usuarioDao = usuarioDao;
-    }
+//    public void setUsuarioDao(UsuarioDao usuarioDao) {
+//        this.usuarioDao = usuarioDao;
+//    }
 
     private ResultSet queryWithResultSet(String sql) {
         PreparedStatement ps = null;

@@ -7,20 +7,22 @@ package view;
 
 import controller.UsuariosController;
 import javax.swing.JOptionPane;
-
-
+import model.vo.UsuarioVo;
 
 /**
  *
  * @author NICOLAS
  */
 public class RegistrarU extends javax.swing.JFrame {
+
     private UsuariosController userCon;
+
     /**
      * Creates new form RegistrarC
      */
     public RegistrarU() {
         initComponents();
+        userCon = new UsuariosController();
     }
 
     /**
@@ -48,6 +50,7 @@ public class RegistrarU extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         etGenero = new javax.swing.JTextField();
         etCedula = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -82,18 +85,13 @@ public class RegistrarU extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Genero");
+        jLabel7.setText("Genero*");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Cedula");
 
         etEdad.setForeground(new java.awt.Color(102, 102, 102));
-        etEdad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etEdadMouseClicked(evt);
-            }
-        });
         etEdad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etEdadActionPerformed(evt);
@@ -101,11 +99,6 @@ public class RegistrarU extends javax.swing.JFrame {
         });
 
         etDireccion.setForeground(new java.awt.Color(102, 102, 102));
-        etDireccion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etDireccionMouseClicked(evt);
-            }
-        });
         etDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etDireccionActionPerformed(evt);
@@ -114,18 +107,13 @@ public class RegistrarU extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Direccion:");
+        jLabel6.setText("Direccion");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Edad");
 
         etNombre.setForeground(new java.awt.Color(102, 102, 102));
-        etNombre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etNombreMouseClicked(evt);
-            }
-        });
         etNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etNombreActionPerformed(evt);
@@ -134,14 +122,9 @@ public class RegistrarU extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Nombre:");
+        jLabel4.setText("Nombre*");
 
         etCorreo.setForeground(new java.awt.Color(102, 102, 102));
-        etCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etCorreoMouseClicked(evt);
-            }
-        });
         etCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etCorreoActionPerformed(evt);
@@ -150,7 +133,7 @@ public class RegistrarU extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Correo:");
+        jLabel5.setText("Correo");
 
         jLabel1.setBackground(new java.awt.Color(243, 243, 243));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
@@ -159,11 +142,6 @@ public class RegistrarU extends javax.swing.JFrame {
         jLabel1.setText("Registrar Cliente");
 
         etGenero.setForeground(new java.awt.Color(102, 102, 102));
-        etGenero.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etGeneroMouseClicked(evt);
-            }
-        });
         etGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etGeneroActionPerformed(evt);
@@ -176,64 +154,70 @@ public class RegistrarU extends javax.swing.JFrame {
         });
 
         etCedula.setForeground(new java.awt.Color(102, 102, 102));
-        etCedula.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                etCedulaMouseClicked(evt);
-            }
-        });
         etCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 etCedulaActionPerformed(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setText("Los campos con * son obligatorios");
+
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel4)
-                .addGap(292, 292, 292)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(etNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(etCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(265, 265, 265)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(etDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(265, 265, 265)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(296, 296, 296)
-                .addComponent(btnCancelar)
-                .addGap(20, 20, 20)
-                .addComponent(btnGuardar))
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(etNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(etCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(265, 265, 265)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(etDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(265, 265, 265)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addGap(296, 296, 296)
+                        .addComponent(btnCancelar)
+                        .addGap(20, 20, 20)
+                        .addComponent(btnGuardar))
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(bodyLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(292, 292, 292)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(51, 51, 51))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addGap(58, 58, 58)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel2)
+                .addGap(29, 29, 29)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
@@ -298,17 +282,45 @@ public class RegistrarU extends javax.swing.JFrame {
     }//GEN-LAST:event_etEdadActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // Verificamos que ningun campo este vacio
-        if (!etNombre.getText().equals("") && !etCorreo.getText().equals("") && !etDireccion.getText().equals("") && !etEdad.getText().equals("") &&  !etGenero.getText().equals("")&& !etCedula.getText().equals("")) {
+        // Verificamos que los camposr equeridos no esten vacios
+        // Se asigna 0 o null a los valores que no se quieren ingresar al sistema
+
+        if (!etNombre.getText().equals("") && !etGenero.getText().equals("")) {
+            int edad, cedula;
+            String correo, direccion;
+
+            if (!etEdad.getText().equals("")) {
+                edad = Integer.parseInt(etEdad.getText());
+            } else {
+                edad = 0;
+            }
+
+            if (!etCedula.getText().equals("")) {
+                cedula = Integer.parseInt(etCedula.getText());
+            } else {
+                cedula = 0;
+            }
+
+            if (!etCorreo.getText().equals("")) {
+                correo = etCorreo.getText();
+            } else {
+                correo = null;
+            }
+
+            if (!etDireccion.getText().equals("")) {
+                direccion = etDireccion.getText();
+            } else {
+                direccion = null;
+            }
+
             Boolean check = userCon.añadirUsuario(
-                    1,
-                    Integer.parseInt(etEdad.getText()),
+                    4,
+                    edad,
                     Integer.parseInt(etGenero.getText()),
                     etNombre.getText(),
-                    etCorreo.getText(),
-                    etDireccion.getText(),
-                    Integer.parseInt(etCedula.getText())
-                   
+                    correo,
+                    direccion,
+                    cedula
             );
 
             if (check) {
@@ -322,38 +334,14 @@ public class RegistrarU extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void etNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etNombreMouseClicked
-        etNombre.setText(null);
-    }//GEN-LAST:event_etNombreMouseClicked
-
-    private void etCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etCorreoMouseClicked
-        etCorreo.setText(null);
-    }//GEN-LAST:event_etCorreoMouseClicked
-
-    private void etDireccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etDireccionMouseClicked
-        etDireccion.setText(null);
-    }//GEN-LAST:event_etDireccionMouseClicked
-
-    private void etEdadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etEdadMouseClicked
-        etEdad.setText(null);
-    }//GEN-LAST:event_etEdadMouseClicked
-
-    private void etGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etGeneroMouseClicked
-        etGenero.setText(null);
-    }//GEN-LAST:event_etGeneroMouseClicked
-
     private void etGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etGeneroActionPerformed
 
     }//GEN-LAST:event_etGeneroActionPerformed
 
     private void etGeneroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_etGeneroKeyTyped
-        if (etGenero.getText().length()== 1) 
-         evt.consume();
+        if (etGenero.getText().length() == 1)
+            evt.consume();
     }//GEN-LAST:event_etGeneroKeyTyped
-
-    private void etCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etCedulaMouseClicked
-        etCedula.setText(null);
-    }//GEN-LAST:event_etCedulaMouseClicked
 
     private void etCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etCedulaActionPerformed
         // TODO add your handling code here:
@@ -362,7 +350,6 @@ public class RegistrarU extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -413,6 +400,7 @@ public class RegistrarU extends javax.swing.JFrame {
     private javax.swing.JTextField etGenero;
     private javax.swing.JTextField etNombre;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

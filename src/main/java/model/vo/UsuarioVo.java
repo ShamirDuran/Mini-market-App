@@ -37,6 +37,15 @@ public class UsuarioVo {
     private int id, rol, edad, genero, transacciones, cedula;
     private String nombre, correo, direccion;
 
+    public UsuarioVo() {
+
+        this.nombre = null;
+        this.correo = null;
+        this.direccion = null;
+
+        System.out.println(cedula);
+    }
+
     /**
      * Constructor de la clase UsuarioVo
      *
@@ -60,7 +69,8 @@ public class UsuarioVo {
         this.transacciones = 0;
         this.cedula = cedula;
     }
-    public UsuarioVo( int rol, int edad, int genero, String nombre, String correo, String direccion, int cedula) {
+
+    public UsuarioVo(int rol, int edad, int genero, String nombre, String correo, String direccion, int cedula) {
         this.rol = rol;
         this.edad = edad;
         this.genero = genero;
