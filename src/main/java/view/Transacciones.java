@@ -5,17 +5,29 @@
  */
 package view;
 
+import controller.VentasController;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Shamir
  */
 public class Transacciones extends javax.swing.JFrame {
 
+    private VentasController ventasCon;
+    private DefaultTableModel model;
+
     /**
      * Creates new form Transacciones
      */
     public Transacciones() {
         initComponents();
+        ventasCon = new VentasController();
+        model = (DefaultTableModel) tblTransacciones.getModel();
+        mostrarTransacciones();
     }
 
     /**
@@ -32,7 +44,7 @@ public class Transacciones extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTransacciones = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        edBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         sidepanel = new javax.swing.JPanel();
@@ -73,11 +85,11 @@ public class Transacciones extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Venta", "Fecha", "Vendedor", "Comprador"
+                "ID Venta", "Fecha", "Fecha mod", "Vendedor", "Comprador", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -85,14 +97,26 @@ public class Transacciones extends javax.swing.JFrame {
             }
         });
         tblTransacciones.setName(""); // NOI18N
+        tblTransacciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTransaccionesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTransacciones);
+        if (tblTransacciones.getColumnModel().getColumnCount() > 0) {
+            tblTransacciones.getColumnModel().getColumn(0).setPreferredWidth(10);
+        }
 
-        jTextField1.setText("Buscar...");
-        jTextField1.setToolTipText("");
+        edBuscar.setToolTipText("");
 
         btnBuscar.setBackground(new java.awt.Color(172, 78, 233));
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_search_19px.png"))); // NOI18N
         btnBuscar.setBorderPainted(false);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Click en la venta para ver la información");
@@ -103,17 +127,16 @@ public class Transacciones extends javax.swing.JFrame {
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(30, 30, 30)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bodyLayout.createSequentialGroup()
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(btnBuscar))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(jLabel7)
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addComponent(edBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 999, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,10 +144,10 @@ public class Transacciones extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(edBuscar))
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
@@ -517,6 +540,38 @@ public class Transacciones extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_plTransaccionesMouseClicked
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String ref = edBuscar.getText();
+        if (ventasCon.filtrarPorCliente(ref)) {
+            System.out.println("Transacciones filtradas cargadas");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontro compras hechas por el cliente " + ref);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tblTransaccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTransaccionesMouseClicked
+        ArrayList<String> data = new ArrayList();
+        int filaSeleccionada = tblTransacciones.getSelectedRow();
+
+        data.add(model.getValueAt(filaSeleccionada, 0).toString()); //id
+        data.add(model.getValueAt(filaSeleccionada, 1).toString()); //fecha
+        data.add(model.getValueAt(filaSeleccionada, 3).toString()); //vendedor
+        data.add(model.getValueAt(filaSeleccionada, 4).toString()); //comprador
+        data.add(model.getValueAt(filaSeleccionada, 5).toString()); //total
+
+        try {
+            data.add(model.getValueAt(filaSeleccionada, 2).toString()); //fecha_mod
+        } catch (Exception e) {
+            // nada, solo es para validar el null pointer
+        }
+
+        ModificarV modVen = new ModificarV();
+        modVen.setLocationRelativeTo(null);
+        modVen.setData(data);
+        modVen.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+        modVen.setVisible(true);
+    }//GEN-LAST:event_tblTransaccionesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -552,9 +607,19 @@ public class Transacciones extends javax.swing.JFrame {
         });
     }
 
+    public void mostrarTransacciones() {
+        ventasCon.setTableTran(tblTransacciones);
+        if (ventasCon.obtenerTransacciones()) {
+            System.out.println("Transacciones cargadas correctamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo cargar las transacciones", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel body;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JTextField edBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
@@ -566,7 +631,6 @@ public class Transacciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblClientes;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblInventario;

@@ -52,11 +52,10 @@ public class RegistrarU extends javax.swing.JFrame {
         etCedula = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(243, 243, 243));
         setMinimumSize(new java.awt.Dimension(779, 560));
-        setUndecorated(true);
         setSize(new java.awt.Dimension(650, 650));
 
         body.setBackground(new java.awt.Color(243, 243, 243));

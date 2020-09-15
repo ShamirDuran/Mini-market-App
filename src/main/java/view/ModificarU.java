@@ -49,7 +49,6 @@ public class ModificarU extends javax.swing.JFrame {
         etCorreo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         etGenero = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
@@ -57,7 +56,6 @@ public class ModificarU extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(243, 243, 243));
         setMinimumSize(new java.awt.Dimension(779, 603));
-        setUndecorated(true);
 
         body.setBackground(new java.awt.Color(243, 243, 243));
         body.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.lightGray));
@@ -147,13 +145,6 @@ public class ModificarU extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Detalles Cliente");
 
-        jLabel2.setText("Cerrar");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-        });
-
         etGenero.setForeground(new java.awt.Color(102, 102, 102));
         etGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,15 +162,10 @@ public class ModificarU extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
-                        .addComponent(btnCancelar)
-                        .addGap(20, 20, 20)
-                        .addComponent(btnGuardar)
-                        .addGap(280, 280, 280))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap())))
+                .addComponent(btnCancelar)
+                .addGap(20, 20, 20)
+                .addComponent(btnGuardar)
+                .addGap(280, 280, 280))
             .addGroup(bodyLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,14 +186,12 @@ public class ModificarU extends javax.swing.JFrame {
                             .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
                 .addGap(23, 23, 23)
                 .addComponent(jLabel9)
@@ -334,10 +318,6 @@ public class ModificarU extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        this.dispose();
-    }//GEN-LAST:event_jLabel2MouseClicked
-
     private void etGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etGeneroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_etGeneroActionPerformed
@@ -403,7 +383,6 @@ public class ModificarU extends javax.swing.JFrame {
     private javax.swing.JTextField etGenero;
     private javax.swing.JTextField etNombre;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

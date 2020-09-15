@@ -22,12 +22,95 @@ public class VentasController {
 
     UsuarioDao usuarioDao;
     VentaDao ventaDao;
-    private JTable tblPro, tblCli;
-    private DefaultTableModel modelPro, modelCli;
+    private JTable tblPro, tblCli, tblTran, tblFac;
+    private DefaultTableModel modelPro, modelCli, modelTran, modelFac;
 
     public VentasController() {
         usuarioDao = new UsuarioDao();
         ventaDao = new VentaDao();
+    }
+
+    public boolean obtenerTransacciones() {
+        ResultSet rs = ventaDao.obtenerTransacciones();
+
+        if (rs != null) {
+            try {
+                modelTran.setNumRows(0);
+                String[] tran = new String[6];
+
+                while (rs.next()) {
+                    tran[0] = rs.getString("id");
+                    tran[1] = rs.getString("fecha");
+                    tran[2] = rs.getString("fecha_mod");
+                    tran[3] = rs.getString("vendedor");
+                    tran[4] = rs.getString("comprador");
+                    tran[5] = rs.getString("total");
+                    modelTran.addRow(tran);
+                }
+                return true;
+
+            } catch (SQLException e) {
+                System.out.println("VentasCon: Error al recorrer data de transacciones " + e);
+            }
+        } else {
+            System.out.println("VentasCon: No se trajo info de transacciones, null ");
+        }
+
+        return false;
+    }
+
+    public boolean obtenerDatosTransaccion(int venta_id) {
+        ResultSet rs = ventaDao.obtenerDatosTransaccion(venta_id);
+
+        if (rs != null) {
+            try {
+                modelFac.setNumRows(0);
+                String[] tran = new String[5];
+                while (rs.next()) {
+                    tran[0] = rs.getString("id");
+                    tran[1] = rs.getString("nombre");
+                    tran[2] = rs.getString("precio");
+                    tran[3] = rs.getString("cantidad");
+                    tran[4] = rs.getString("total");
+                    modelFac.addRow(tran);
+                }
+                return true;
+
+            } catch (Exception e) {
+                System.out.println("VentasCon: Error al recorer data de la transaccion " + e);
+            }
+        } else {
+            System.out.println("VentasCon: No se trajo info de la transaccion, null");
+        }
+        return false;
+    }
+
+    public boolean filtrarPorCliente(String nombre) {
+        ResultSet rs = ventaDao.filtrarPorCliente(nombre);
+
+        if (rs != null) {
+            try {
+                modelTran.setNumRows(0);
+                String[] tran = new String[6];
+
+                while (rs.next()) {
+                    tran[0] = rs.getString("id");
+                    tran[1] = rs.getString("fecha");
+                    tran[2] = rs.getString("fecha_mod");
+                    tran[3] = rs.getString("vendedor");
+                    tran[4] = rs.getString("comprador");
+                    tran[5] = rs.getString("total");
+                    modelTran.addRow(tran);
+                }
+                return true;
+
+            } catch (SQLException e) {
+                System.out.println("VentasCon: Error al recorrer data de transacciones filtradas " + e);
+            }
+        } else {
+            System.out.println("VentasCon: No se trajo info de transacciones filtradas, null");
+        }
+        return false;
     }
 
     public boolean registrarVenta(VentaVo venta) {
@@ -41,56 +124,8 @@ public class VentasController {
         return check;
     }
 
-    public boolean modificarVenta(VentaVo dataVenta) {
-        boolean check = ventaDao.modificarVenta(dataVenta);
-        if (check) {
-            System.out.println("\nVentaCon: Venta con id" + dataVenta.getId() + " modificada correctamente!!");
-        } else {
-            System.out.println("\nVentaCon: No se encontro la venta!!");
-        }
-
-        return check;
-    }
-
-    public boolean eliminarVenta(int id) {
-        boolean check = ventaDao.eliminarVenta(id);
-        if (check) {
-            System.out.println("\nVenta con id " + id + " eliminada correctamente");
-        } else {
-            System.out.println("\nVenta con id " + id + " no encontrada!!");
-        }
-
-        return check;
-    }
-
-    public ArrayList<VentaVo> buscarVenta(String ref) {
-        ArrayList<VentaVo> findList = new ArrayList<VentaVo>();
-        findList = ventaDao.buscarVenta(ref);
-
-        if (!findList.isEmpty()) {
-            System.out.println("VentaCon: \n/-- Venta encontrada --/");
-            mostrarListaVenta(findList);
-            return findList;
-        } else {
-            System.out.println("VentaCon: \nNo se encontro venta con id " + ref);
-            return null;
-        }
-    }
-
     public ArrayList<VentaVo> obtenerListaVentas() {
         return ventaDao.getListaVentas();
-    }
-
-    public void mostrarListaVentas() {
-        ArrayList<VentaVo> listaVentas = new ArrayList<VentaVo>();
-        listaVentas = ventaDao.getListaVentas();
-
-        if (!listaVentas.isEmpty()) {
-            System.out.println("VentaCon: \n/-- Lista de ventas registradas --/");
-            mostrarListaVenta(listaVentas);
-        } else {
-            System.out.println("VentaCon: \n No hay ventas registradas!!");
-        }
     }
 
     public Boolean buscarProductos(String nombre) {
@@ -106,7 +141,7 @@ public class VentasController {
                     pro[1] = rs.getString("nombre");
                     pro[2] = rs.getString("precio");
                     pro[3] = rs.getString("cantidad");
-                    
+
                     modelPro.addRow(pro);
                 }
                 return true;
@@ -136,7 +171,7 @@ public class VentasController {
                     modelCli.addRow(cli);
                 }
                 return true;
-                
+
             } catch (SQLException e) {
                 System.out.println("VentaCon: Error al recorrer los clientes " + e);
             }
@@ -148,20 +183,6 @@ public class VentasController {
         return false;
     }
 
-    private void mostrarListaVenta(ArrayList<VentaVo> listaVentas) {
-        for (VentaVo venta : listaVentas) {
-//            venta.mostrarVenta();
-        }
-    }
-
-//    public void setVentaDao(VentaDao ventaDao) {
-//        this.ventaDao = ventaDao;
-//    }
-//
-//    public void setUsuarioDao(UsuarioDao usuarioDao) {
-//        this.usuarioDao = usuarioDao;
-//    }
-    
     public void setTableProductos(JTable table) {
         this.tblPro = table;
         modelPro = (DefaultTableModel) tblPro.getModel();
@@ -171,4 +192,15 @@ public class VentasController {
         this.tblCli = table;
         modelCli = (DefaultTableModel) tblCli.getModel();
     }
+
+    public void setTableTran(JTable table) {
+        this.tblTran = table;
+        modelTran = (DefaultTableModel) tblTran.getModel();
+    }
+
+    public void setTableFac(JTable table) {
+        this.tblFac = table;
+        modelFac = (DefaultTableModel) tblFac.getModel();
+    }
+
 }

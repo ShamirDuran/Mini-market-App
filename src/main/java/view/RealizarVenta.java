@@ -68,6 +68,7 @@ public class RealizarVenta extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
         edBuscarCli = new javax.swing.JTextField();
         btnBuscarCli = new javax.swing.JButton();
@@ -125,13 +126,13 @@ public class RealizarVenta extends javax.swing.JFrame {
 
         factura.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblNombreVen.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblNombreVen.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblNombreVen.setText("NOMBRE_VENDEDOR");
 
-        lblNombreCli.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblNombreCli.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblNombreCli.setText("NOMBRE_COMPRADOR");
 
-        lblCedulaCli.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblCedulaCli.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblCedulaCli.setText("CEDULA_COMPRADOR");
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -166,6 +167,11 @@ public class RealizarVenta extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblFacturaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblFactura);
         if (tblFactura.getColumnModel().getColumnCount() > 0) {
             tblFactura.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -189,9 +195,12 @@ public class RealizarVenta extends javax.swing.JFrame {
         jLabel26.setText("VALOR TOTAL:");
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel25.setText("Haga doble click sobre el producto que desea retirar de la factura");
+        jLabel25.setText("* Haga doble click sobre el producto que desea retirar de la factura");
 
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_sell_stock_32px.png"))); // NOI18N
+
+        jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel37.setText("* Click para editar cantidad");
 
         javax.swing.GroupLayout facturaLayout = new javax.swing.GroupLayout(factura);
         factura.setLayout(facturaLayout);
@@ -202,7 +211,7 @@ public class RealizarVenta extends javax.swing.JFrame {
                 .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel22)
                     .addComponent(lblNombreVen))
-                .addGap(96, 96, 96)
+                .addGap(75, 75, 75)
                 .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombreCli)
                     .addComponent(jLabel23)
@@ -222,17 +231,17 @@ public class RealizarVenta extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, facturaLayout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
-                .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, facturaLayout.createSequentialGroup()
-                        .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel25)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, facturaLayout.createSequentialGroup()
+                .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(facturaLayout.createSequentialGroup()
+                        .addComponent(jLabel37)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel26)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTotal)
-                        .addGap(85, 85, 85))))
+                        .addGap(28, 28, 28)
+                        .addComponent(lblTotal))
+                    .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel25)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(37, 37, 37))
         );
         facturaLayout.setVerticalGroup(
             facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,12 +273,14 @@ public class RealizarVenta extends javax.swing.JFrame {
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(lblTotal))
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel37)
+                    .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel26)
+                        .addComponent(lblTotal)))
                 .addGap(18, 18, 18))
         );
 
@@ -788,7 +799,7 @@ public class RealizarVenta extends javax.swing.JFrame {
                 .addComponent(plTransacciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(plReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout parentLayout = new javax.swing.GroupLayout(parent);
@@ -806,7 +817,7 @@ public class RealizarVenta extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, parentLayout.createSequentialGroup()
                 .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(sidepanel, javax.swing.GroupLayout.DEFAULT_SIZE, 807, Short.MAX_VALUE)
+            .addComponent(sidepanel, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1003,6 +1014,22 @@ public class RealizarVenta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
+    private void tblFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFacturaMouseClicked
+        int filaSeleccionada = tblFactura.getSelectedRow();
+        double cost_uni = Double.parseDouble(model.getValueAt(filaSeleccionada, 2).toString());
+        double cantidad = Double.parseDouble(JOptionPane.showInputDialog("Cantidad a comprar"));
+
+        if (cantidad > 0) {
+            double total = cost_uni * cantidad;
+            model.setValueAt(cantidad, filaSeleccionada, 3);
+            model.setValueAt(total, filaSeleccionada, 4);
+        } else {
+            model.removeRow(filaSeleccionada);
+        }
+        
+        calcularTotal();
+    }//GEN-LAST:event_tblFacturaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1118,6 +1145,7 @@ public class RealizarVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

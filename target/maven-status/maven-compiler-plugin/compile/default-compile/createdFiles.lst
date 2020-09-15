@@ -23,6 +23,7 @@ view\Usuario$1.class
 view\Usuario$7.class
 view\ModificarU$6.class
 view\Transacciones$1.class
+view\ModificarV$4.class
 view\RegistrarP$1.class
 view\RegistrarU$2.class
 view\Home$12.class
@@ -35,6 +36,7 @@ view\Transacciones$10.class
 view\ModificarU$5.class
 view\ReporteDiario$15.class
 view\ReporteDiario$4.class
+view\ModificarV$3.class
 view\Inventario.class
 view\ReporteTotal$3.class
 view\Home$11.class
@@ -48,6 +50,7 @@ view\ReporteDiario$3.class
 model\Singleton.class
 view\Inventario$10.class
 view\RealizarVenta$17.class
+view\ModificarV$2.class
 model\vo\ProductoVo.class
 view\ModificarU$7.class
 view\Factory.class
@@ -62,6 +65,7 @@ view\Producto$1.class
 view\Home$13.class
 view\ModificarP$10.class
 view\Transacciones$11.class
+view\Transacciones$14.class
 view\RegistrarU$9.class
 view\ReporteDiario$13.class
 view\Transacciones$7.class
@@ -88,6 +92,8 @@ view\Transacciones$5.class
 view\Producto$3.class
 view\ReporteDiario.class
 view\ReporteDiario$11.class
+view\Transacciones$13.class
+view\RealizarVenta$24.class
 view\RealizarVenta$5.class
 view\Home$14.class
 view\RealizarVenta$19.class
@@ -107,10 +113,12 @@ view\RealizarVenta$10.class
 view\RealizarVenta$23.class
 view\ReporteDiario$2.class
 view\ReporteTotal$10.class
+view\ModificarV.class
 view\ModificarU$3.class
 view\Producto$8.class
 view\ModificarP$2.class
 view\ReporteTotal$5.class
+view\ModificarV$1.class
 view\RegistrarP$4.class
 view\Usuario$4.class
 view\Usuario.class
@@ -145,11 +153,11 @@ view\ModificarU$4.class
 view\Usuario$5.class
 view\Home$1.class
 view\ModificarP$6.class
-view\ModificarU$10.class
 view\Transacciones$2.class
 view\ReporteDiario$6.class
 view\RegistrarU$1.class
 view\Usuario$8.class
+view\ModificarV$5.class
 controller\UsuariosController.class
 view\Home$10.class
 view\Transacciones.class
@@ -168,7 +176,6 @@ view\Producto.class
 view\Producto$16.class
 view\RealizarVenta$14.class
 view\Inventario$15.class
-view\ModificarP$14.class
 view\RegistrarU$3.class
 view\ModificarU$2.class
 view\RealizarVenta$12.class
