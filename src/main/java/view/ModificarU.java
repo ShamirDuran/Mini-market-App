@@ -49,8 +49,8 @@ public class ModificarU extends javax.swing.JFrame {
         etCorreo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        etGenero = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        cbGenero = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -89,11 +89,11 @@ public class ModificarU extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Genero*");
+        jLabel7.setText("Género*");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel3.setText("Cedula");
+        jLabel3.setText("Cédula");
 
         etEdad.setForeground(new java.awt.Color(102, 102, 102));
         etEdad.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +111,7 @@ public class ModificarU extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Direccion");
+        jLabel6.setText("Dirección");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
@@ -145,15 +145,10 @@ public class ModificarU extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Detalles Cliente");
 
-        etGenero.setForeground(new java.awt.Color(102, 102, 102));
-        etGenero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etGeneroActionPerformed(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Los campos con * son obligatorios");
+
+        cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un género", "Masculino", "Femenino" }));
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
@@ -185,7 +180,7 @@ public class ModificarU extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         bodyLayout.setVerticalGroup(
@@ -195,7 +190,7 @@ public class ModificarU extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(23, 23, 23)
                 .addComponent(jLabel9)
-                .addGap(32, 32, 32)
+                .addGap(29, 29, 29)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
@@ -218,7 +213,7 @@ public class ModificarU extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
@@ -275,10 +270,10 @@ public class ModificarU extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         user.setId(user.getId());
-
+        int generoSelected = cbGenero.getSelectedIndex();
         // Los else setenado null y 0 es para representar cuando el usuario quiere eliminar ese dato
         // entoncesal recibir 0 o null el UsuarioDao los manda a la db como null y asi se eliminan.
-        if (!etNombre.getText().equals("") && !etGenero.getText().equals("")) {
+        if (!etNombre.getText().equals("") && generoSelected != 0) {
             user.setNombre(etNombre.getText());
 
             if (!etCorreo.getText().equals("")) {
@@ -299,7 +294,11 @@ public class ModificarU extends javax.swing.JFrame {
                 user.setEdad(0);
             }
 
-            user.setGenero(Integer.parseInt(etGenero.getText()));
+            if (generoSelected == 1) {
+                user.setGenero(1);
+            } else {
+                user.setGenero(0);
+            }
 
             if (!etCedula.getText().equals("")) {
                 user.setCedula(Integer.parseInt(etCedula.getText()));
@@ -317,10 +316,6 @@ public class ModificarU extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos obligatorios");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void etGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etGeneroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_etGeneroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,11 +371,11 @@ public class ModificarU extends javax.swing.JFrame {
     private javax.swing.JPanel body;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> cbGenero;
     private javax.swing.JTextField etCedula;
     private javax.swing.JTextField etCorreo;
     private javax.swing.JTextField etDireccion;
     private javax.swing.JTextField etEdad;
-    private javax.swing.JTextField etGenero;
     private javax.swing.JTextField etNombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -398,7 +393,12 @@ public class ModificarU extends javax.swing.JFrame {
     public void setUser(UsuarioVo user) {
         this.user = user;
         etNombre.setText(user.getNombre());
-        etGenero.setText(String.valueOf(user.getGenero()));
+        
+        if (user.getGenero() == 0) { // mujer
+            cbGenero.setSelectedIndex(2);
+        } else {
+            cbGenero.setSelectedIndex(1);
+        }
 
         if (user.getCorreo() != null) {
             etCorreo.setText(user.getCorreo());

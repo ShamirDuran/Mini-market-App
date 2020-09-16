@@ -85,18 +85,6 @@
                           <Component id="etEdad" min="-2" pref="320" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="51" pref="51" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace min="265" pref="265" max="-2" attributes="0"/>
-                          <Component id="jLabel7" min="-2" pref="180" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="51" pref="51" max="-2" attributes="0"/>
-                          <Component id="etCedula" min="-2" pref="320" max="-2" attributes="0"/>
-                          <EmptySpace min="65" pref="65" max="-2" attributes="0"/>
-                          <Component id="etGenero" min="-2" pref="320" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <EmptySpace min="296" pref="296" max="-2" attributes="0"/>
                           <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
@@ -111,6 +99,18 @@
                                   <EmptySpace min="292" pref="292" max="-2" attributes="0"/>
                                   <Component id="jLabel5" min="-2" pref="110" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="51" pref="51" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel3" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="etCedula" alignment="0" min="-2" pref="320" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="cbGenero" min="-2" pref="320" max="-2" attributes="0"/>
+                              <Component id="jLabel7" min="-2" pref="180" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -153,13 +153,15 @@
                   </Group>
                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="etCedula" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="etGenero" min="-2" pref="40" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="60" pref="60" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="etCedula" min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace min="60" pref="60" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="cbGenero" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -321,17 +323,6 @@
             <Property name="text" type="java.lang.String" value="Registrar Cliente"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="etGenero">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="66" type="rgb"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="etGeneroActionPerformed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="etGeneroKeyTyped"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JTextField" name="etCedula">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -349,6 +340,20 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Los campos con * son obligatorios"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbGenero">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="Seleccione un g&#xe9;nero"/>
+                <StringItem index="1" value="Masculino"/>
+                <StringItem index="2" value="Femenino"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

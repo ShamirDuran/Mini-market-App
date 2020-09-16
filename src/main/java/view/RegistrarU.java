@@ -48,9 +48,9 @@ public class RegistrarU extends javax.swing.JFrame {
         etCorreo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        etGenero = new javax.swing.JTextField();
         etCedula = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        cbGenero = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -140,18 +140,6 @@ public class RegistrarU extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Registrar Cliente");
 
-        etGenero.setForeground(new java.awt.Color(102, 102, 102));
-        etGenero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etGeneroActionPerformed(evt);
-            }
-        });
-        etGenero.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                etGeneroKeyTyped(evt);
-            }
-        });
-
         etCedula.setForeground(new java.awt.Color(102, 102, 102));
         etCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +149,8 @@ public class RegistrarU extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Los campos con * son obligatorios");
+
+        cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un género", "Masculino", "Femenino" }));
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
@@ -184,16 +174,6 @@ public class RegistrarU extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addComponent(etEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(bodyLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(265, 265, 265)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(bodyLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(bodyLayout.createSequentialGroup()
                         .addGap(296, 296, 296)
                         .addComponent(btnCancelar)
                         .addGap(20, 20, 20)
@@ -205,7 +185,16 @@ public class RegistrarU extends javax.swing.JFrame {
                             .addGroup(bodyLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(292, 292, 292)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65)
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(51, 51, 51))
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
@@ -238,12 +227,13 @@ public class RegistrarU extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addGap(6, 6, 6)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnGuardar)))
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addComponent(etCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCancelar)
+                            .addComponent(btnGuardar)))
+                    .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -283,9 +273,18 @@ public class RegistrarU extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // Verificamos que los camposr equeridos no esten vacios
         // Se asigna 0 o null a los valores que no se quieren ingresar al sistema
-
-        if (!etNombre.getText().equals("") && !etGenero.getText().equals("")) {
-            int edad, cedula;
+        
+        int generoSelected = cbGenero.getSelectedIndex();
+        
+        if (!etNombre.getText().equals("") && generoSelected != 0) {
+            int edad, cedula, genero;
+            
+            if (generoSelected == 1) {
+                genero = 1;
+            } else {
+                genero = 0;
+            }
+            
             String correo, direccion;
 
             if (!etEdad.getText().equals("")) {
@@ -315,7 +314,7 @@ public class RegistrarU extends javax.swing.JFrame {
             Boolean check = userCon.añadirUsuario(
                     4,
                     edad,
-                    Integer.parseInt(etGenero.getText()),
+                    genero,
                     etNombre.getText(),
                     correo,
                     direccion,
@@ -332,15 +331,6 @@ public class RegistrarU extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void etGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etGeneroActionPerformed
-
-    }//GEN-LAST:event_etGeneroActionPerformed
-
-    private void etGeneroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_etGeneroKeyTyped
-        if (etGenero.getText().length() == 1)
-            evt.consume();
-    }//GEN-LAST:event_etGeneroKeyTyped
 
     private void etCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etCedulaActionPerformed
         // TODO add your handling code here:
@@ -392,11 +382,11 @@ public class RegistrarU extends javax.swing.JFrame {
     private javax.swing.JPanel body;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> cbGenero;
     private javax.swing.JTextField etCedula;
     private javax.swing.JTextField etCorreo;
     private javax.swing.JTextField etDireccion;
     private javax.swing.JTextField etEdad;
-    private javax.swing.JTextField etGenero;
     private javax.swing.JTextField etNombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
