@@ -96,11 +96,93 @@ public class VentaDao {
         return rs;
     }
 
-    public boolean modificarVenta(VentaVo dataVenta) {
+    public boolean modificarVenta(VentaVo venta, ArrayList<Integer> control, ArrayList<Integer> devuelto) {
+        String sql = "{CALL modificar_venta("
+                + venta.getId()
+                + ","
+                + venta.getTotal()
+                + ",'"
+                + venta.getFecha_mod()
+                + "')}";
+        try {
+            CallableStatement call = con.prepareCall(sql);
+            call.execute();
+            modificarPro(venta, control, devuelto);
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("VentaDao: Error call modificar_venta " + e);
+        }
         return false;
     }
 
+    private void modificarPro(VentaVo venta, ArrayList<Integer> control, ArrayList<Integer> devuelto) {
+        for (int i = 0; i < venta.getProductos().size(); i++) {
+            String sql = "UPDATE t_productos SET cantidad = cantidad + " + devuelto.get(i) + ", "
+                    + "cantidad_vendidos = cantidad_vendidos - " + devuelto.get(i)
+                    + " WHERE id = " + (int) venta.getProductos().get(i);
+            PreparedStatement ps = null;
+            try {
+                ps = con.prepareStatement(sql);
+                ps.execute();
+                modificarVentaPro(venta, control);
+            } catch (SQLException e) {
+                System.out.println("VentaDao: Error al actualizar cantidades en productos " + e);
+            }
+        }
+    }
+
+    private void modificarVentaPro(VentaVo venta, ArrayList<Integer> control) {
+        for (int i = 0; i < venta.getProductos().size(); i++) {
+            int producto_id = Integer.parseInt(venta.getProductos().get(i).toString());
+            int cantidad = Integer.parseInt(venta.getCantidad().get(i).toString());
+
+            String sql = "{CALL modificar_venta_pro("
+                    + venta.getId()
+                    + ","
+                    + producto_id
+                    + ","
+                    + cantidad
+                    + ")}";
+            try {
+                CallableStatement call = con.prepareCall(sql);
+                call.execute();
+                eliminarVentaPro(venta, control);
+            } catch (SQLException e) {
+                System.out.println("VentaDao: Error al modificar los datos en t_venta_pro " + e);
+            }
+        }
+    }
+
+    private void eliminarVentaPro(VentaVo venta, ArrayList<Integer> control) {
+        if (control.size() > 0) {
+            int venta_id = venta.getId();
+            for (int i = 0; i < control.size(); i++) {
+                String sql = "{CALL eliminar_venta_pro("
+                        + venta_id
+                        + ","
+                        + control.get(i)
+                        + ")}";
+                try {
+                    CallableStatement call = con.prepareCall(sql);
+                    call.execute();
+                } catch (SQLException e) {
+                    System.out.println("VentaDao: Error call eliminar_venta_pro " + e);
+                }
+            }
+        }
+    }
+
     public boolean eliminarVenta(int id) {
+        String sql = "{CALL eliminar_venta(" + id + ")}";
+        try {
+            ResultSet rs = null;
+            CallableStatement call = con.prepareCall(sql);
+            rs = call.executeQuery();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("VentasDao: Error call eliminar venta con id " + id);
+        }
         return false;
     }
 

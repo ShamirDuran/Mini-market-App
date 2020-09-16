@@ -52,7 +52,7 @@ public class ModificarU extends javax.swing.JFrame {
         etGenero = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(243, 243, 243));
         setMinimumSize(new java.awt.Dimension(779, 603));

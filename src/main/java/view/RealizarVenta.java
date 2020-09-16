@@ -9,7 +9,6 @@ import controller.VentasController;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 import javax.swing.table.DefaultTableModel;
@@ -34,7 +33,7 @@ public class RealizarVenta extends javax.swing.JFrame {
 
         ventaCon = new VentasController();
         model = (DefaultTableModel) tblFactura.getModel();
-        clienteData = new ArrayList<String>();
+        clienteData = new ArrayList<>();
 
         lblNombreVen.setText(Singleton.getInstance().getNombre());
     }
@@ -200,7 +199,7 @@ public class RealizarVenta extends javax.swing.JFrame {
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_sell_stock_32px.png"))); // NOI18N
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel37.setText("* Click para editar cantidad");
+        jLabel37.setText("* Click sobre la columna #Comprado para editar cantidad");
 
         javax.swing.GroupLayout facturaLayout = new javax.swing.GroupLayout(factura);
         factura.setLayout(facturaLayout);
@@ -838,22 +837,42 @@ public class RealizarVenta extends javax.swing.JFrame {
         if (tblProductos.getSelectedRow() >= 0) {
             int filaSeleccionada = tblProductos.getSelectedRow();
             int stock = Integer.parseInt(tblProductos.getValueAt(filaSeleccionada, 3).toString());
-            String cantidad = JOptionPane.showInputDialog("Cantidad a comprar"); // cantidad a comprar
+            int cantidad = Integer.parseInt(JOptionPane.showInputDialog("Cantidad a comprar")); // cantidad a comprar
+            String pro_id = tblProductos.getValueAt(filaSeleccionada, 0).toString(); //id del producto que se quiere agregar
 
-            if (validarVenta(stock, Integer.parseInt(cantidad))) {
-                String precio = tblProductos.getValueAt(filaSeleccionada, 2).toString(); // precio x unidad del producto
-                double total = Double.parseDouble(cantidad) * Double.parseDouble(precio);  //se calcula el precio total
+            String ref = buscarEnFactura(pro_id); //se busca si en la factura ya se encuentra el producto
 
-                String[] pro = new String[5];
+            if (ref != null) { // si el producto se encuentra en la factura
+                int fila = Integer.parseInt(ref); // fila en la que se encontro el producto ya en la factura
+                int cantidad_total = cantidad + Integer.parseInt(model.getValueAt(fila, 3).toString()); // cantidad que ya se habia solicitado más la que se solicita ahora
 
-                pro[0] = tblProductos.getValueAt(filaSeleccionada, 0).toString();  //Nombre
-                pro[1] = tblProductos.getValueAt(filaSeleccionada, 1).toString();  //Nombre
-                pro[2] = precio;
-                pro[3] = cantidad;
-                pro[4] = String.valueOf(total);
+                if (validarVenta(stock, cantidad_total)) { // si la cantidad total del producto solicitado es menor a las unidades en stock
+                    double precio = Double.parseDouble(tblProductos.getValueAt(filaSeleccionada, 2).toString()); // precio x unidad del producto
+                    int total = (int) (cantidad_total * precio);  //se calcula el precio total
 
-                addRowFacture(pro);
+                    String[] pro = new String[5];
+
+                    model.setValueAt(cantidad_total, fila, 3);
+                    model.setValueAt(total, fila, 4);
+                }
+            } else { // no se encontro al producto en la factura. Primera vez que se agrega
+                if (validarVenta(stock, cantidad)) {
+                    double precio = Double.parseDouble(tblProductos.getValueAt(filaSeleccionada, 2).toString()); // precio x unidad del producto
+                    int total = (int) (cantidad * precio);  //se calcula el precio total
+
+                    String[] pro = new String[5];
+
+                    pro[0] = pro_id;  //id
+                    pro[1] = tblProductos.getValueAt(filaSeleccionada, 1).toString();  //Nombre
+                    pro[2] = String.valueOf(precio);
+                    pro[3] = String.valueOf(cantidad);
+                    pro[4] = String.valueOf(total);
+
+                    addRowFacture(pro);
+                }
             }
+            calcularTotal();
+
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un producto", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
@@ -1015,19 +1034,22 @@ public class RealizarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void tblFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFacturaMouseClicked
-        int filaSeleccionada = tblFactura.getSelectedRow();
-        double cost_uni = Double.parseDouble(model.getValueAt(filaSeleccionada, 2).toString());
-        double cantidad = Double.parseDouble(JOptionPane.showInputDialog("Cantidad a comprar"));
+        int colSeleccionada = tblFactura.getSelectedColumn();
+        if (colSeleccionada == 3) {
+            int filaSeleccionada = tblFactura.getSelectedRow();
+            double cost_uni = Double.parseDouble(model.getValueAt(filaSeleccionada, 2).toString());
+            double cantidad = Double.parseDouble(JOptionPane.showInputDialog("Cantidad a comprar"));
 
-        if (cantidad > 0) {
-            double total = cost_uni * cantidad;
-            model.setValueAt(cantidad, filaSeleccionada, 3);
-            model.setValueAt(total, filaSeleccionada, 4);
-        } else {
-            model.removeRow(filaSeleccionada);
+            if (cantidad > 0) {
+                double total = cost_uni * cantidad;
+                model.setValueAt((int) cantidad, filaSeleccionada, 3);
+                model.setValueAt((int) total, filaSeleccionada, 4);
+            } else {
+                model.removeRow(filaSeleccionada);
+            }
+
+            calcularTotal();
         }
-        
-        calcularTotal();
     }//GEN-LAST:event_tblFacturaMouseClicked
 
     /**
@@ -1071,10 +1093,10 @@ public class RealizarVenta extends javax.swing.JFrame {
     }
 
     private void calcularTotal() {
-        double total = 0;
+        int total = 0;
         // se obtienen lo productos de la factura y se calcula el precio total
         for (int i = 0; i < model.getRowCount(); i++) {
-            total = total + Double.parseDouble(model.getValueAt(i, 4).toString());
+            total = (int) (total + Double.parseDouble(model.getValueAt(i, 4).toString()));
             System.out.println("total " + total);
         }
         lblTotal.setText(String.valueOf(total));
@@ -1110,6 +1132,16 @@ public class RealizarVenta extends javax.swing.JFrame {
             venta.addProducto(producto, cantidad);
         }
         System.out.println("tamaño cantidad al btn: " + venta.getCantidad().size());
+    }
+
+    private String buscarEnFactura(String id_buscado) {
+        for (int i = 0; i < model.getRowCount(); i++) {
+            String id = model.getValueAt(i, 0).toString();
+            if (id_buscado.equals(id)) {
+                return String.valueOf(i);
+            }
+        }
+        return null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

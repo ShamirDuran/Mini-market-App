@@ -6,9 +6,12 @@
 package view;
 
 import controller.VentasController;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.vo.VentaVo;
 
 /**
  *
@@ -17,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class ModificarV extends javax.swing.JFrame {
 
     private ArrayList<String> data;
+    private ArrayList<Integer> eliminar, devuelto;
     private VentasController ventasCon;
     private DefaultTableModel model;
 
@@ -25,8 +29,9 @@ public class ModificarV extends javax.swing.JFrame {
      */
     public ModificarV() {
         initComponents();
-        ventasCon = new VentasController();
         model = (DefaultTableModel) tblFactura.getModel();
+        eliminar = new ArrayList<>();
+        devuelto = new ArrayList<>();
     }
 
     /**
@@ -54,7 +59,7 @@ public class ModificarV extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        lblNombreCli1 = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnConfirmar1 = new javax.swing.JButton();
 
@@ -110,6 +115,20 @@ public class ModificarV extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblFactura);
+        tblFactura.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e) {
+                if(e.getClickCount() == 2) {
+                    int pos = tblFactura.getSelectedRow();
+                    DefaultTableModel model = (DefaultTableModel) tblFactura.getModel();
+                    int id_pro = Integer.parseInt(model.getValueAt(pos, 0).toString());
+                    // Se guarda el id del producto que se elimino de la factura
+                    eliminar.add(id_pro);
+                    devuelto.remove(pos);
+                    model.removeRow(pos);
+                    calcularTotal();
+                }
+            }
+        });
 
         lblTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTotal.setText("0");
@@ -125,9 +144,9 @@ public class ModificarV extends javax.swing.JFrame {
         jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel37.setText("* Click para editar cantidad");
 
-        lblNombreCli1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        lblNombreCli1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombreCli1.setText("FECHA_VENTA");
+        lblFecha.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFecha.setText("FECHA_VENTA");
 
         javax.swing.GroupLayout facturaLayout = new javax.swing.GroupLayout(factura);
         factura.setLayout(facturaLayout);
@@ -168,7 +187,7 @@ public class ModificarV extends javax.swing.JFrame {
                 .addGap(123, 123, 123)
                 .addComponent(jLabel21)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(lblNombreCli1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         facturaLayout.setVerticalGroup(
             facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +198,7 @@ public class ModificarV extends javax.swing.JFrame {
                     .addComponent(jLabel27)
                     .addComponent(jLabel29))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(lblNombreCli1)
+                .addComponent(lblFecha)
                 .addGap(18, 18, 18)
                 .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
@@ -250,32 +269,78 @@ public class ModificarV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFacturaMouseClicked
-        int filaSeleccionada = tblFactura.getSelectedRow();
-        double cost_uni = Double.parseDouble(model.getValueAt(filaSeleccionada, 2).toString());
-        double cantidad = Double.parseDouble(JOptionPane.showInputDialog(this, "Cantidad"));
+        int colSeleccionada = tblFactura.getSelectedColumn();
+        if (colSeleccionada == 3) {
+            int filaSeleccionada = tblFactura.getSelectedRow();
+            double cost_uni = Double.parseDouble(model.getValueAt(filaSeleccionada, 2).toString());
+            int cantidad = Integer.parseInt(JOptionPane.showInputDialog(this, "Cantidad"));
+            int cantidad_actual = Integer.parseInt(model.getValueAt(filaSeleccionada, 3).toString());
+            
+            if (cantidad > 0) {
+                // verificamos que no se esten agregando nuevos productos
+                if (cantidad <= cantidad_actual) {
+                    double total = cost_uni * cantidad;
+                    int nueva_cantidad = cantidad_actual - cantidad;
+                    model.setValueAt(cantidad, filaSeleccionada, 3);
+                    model.setValueAt(total, filaSeleccionada, 4);
+                    if (nueva_cantidad != cantidad_actual) {
+                        devuelto.set(filaSeleccionada, devuelto.get(filaSeleccionada) + nueva_cantidad);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Para agregar más productos realice una nueva venta", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                int click = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea cambiar la cantidad a 0?. \n\n"
+                        + "Se eliminara el producto de la factura", "Confirmación", JOptionPane.YES_NO_OPTION);
 
-        if (cantidad > 0) {
-            double total = cost_uni * cantidad;
-            model.setValueAt(cantidad, filaSeleccionada, 3);
-            model.setValueAt(total, filaSeleccionada, 4);
-        } else {
-            int click = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea cambiar la cantidad a 0?. \n\n"
-                    + "Se eliminara el producto de la factura" , "Confirmación", JOptionPane.YES_NO_OPTION);
-
-            if (click == JOptionPane.YES_OPTION) {
-                model.removeRow(filaSeleccionada);
+                if (click == JOptionPane.YES_OPTION) {
+                    int id_pro = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
+                    // Se guarda el id del producto que se elimino de la factura
+                    eliminar.add(id_pro);
+                    devuelto.remove(filaSeleccionada);
+                    model.removeRow(filaSeleccionada);
+                }
             }
+            calcularTotal();
         }
-
-        calcularTotal();
     }//GEN-LAST:event_tblFacturaMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+        int click = JOptionPane.showConfirmDialog(this, "¿Esta seguro de que desea eliminar esta venta?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        if (click == JOptionPane.YES_OPTION) {
+            int fila = Integer.parseInt(data.get(0));
+            if (ventasCon.eliminarVenta(fila)) {
+                JOptionPane.showMessageDialog(this, "Venta eliminada correctamente");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al tratar de eliminar la venta", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnConfirmar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmar1ActionPerformed
-        
+        int click = JOptionPane.showConfirmDialog(this, "Confirmar modificación", "Confirmación", JOptionPane.YES_NO_OPTION);
+        if (click == JOptionPane.YES_OPTION) {
+            VentaVo venta = new VentaVo();
+            cargarDatosVenta(venta);
+            if (ventasCon.modificarVenta(venta, eliminar, devuelto)) {
+                JOptionPane.showMessageDialog(this, "Venta modificada correctamente");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al tratar de modificar la venta", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+//        VentaVo prueba = new VentaVo();
+//        cargarDatosVenta(prueba);
+//        System.out.println("devueltos");
+//        for (int i = 0; i < devuelto.size(); i++) {
+//            System.out.println(devuelto.get(i));
+//        }
+//        System.out.println("productos");
+//        for (int i = 0; i < prueba.getProductos().size(); i++) {
+//            System.out.println(prueba.getProductos().get(i));
+//        }
     }//GEN-LAST:event_btnConfirmar1ActionPerformed
 
     /**
@@ -313,35 +378,71 @@ public class ModificarV extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Crea un objeto VentaVo para pasarselo al controlador y luego a VentaDao,
+     * el cual usara los datos del objeto para modificar la venta.
+     *
+     * @param venta
+     */
+    private void cargarDatosVenta(VentaVo venta) {
+        venta.setTotal(Double.parseDouble(lblTotal.getText()));
+        venta.setId(Integer.parseInt(data.get(0)));
+        venta.date_mod();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            int producto = Integer.parseInt(model.getValueAt(i, 0).toString());
+            int cantidad = Integer.parseInt(model.getValueAt(i, 3).toString());
+            venta.addProducto(producto, cantidad);
+        }
+    }
+
+    /**
+     * Actualiza la gui con los datos de la venta
+     *
+     * @param data ArrayList que contiene el id de la venta, el nombre del
+     * vendedor, comprador, la fecha y el valor total
+     */
     public void setData(ArrayList<String> data) {
         this.data = data;
+        System.out.println(data.size());
+        System.out.println(data.get(5));
+        System.out.println(data.get(1));
 
         //se cargan en la gui los datos
         lblNombreVen.setText(data.get(2));
         lblNombreCli.setText(data.get(3));
         lblTotal.setText(data.get(4));
 
-        if (data.size() > 5) {
+        if (!data.get(5).equals("")) {
             // tiene fecha de modificación
-            lblNombreCli1.setText(data.get(5));
+            lblFecha.setText(data.get(5));
         } else {
             // no tiene fecha de modificacion
-            lblNombreCli1.setText(data.get(1));
+            lblFecha.setText(data.get(1));
         }
 
         cargarModelo();
     }
 
+    /**
+     * Obtiene los datos de la venta que se desea modificar y los carga en el
+     * modelo de la JTable
+     */
     private void cargarModelo() {
         int venta_id = Integer.parseInt(data.get(0));
         ventasCon.setTableFac(tblFactura);
         if (ventasCon.obtenerDatosTransaccion(venta_id)) {
             System.out.println("Datos de la venta cargados correctamente");
+            for (int i = 0; i < model.getRowCount(); i++) {
+                devuelto.add(0); // se agregan a un arraylist para llevar un control de las devoluciones
+            }
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo cargar los datos de esta venta", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    /**
+     * Calcula el valor total a pagar
+     */
     private void calcularTotal() {
         double total = 0;
         // se obtienen lo productos de la factura y se calcula el precio total
@@ -360,7 +461,6 @@ public class ModificarV extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmar1;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JPanel factura;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -369,15 +469,11 @@ public class ModificarV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblNombreCli;
-    private javax.swing.JLabel lblNombreCli1;
     private javax.swing.JLabel lblNombreVen;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JTable tblFactura;
