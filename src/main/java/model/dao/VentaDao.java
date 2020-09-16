@@ -157,9 +157,7 @@ public class VentaDao {
     private void eliminarVentaPro(VentaVo venta, ArrayList<Integer> eliminar) {
         if (eliminar.size() > 0) {
             int venta_id = venta.getId();
-            System.out.println("Eliminar tamaño: " + eliminar.size());
             for (int i = 0; i < eliminar.size(); i++) {
-                System.out.println("Producto a eliminar: " + eliminar.get(i) + " de la venta: " + venta_id);
                 String sql = "{CALL eliminar_venta_pro("
                         + venta_id
                         + ","

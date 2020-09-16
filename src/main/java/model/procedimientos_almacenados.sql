@@ -46,7 +46,8 @@ BEGIN
 		
 	SELECT t1.id, t1.fecha, t1.fecha_mod, t1.vendedor, t2.comprador, t1.total
 	FROM t1 INNER JOIN t2
-	ON t1.id = t2.id;
+	ON t1.id = t2.id
+    ORDER BY t1.id desc;
     
     DROP TABLE t1, t2;
 END; $$
