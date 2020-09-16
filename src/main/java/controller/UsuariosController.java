@@ -12,6 +12,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.dao.UsuarioDao;
 import model.vo.UsuarioVo;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  * Clase que conecta la Vista con el Modelo
@@ -23,7 +25,8 @@ public class UsuariosController {
     private UsuarioDao usuarioDao;
     private JTable table;
     private DefaultTableModel model;
-
+    private DefaultCategoryDataset  pieDataset2 = new DefaultCategoryDataset();
+    private DefaultPieDataset pieDataset3 = new DefaultPieDataset();
     public UsuariosController() {
         usuarioDao = new UsuarioDao();
         table = null;
@@ -65,6 +68,186 @@ public class UsuariosController {
         }
         return false;
     }
+    
+     public Boolean obtenerListaUsuariosReporte() {
+        ResultSet rs = usuarioDao.obtenerUsuariosReporte();
+
+        if (rs != null && table != null && model != null) {
+            try {
+                model.setNumRows(0);
+                String[] usuario = new String[8];
+
+                while (rs.next()) {
+                    usuario[0] = rs.getString("t_usuarios.id");
+                    usuario[1] = rs.getString("t_usuarios.nombre");
+                    usuario[2] = rs.getString("t_usuarios.transacciones");
+                    usuario[3] = rs.getString("gasto");
+
+                    model.addRow(usuario);
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println("Error al recorrer usuarios: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos usuarios, null");
+        }
+        return false;
+    }
+          public Boolean obtenerListaUsuariosReporte2Grafico() {
+        ResultSet rs = usuarioDao.obtenerUsuariosReporte();
+
+        if (rs != null ) {
+            try {
+                
+
+                while (rs.next()) {
+                    pieDataset2.setValue( rs.getInt("t_usuarios.transacciones"),rs.getString("t_usuarios.nombre")," ");
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println("Error al recorrer usuarios: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos usuarios, null");
+        }
+        return false;
+    }
+                    public Boolean obtenerListaUsuariosReporte3Grafico() {
+        ResultSet rs = usuarioDao.obtenerVendedorReporte();
+
+        if (rs != null ) {
+            try {
+                
+
+                while (rs.next()) {
+                    pieDataset3.setValue( rs.getString("t_usuarios.nombre"),rs.getInt("t_usuarios.transacciones"));
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println("Error al recorrer Vendedores: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos Vendedores, null");
+        }
+        return false;
+    }
+    public Boolean obtenerListaUsuariosReporte2GraficoD() {
+        ResultSet rs = usuarioDao.obtenerUsuariosReporteD();
+
+        if (rs != null ) {
+            try {
+                
+
+                while (rs.next()) {
+                    pieDataset2.setValue( rs.getInt("transacciones"),rs.getString("t_usuarios.nombre")," ");
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println("Error al recorrer usuarios: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos usuarios, null");
+        }
+        return false;
+    }
+    
+        public Boolean obtenerListaVendedoresReporte3GraficoD() {
+        ResultSet rs = usuarioDao.obtenerVendedorReporteD();
+
+        if (rs != null ) {
+            try {
+                
+
+                while (rs.next()) {
+                    pieDataset3.setValue(rs.getString("t_usuarios.nombre"), rs.getInt("transacciones"));
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println("Error al recorrer usuarios: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos usuarios, null");
+        }
+        return false;
+    }
+     
+         public Boolean obtenerListaUsuariosReporteD() {
+        ResultSet rs = usuarioDao.obtenerUsuariosReporteD();
+
+        if (rs != null && table != null && model != null) {
+            try {
+                model.setNumRows(0);
+                String[] usuario = new String[8];
+
+                while (rs.next()) {
+                    usuario[0] = rs.getString("t_usuarios.id");
+                    usuario[1] = rs.getString("t_usuarios.nombre");
+                    usuario[2] = rs.getString("transacciones");
+                    usuario[3] = rs.getString("gasto");
+
+                    model.addRow(usuario);
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println("Error al recorrer usuarios: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos usuarios, null");
+        }
+        return false;
+    }
+     public Boolean obtenerListaVendedorReporte() {
+        ResultSet rs = usuarioDao.obtenerVendedorReporte();
+
+        if (rs != null && table != null && model != null) {
+            try {
+                model.setNumRows(0);
+                String[] usuario = new String[8];
+
+                while (rs.next()) {
+                    usuario[0] = rs.getString("t_usuarios.id");
+                    usuario[1] = rs.getString("t_usuarios.nombre");
+                    usuario[2] = rs.getString("t_usuarios.transacciones");
+                    usuario[3] = rs.getString("gasto");
+
+                    model.addRow(usuario);
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println("Error al recorrer Vendedores: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos usuarios, null");
+        }
+        return false;
+    }
+          public Boolean obtenerListaVendedorReporteD() {
+        ResultSet rs = usuarioDao.obtenerVendedorReporteD();
+
+        if (rs != null && table != null && model != null) {
+            try {
+                model.setNumRows(0);
+                String[] usuario = new String[8];
+
+                while (rs.next()) {
+                    usuario[0] = rs.getString("t_usuarios.id");
+                    usuario[1] = rs.getString("t_usuarios.nombre");
+                    usuario[2] = rs.getString("transacciones");
+                    usuario[3] = rs.getString("gasto");
+
+                    model.addRow(usuario);
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println("Error al recorrer Vendedores: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos usuarios, null");
+        }
+        return false;
+    }
+
 
     public Boolean buscarUsuario(String nombre) {
         ResultSet rs = usuarioDao.buscarUsuario(nombre);
@@ -161,5 +344,19 @@ public class UsuariosController {
     public void setTable(JTable table) {
         this.table = table;
         model = (DefaultTableModel) table.getModel();
+    }
+
+    /**
+     * @return the pieDataset2
+     */
+    public DefaultCategoryDataset getPieDataset2() {
+        return pieDataset2;
+    }
+
+    /**
+     * @return the pieDataset3
+     */
+    public DefaultPieDataset getPieDataset3() {
+        return pieDataset3;
     }
 }

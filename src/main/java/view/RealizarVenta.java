@@ -67,8 +67,8 @@ public class RealizarVenta extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
         edBuscarCli = new javax.swing.JTextField();
         btnBuscarCli = new javax.swing.JButton();
@@ -197,10 +197,10 @@ public class RealizarVenta extends javax.swing.JFrame {
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel25.setText("* Haga doble click sobre el producto que desea retirar de la factura");
 
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_sell_stock_32px.png"))); // NOI18N
-
         jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel37.setText("* Click para editar cantidad");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_sell_stock_32px.png"))); // NOI18N
 
         javax.swing.GroupLayout facturaLayout = new javax.swing.GroupLayout(factura);
         factura.setLayout(facturaLayout);
@@ -222,9 +222,9 @@ public class RealizarVenta extends javax.swing.JFrame {
                 .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(facturaLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel29)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel27)
                 .addGap(120, 120, 120)
                 .addComponent(jLabel21)
@@ -246,18 +246,17 @@ public class RealizarVenta extends javax.swing.JFrame {
         facturaLayout.setVerticalGroup(
             facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(facturaLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, facturaLayout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addGap(34, 34, 34))
                     .addGroup(facturaLayout.createSequentialGroup()
-                        .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel29)
-                            .addGroup(facturaLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(jLabel27)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)))
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, facturaLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)))
                 .addGroup(facturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(jLabel23))
@@ -1128,6 +1127,7 @@ public class RealizarVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -1136,7 +1136,6 @@ public class RealizarVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;

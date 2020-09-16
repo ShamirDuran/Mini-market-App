@@ -17,12 +17,16 @@ import javax.swing.table.DefaultTableModel;
 
 import model.dao.ProductoDao;
 import model.vo.ProductoVo;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 public class ProductosController {
 
     private ProductoDao productoDao;
     private JTable table;
     private DefaultTableModel model;
+    private DefaultPieDataset pieDataset=new DefaultPieDataset();
+
 
     public ProductosController() {
         productoDao = new ProductoDao();
@@ -50,6 +54,106 @@ public class ProductosController {
                     producto[4] = rs.getString("uni_medida");
                     producto[5] = rs.getString("cantidad");
                     producto[6] = rs.getString("cantidad_vendidos");
+
+                    model.addRow(producto);
+                }
+                return true;
+                
+            } catch (Exception e) {
+                System.out.println("Error al recorrer productos: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos productos, null");
+        }
+        return false;
+    }
+    
+        public Boolean obtenerListaProductosReporte() {
+        ResultSet rs = productoDao.obtenerProductosReporte();
+
+        if (rs != null) {
+            try {
+                model.setNumRows(0);
+                String[] producto = new String[7];
+
+                while (rs.next()) {
+                    producto[0] = rs.getString("id");
+                    producto[1] = rs.getString("nombre");
+                    producto[2] = rs.getString("cantidad_vendidos");
+                    producto[3] = Integer.toString(rs.getInt("precio")*rs.getInt("cantidad_vendidos"));
+
+                    model.addRow(producto);
+                }
+                return true;
+                
+            } catch (Exception e) {
+                System.out.println("Error al recorrer productos: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos productos, null");
+        }
+        return false;
+    }
+        
+        public Boolean obtenerListaProductosReporteGrafico() {
+        ResultSet rs = productoDao.obtenerProductosReporteGrafico();
+        
+        if (rs != null) {
+            try {
+                
+
+
+                while (rs.next()) {
+                    pieDataset.setValue(rs.getString("nombre"), rs.getInt("cantidad_vendidos"));
+
+                }
+                return true;
+                
+            } catch (Exception e) {
+                System.out.println("Error al recorrer productos: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos productos, null");
+        }
+        return false;
+    }
+                public Boolean obtenerListaProductosReporteGraficoD() {
+        ResultSet rs = productoDao.obtenerProductosReporteD();
+        
+        if (rs != null) {
+            try {
+                
+
+
+                while (rs.next()) {
+                    pieDataset.setValue(rs.getString("t_productos.nombre"), rs.getInt("cantidad"));
+
+                }
+                return true;
+                
+            } catch (Exception e) {
+                System.out.println("Error al recorrer productos: " + e);;
+            }
+        } else {
+            System.out.println("No se recibio datos productos, null");
+        }
+        return false;
+    }
+   
+     
+        public Boolean obtenerListaProductosReporteD() {
+        ResultSet rs = productoDao.obtenerProductosReporteD();
+
+        if (rs != null) {
+            try {
+                model.setNumRows(0);
+                String[] producto = new String[7];
+
+                while (rs.next()) {
+                    producto[0] = rs.getString("id");
+                    producto[1] = rs.getString("nombre");
+                    producto[2] = rs.getString("cantidad");
+                    producto[3] = Integer.toString(rs.getInt("precio")*rs.getInt("cantidad"));
 
                     model.addRow(producto);
                 }
@@ -226,5 +330,12 @@ public class ProductosController {
     public void setTable(JTable table) {
         this.table = table;
         model = (DefaultTableModel) table.getModel();
+    }
+
+    /**
+     * @return the pieDataset
+     */
+    public DefaultPieDataset getPieDataset() {
+        return pieDataset;
     }
 }

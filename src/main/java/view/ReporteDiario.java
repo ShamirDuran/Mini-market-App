@@ -5,6 +5,9 @@
  */
 package view;
 
+import controller.ProductosController;
+import controller.UsuariosController;
+import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -21,8 +24,20 @@ public class ReporteDiario extends javax.swing.JFrame {
     /**
      * Creates new form ReporteDiario
      */
+    ProductosController proCon;
+    UsuariosController userCon;
     public ReporteDiario() {
         initComponents();
+        proCon = new ProductosController();
+        userCon = new UsuariosController();
+
+        mostrarUsuarios();
+        mostrarUsuariosGraficoD();
+        mostrarVendedoresD();
+
+        mostrarProductos();
+        mostrarProductosGrafico();
+        mostrarVendedoresGraficoD();
     }
 
     /**
@@ -640,17 +655,17 @@ public class ReporteDiario extends javax.swing.JFrame {
         Graph2.setVisible(true);
         Graph3.setVisible(true);
         //GRAFICO1
-        DefaultPieDataset pieDataset = new DefaultPieDataset();
-        
-        pieDataset.setValue("PSOE", new Integer(31));
-        pieDataset.setValue("PP", new Integer(34));
-        pieDataset.setValue("PODEMOS", new Integer(25));
-        pieDataset.setValue("IU", new Integer(8));
-        pieDataset.setValue("Otros", new Integer(3));
+//        DefaultPieDataset pieDataset = new DefaultPieDataset();
+//        
+//        pieDataset.setValue("PSOE", new Integer(31));
+//        pieDataset.setValue("PP", new Integer(34));
+//        pieDataset.setValue("PODEMOS", new Integer(25));
+//        pieDataset.setValue("IU", new Integer(8));
+//        pieDataset.setValue("Otros", new Integer(3));
         
         JFreeChart chart = ChartFactory.createPieChart3D(
-                "Elecciones Generales",
-                pieDataset,
+                "Productos vendidos en el dia",
+                proCon.getPieDataset(),
                 true,
                 true,
                 false
@@ -681,19 +696,19 @@ public class ReporteDiario extends javax.swing.JFrame {
 //        Graph2.repaint();
 
 
-        DefaultCategoryDataset  pieDataset2 = new DefaultCategoryDataset();
-        
-        pieDataset2.addValue(1.0, "Row 1", "Column 1");
-        pieDataset2.addValue(1.0, "Row 2", "Column 1");
-        pieDataset2.addValue(1.0, "Row 3", "Column 1");
-        pieDataset2.addValue(1.0, "Row 4", "Column 1");
-        pieDataset2.addValue(1.0, "Row 5", "Column 1");
+//        DefaultCategoryDataset  pieDataset2 = new DefaultCategoryDataset();
+//        
+//        pieDataset2.addValue(1.0, "Row 1", "Column 1");
+//        pieDataset2.addValue(1.0, "Row 2", "Column 1");
+//        pieDataset2.addValue(1.0, "Row 3", "Column 1");
+//        pieDataset2.addValue(1.0, "Row 4", "Column 1");
+//        pieDataset2.addValue(1.0, "Row 5", "Column 1");
 
         JFreeChart chart2 = ChartFactory.createBarChart(
-                "Elecciones Generales",
+                "Ventas vendedores en el dia",
                 "CATEGORIAS",
                 "vALORES",
-                pieDataset2,
+                userCon.getPieDataset2(),
                 PlotOrientation.VERTICAL,
                 true,
                 true,
@@ -701,30 +716,30 @@ public class ReporteDiario extends javax.swing.JFrame {
         );
         ChartPanel chartPanel2 = new ChartPanel(chart2);
         chartPanel2.setBounds(5,10,440,240);
-        Graph2.add(chartPanel2);
-        Graph2.repaint();
+        Graph3.add(chartPanel2);
+        Graph3.repaint();
 
 
         //GRAFICO3
-        DefaultPieDataset pieDataset3 = new DefaultPieDataset();
-        
-        pieDataset3.setValue("PSOE", new Integer(31));
-        pieDataset3.setValue("PP", new Integer(34));
-        pieDataset3.setValue("PODEMOS", new Integer(25));
-        pieDataset3.setValue("IU", new Integer(8));
-        pieDataset3.setValue("Otros", new Integer(3));
+//        DefaultPieDataset pieDataset3 = new DefaultPieDataset();
+//        
+//        pieDataset3.setValue("PSOE", new Integer(31));
+//        pieDataset3.setValue("PP", new Integer(34));
+//        pieDataset3.setValue("PODEMOS", new Integer(25));
+//        pieDataset3.setValue("IU", new Integer(8));
+//        pieDataset3.setValue("Otros", new Integer(3));
         
         JFreeChart chart3 = ChartFactory.createPieChart3D(
-                "Elecciones Generales",
-                pieDataset3,
+                "Compras del dia clientes",
+                userCon.getPieDataset3(),
                 true,
                 true,
                 false
         );
         ChartPanel chartPanel3 = new ChartPanel(chart3);
         chartPanel3.setBounds(5,10,440,240);
-        Graph3.add(chartPanel3);
-        Graph3.repaint();
+        Graph2.add(chartPanel3);
+        Graph2.repaint();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -772,6 +787,59 @@ public class ReporteDiario extends javax.swing.JFrame {
                 new ReporteDiario().setVisible(true);
             }
         });
+    }
+    
+        private void mostrarProductos() {
+        proCon.setTable(tblGananciaDia);
+        if (proCon.obtenerListaProductosReporteD()) {
+            System.out.println("Productos cargados correctamente");
+        } else {
+            System.out.println("Error al cargar los productos a la tabla");
+            JOptionPane.showMessageDialog(null, "Error al cargar los productos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void mostrarProductosGrafico() {
+ 
+        if (proCon.obtenerListaProductosReporteGraficoD()) {
+            System.out.println("Productos cargados correctamente");
+        } else {
+            System.out.println("Error al cargar los productos a la tabla");
+            JOptionPane.showMessageDialog(null, "Error al cargar los productos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+        private void mostrarUsuarios() {
+        userCon.setTable(tblComprasCliente);
+        if (userCon.obtenerListaUsuariosReporteD()) {
+            System.out.println("Usuarios cargados correctamente");
+        } else {
+            System.out.println("Error al cargar los usuarios a la tabla");
+        }
+    }
+     
+        private void mostrarUsuariosGraficoD() {
+  
+        if (userCon.obtenerListaUsuariosReporte2GraficoD()) {
+            System.out.println("Usuarios cargados correctamente");
+        } else {
+            System.out.println("Error al cargar los usuarios a la tabla");
+        }
+    }
+        private void mostrarVendedoresGraficoD() {
+  
+        if (userCon.obtenerListaVendedoresReporte3GraficoD()) {
+            System.out.println("Usuarios cargados correctamente");
+        } else {
+            System.out.println("Error al cargar los usuarios a la tabla");
+        }
+    }
+        
+        private void mostrarVendedoresD() {
+        userCon.setTable(tblVentaVendedor);
+        if (userCon.obtenerListaVendedorReporteD()) {
+            System.out.println("Usuarios cargados correctamente");
+        } else {
+            System.out.println("Error al cargar los usuarios a la tabla");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

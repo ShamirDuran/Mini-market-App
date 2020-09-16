@@ -37,6 +37,18 @@ public class ProductoDao {
         String sql = "SELECT * FROM t_productos";
         return queryWithResultSet(sql, 0);
     }
+    public ResultSet obtenerProductosReporte() {
+        String sql = "SELECT id, nombre, cantidad_vendidos,precio FROM t_productos";
+        return queryWithResultSet(sql, 0);
+    }
+        public ResultSet obtenerProductosReporteGrafico() {
+        String sql = "SELECT  nombre, cantidad_vendidos FROM t_productos";
+        return queryWithResultSet(sql, 0);
+    }
+    public ResultSet obtenerProductosReporteD() {
+        String sql = "SELECT t_productos.id, t_productos.nombre,SUM(t_venta_producto.cantidad) as cantidad,t_productos.precio FROM t_productos INNER JOIN t_venta_producto ON t_venta_producto.fk_producto=t_productos.id INNER JOIN t_ventas ON t_ventas.id = t_venta_producto.fk_venta WHERE (SELECT Date_format(CURDATE(),'%Y-%m-%d')= STR_TO_DATE(t_ventas.fecha,'%d-%m-%Y')) GROUP BY t_productos.id";
+        return queryWithResultSet(sql, 0);
+    }
 
     public boolean guardarProducto(String nombre, double precio, double cant_medida, String uni_medida, int cantidad) {
         String sql = "INSERT INTO t_productos (nombre, precio, cant_medida, uni_medida, cantidad, cantidad_vendidos) "
