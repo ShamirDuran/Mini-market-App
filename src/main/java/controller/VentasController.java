@@ -175,8 +175,8 @@ public class VentasController {
         return false;
     }
 
-    public Boolean modificarVenta(VentaVo venta, ArrayList<Integer> control, ArrayList<Integer> devuelto) {
-        if (ventaDao.modificarVenta(venta, control, devuelto)) {
+    public Boolean modificarVenta(VentaVo venta, ArrayList<Integer> eliminar, ArrayList<Integer> devuelto) {
+        if (ventaDao.modificarVenta(venta, eliminar, devuelto)) {
             System.out.println("VentaCon: Venta con id " + venta.getId() + " modificada correctamente!");
             obtenerTransacciones();
             return true;

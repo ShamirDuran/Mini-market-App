@@ -17,21 +17,17 @@ BEGIN
 	SELECT venta_id;
 END; $$
 
+
 DELIMITER $$
 CREATE PROCEDURE registrar_venta_producto(IN venta INT, producto INT, comprados INT)
 BEGIN
 	INSERT INTO t_venta_producto(fk_venta, fk_producto, cantidad)
     VALUES (venta, producto, comprados);
     
-    UPDATE t_productos 
-    SET cantidad = cantidad - comprados, cantidad_vendidos = cantidad_vendidos + comprados 
-    WHERE id = producto;
-    
     UPDATE t_productos p
-    SET p.cantidad_vendidos = 
-    (SELECT SUM(cantidad) AS cantidad FROM t_venta_producto WHERE fk_producto = producto)
+    SET p.cantidad_vendidos = (SELECT SUM(cantidad) AS cantidad FROM t_venta_producto WHERE fk_producto = producto),
+    p.cantidad = p.cantidad - (SELECT SUM(cantidad) AS cantidad FROM t_venta_producto WHERE fk_producto = producto)
     WHERE p.id = producto;
-    
 END; $$
 
 
@@ -102,7 +98,7 @@ BEGIN
 
     UPDATE t_productos p 
     INNER JOIN t_venta_producto vp 
-    ON p.id = vp.fk_producto AND vp.fk_venta = 25
+    ON vp.fk_venta = venta_id AND vp.fk_producto = p.id
     SET p.cantidad = p.cantidad + vp.cantidad, p.cantidad_vendidos = p.cantidad_vendidos - vp.cantidad;
     
     DELETE FROM t_venta_producto WHERE fk_venta = venta_id;
@@ -131,11 +127,12 @@ END; $$
 
 DELIMITER $$
 CREATE PROCEDURE eliminar_venta_pro(IN venta_id INT, producto_id INT)
-BEGIN 
-	UPDATE t_productos p 
-    INNER JOIN t_venta_producto vp 
-    ON vp.fk_producto = producto_id AND vp.fk_venta = venta_id
-    SET p.cantidad = p.cantidad + vp.cantidad, p.cantidad_vendidos = p.cantidad_vendidos - vp.cantidad;
+BEGIN
+	UPDATE t_productos p
+    SET 
+    p.cantidad_vendidos = p.cantidad_vendidos - (SELECT SUM(cantidad) AS cantidad FROM t_venta_producto WHERE fk_producto = producto_id AND fk_venta = venta_id),
+    p.cantidad = p.cantidad + (SELECT SUM(cantidad) AS cantidad FROM t_venta_producto WHERE fk_producto = producto_id)
+    WHERE p.id = producto_id;
     
 	DELETE FROM t_venta_producto WHERE fk_venta = venta_id AND fk_producto = producto_id;
 END; $$

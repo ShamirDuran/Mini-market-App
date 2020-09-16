@@ -275,7 +275,7 @@ public class ModificarV extends javax.swing.JFrame {
             double cost_uni = Double.parseDouble(model.getValueAt(filaSeleccionada, 2).toString());
             int cantidad = Integer.parseInt(JOptionPane.showInputDialog(this, "Cantidad"));
             int cantidad_actual = Integer.parseInt(model.getValueAt(filaSeleccionada, 3).toString());
-            
+
             if (cantidad > 0) {
                 // verificamos que no se esten agregando nuevos productos
                 if (cantidad <= cantidad_actual) {
@@ -289,7 +289,7 @@ public class ModificarV extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Para agregar más productos realice una nueva venta", "Aviso", JOptionPane.WARNING_MESSAGE);
                 }
-            } else {
+            } else { // coloco una valor menor o igual que a 0
                 int click = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea cambiar la cantidad a 0?. \n\n"
                         + "Se eliminara el producto de la factura", "Confirmación", JOptionPane.YES_NO_OPTION);
 
@@ -319,17 +319,44 @@ public class ModificarV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnConfirmar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmar1ActionPerformed
-        int click = JOptionPane.showConfirmDialog(this, "Confirmar modificación", "Confirmación", JOptionPane.YES_NO_OPTION);
-        if (click == JOptionPane.YES_OPTION) {
-            VentaVo venta = new VentaVo();
-            cargarDatosVenta(venta);
-            if (ventasCon.modificarVenta(venta, eliminar, devuelto)) {
-                JOptionPane.showMessageDialog(this, "Venta modificada correctamente");
-                this.dispose();
+        if (model.getRowCount() > 0) {
+            int click = JOptionPane.showConfirmDialog(this, "Confirmar modificación", "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (click == JOptionPane.YES_OPTION) {
+                VentaVo venta = new VentaVo();
+                cargarDatosVenta(venta);
+                if (ventasCon.modificarVenta(venta, eliminar, devuelto)) {
+                    JOptionPane.showMessageDialog(this, "Venta modificada correctamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al tratar de modificar la venta", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            int click = JOptionPane.showConfirmDialog(this, "No hay productos en la factura \n¿Desea eliminar la venta?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (click == JOptionPane.YES_OPTION) {
+                int venta_id = Integer.parseInt(data.get(0));
+                if (ventasCon.eliminarVenta(venta_id)) {
+                    JOptionPane.showMessageDialog(this, "Venta eliminada correctamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al tratar de eliminar la venta", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Error al tratar de modificar la venta", "Error", JOptionPane.ERROR_MESSAGE);
+                this.dispose();
             }
         }
+
+
+        if (eliminar.size() > 0) {
+            for (int i = 0; i < eliminar.size(); i++) {
+                System.out.println("Se eliminara id " + eliminar.get(i));
+            }
+            System.out.println("\n");
+        } else {
+            System.out.println("No hay nada para eliminar");
+            System.out.println("\n");
+        }
+
 
 //        VentaVo prueba = new VentaVo();
 //        cargarDatosVenta(prueba);
@@ -403,9 +430,6 @@ public class ModificarV extends javax.swing.JFrame {
      */
     public void setData(ArrayList<String> data) {
         this.data = data;
-        System.out.println(data.size());
-        System.out.println(data.get(5));
-        System.out.println(data.get(1));
 
         //se cargan en la gui los datos
         lblNombreVen.setText(data.get(2));
@@ -448,7 +472,6 @@ public class ModificarV extends javax.swing.JFrame {
         // se obtienen lo productos de la factura y se calcula el precio total
         for (int i = 0; i < model.getRowCount(); i++) {
             total = total + Double.parseDouble(model.getValueAt(i, 4).toString());
-            System.out.println("total " + total);
         }
         lblTotal.setText(String.valueOf(total));
     }
