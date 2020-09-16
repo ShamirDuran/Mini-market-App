@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS t_usuarios (
 CREATE TABLE IF NOT EXISTS t_ventas (
 	id			INT AUTO_INCREMENT NOT NULL,
     fk_vendedor		INT NOT NULL,
-    fk_comprador	INT NULL,
+    fk_comprador	INT NOT NULL,
     fecha			VARCHAR(30) NOT NULL,
     fecha_mod		VARCHAR(30) NOT NULL,
     total			DOUBLE NOT NULL,

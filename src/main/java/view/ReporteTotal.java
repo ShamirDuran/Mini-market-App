@@ -657,17 +657,10 @@ public class ReporteTotal extends javax.swing.JFrame {
         Graph1.setVisible(true);
         Graph2.setVisible(true);
         Graph3.setVisible(true);
-        //GRAFICO1 Desconmetariar
-//        DefaultPieDataset pieDataset = new DefaultPieDataset();
-        
-//        pieDataset.setValue("PSOE", new Integer(31));
-//        pieDataset.setValue("PP", new Integer(34));
-//        pieDataset.setValue("PODEMOS", new Integer(25));
-//        pieDataset.setValue("IU", new Integer(8));
-//        pieDataset.setValue("Otros", new Integer(3));
+
         
         JFreeChart chart = ChartFactory.createPieChart3D(
-                "Elecciones Generales",
+                "Total productos vendidos",
                 proCon.getPieDataset(),
                 true,
                 true,
@@ -677,38 +670,10 @@ public class ReporteTotal extends javax.swing.JFrame {
         chartPanel.setBounds(5,10,440,530);
         Graph1.add(chartPanel);
         Graph1.repaint();
-        //GRAFICO2
-//        DefaultPieDataset pieDataset2 = new DefaultPieDataset();
-//        
-//        pieDataset2.setValue("PSOE", new Integer(31));
-//        pieDataset2.setValue("PP", new Integer(34));
-//        pieDataset2.setValue("PODEMOS", new Integer(25));
-//        pieDataset2.setValue("IU", new Integer(8));
-//        pieDataset2.setValue("Otros", new Integer(3));
-//        
-//        JFreeChart chart2 = ChartFactory.createPieChart3D(
-//                "Elecciones Generales",
-//                pieDataset2,
-//                true,
-//                true,
-//                false
-//        );
-//        ChartPanel chartPanel2 = new ChartPanel(chart2);
-//        chartPanel2.setBounds(5,10,440,240);
-//        Graph2.add(chartPanel2);
-//        Graph2.repaint();
 
-
-//        DefaultCategoryDataset  pieDataset2 = new DefaultCategoryDataset();
-        
-//        pieDataset2.addValue(1.0, "Row 1", "Column 1");
-//        pieDataset2.addValue(1.0, "Row 2", "Column 1");
-//        pieDataset2.addValue(1.0, "Row 3", "Column 1");
-//        pieDataset2.addValue(1.0, "Row 4", "Column 1");
-//        pieDataset2.addValue(1.0, "Row 5", "Column 1");
 
         JFreeChart chart2 = ChartFactory.createBarChart(
-                "",
+                "Compras totales clientes",
                 "Clientes",
                 "Compras",
                 userCon.getPieDataset2(),
@@ -723,17 +688,10 @@ public class ReporteTotal extends javax.swing.JFrame {
         Graph3.repaint();
 
 
-        //GRAFICO3
-//        DefaultPieDataset pieDataset3 = new DefaultPieDataset();
-        
-//        pieDataset3.setValue("PSOE", new Integer(31));
-//        pieDataset3.setValue("PP", new Integer(34));
-//        pieDataset3.setValue("PODEMOS", new Integer(25));
-//        pieDataset3.setValue("IU", new Integer(8));
-//        pieDataset3.setValue("Otros", new Integer(3));
+ 
 //        
         JFreeChart chart3 = ChartFactory.createPieChart3D(
-                "Elecciones Generales",
+                "Ventas totales vendedores",
                 userCon.getPieDataset3(),
                 true,
                 true,

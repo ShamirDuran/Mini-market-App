@@ -25,5 +25,38 @@ VALUES
 (4, 25, 1, "Carlos Gomez", "carlooos@gmail.com", "La cumbre", 1305334246, 0);
 
 
+CALL registrar_venta(1,8 , "15-09-2020 15:57:47",19050);
+CALL registrar_venta(1,7 , "15-09-2020 15:58:08",6800);
+CALL registrar_venta(1,6 , "16-09-2020 15:58:23",9450);
+CALL registrar_venta(1,3 , "16-09-2020 15:59:04",7160);
+CALL registrar_venta(1,2 , "16-09-2020 16:16:59",18960);
+CALL registrar_venta(1,5 , "16-09-2020 15:59:24",39830);
+CALL registrar_venta(4,7 , "16-09-2020 16:59:24",6830);
+CALL registrar_venta(4,5 , "16-09-2020 17:16:43",4500);
+CALL registrar_venta(4,3 , "16-09-2020 17:16:58",8970);
+CALL registrar_venta(1,8 , "16-09-2020 17:17:14",800);
+CALL registrar_venta(1,6 , "16-09-2020 17:17:32",4000);
+
+CALL registrar_venta_producto(1,7,2);
+CALL registrar_venta_producto(1,4,3);
+CALL registrar_venta_producto(1,1,2);
+CALL registrar_venta_producto(1,10,4);
+CALL registrar_venta_producto(2,2,2);
+CALL registrar_venta_producto(3,5,5);
+CALL registrar_venta_producto(4,3,2);
+CALL registrar_venta_producto(4,8,2);
+CALL registrar_venta_producto(5,9,3);
+CALL registrar_venta_producto(5,5,1);
+CALL registrar_venta_producto(6,9,7);
+CALL registrar_venta_producto(7,7,3);
+CALL registrar_venta_producto(7,8,2);
+CALL registrar_venta_producto(8,4,2);
+CALL registrar_venta_producto(9,5,3);
+CALL registrar_venta_producto(9,2,2);
+CALL registrar_venta_producto(10,10,4);
+CALL registrar_venta_producto(11,1,1);
+
+
+
 
 

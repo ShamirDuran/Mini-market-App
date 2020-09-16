@@ -79,12 +79,6 @@ public class ModificarP extends javax.swing.JFrame {
         });
 
         edCantidad.setForeground(new java.awt.Color(102, 102, 102));
-        edCantidad.setEnabled(false);
-        edCantidad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                edCantidadMouseClicked(evt);
-            }
-        });
         edCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edCantidadActionPerformed(evt);
@@ -96,7 +90,6 @@ public class ModificarP extends javax.swing.JFrame {
         jLabel3.setText("Cantidad");
 
         edUniMedida.setForeground(new java.awt.Color(102, 102, 102));
-        edUniMedida.setEnabled(false);
         edUniMedida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 edUniMedidaMouseClicked(evt);
@@ -113,7 +106,6 @@ public class ModificarP extends javax.swing.JFrame {
         jLabel7.setText("Uni. Medida:");
 
         edContNeto.setForeground(new java.awt.Color(102, 102, 102));
-        edContNeto.setEnabled(false);
         edContNeto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 edContNetoMouseClicked(evt);
@@ -130,12 +122,6 @@ public class ModificarP extends javax.swing.JFrame {
         jLabel6.setText("Cont. Neto");
 
         edNombre.setForeground(new java.awt.Color(102, 102, 102));
-        edNombre.setEnabled(false);
-        edNombre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                edNombreMouseClicked(evt);
-            }
-        });
         edNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edNombreActionPerformed(evt);
@@ -143,7 +129,6 @@ public class ModificarP extends javax.swing.JFrame {
         });
 
         edPrecio.setForeground(new java.awt.Color(102, 102, 102));
-        edPrecio.setEnabled(false);
         edPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 edPrecioMouseClicked(evt);
@@ -301,10 +286,6 @@ public class ModificarP extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void edNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edNombreMouseClicked
-        edNombre.setEnabled(true);
-    }//GEN-LAST:event_edNombreMouseClicked
-
     private void edPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edPrecioMouseClicked
         edPrecio.setEnabled(true);
     }//GEN-LAST:event_edPrecioMouseClicked
@@ -316,10 +297,6 @@ public class ModificarP extends javax.swing.JFrame {
     private void edUniMedidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edUniMedidaMouseClicked
         edUniMedida.setEnabled(true);
     }//GEN-LAST:event_edUniMedidaMouseClicked
-
-    private void edCantidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edCantidadMouseClicked
-        edCantidad.setEnabled(true);
-    }//GEN-LAST:event_edCantidadMouseClicked
 
     /**
      * @param args the command line arguments

@@ -6,7 +6,6 @@ view\ReporteTotal$2.class
 view\ReporteDiario$14.class
 view\Transacciones$6.class
 view\RegistrarU$8.class
-view\ModificarP$12.class
 view\Producto$12.class
 view\RealizarVenta$1.class
 view\RealizarVenta$18.class
@@ -66,7 +65,6 @@ view\Home$13.class
 view\ModificarP$10.class
 view\Transacciones$11.class
 view\Transacciones$14.class
-view\RegistrarU$9.class
 view\ReporteDiario$13.class
 view\Transacciones$7.class
 view\Producto$13.class
@@ -77,7 +75,6 @@ view\RealizarVenta.class
 view\Producto$4.class
 view\Home$7.class
 view\Usuario$16.class
-view\ModificarU$9.class
 view\Transacciones$4.class
 view\ReporteTotal$7.class
 view\RealizarVenta$6.class
@@ -141,7 +138,6 @@ view\ReporteTotal$15.class
 view\ModificarP$7.class
 view\Transacciones$3.class
 view\RegistrarP$3.class
-view\RegistrarU$10.class
 view\RealizarVenta$16.class
 view\Inventario$8.class
 view\Inventario$11.class
@@ -171,7 +167,6 @@ view\Inventario$3.class
 controller\VentasController.class
 view\Inventario$13.class
 view\RealizarVenta$11.class
-view\ModificarP$13.class
 view\Producto.class
 view\Producto$16.class
 view\RealizarVenta$14.class
@@ -196,6 +191,7 @@ view\Usuario$6.class
 view\Inventario$14.class
 view\RegistrarP.class
 view\RegistrarU$4.class
+view\ModificarV$6.class
 view\ModificarU$1.class
 view\ReporteTotal$12.class
 view\ModificarP$3.class

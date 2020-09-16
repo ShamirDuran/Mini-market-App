@@ -32,7 +32,6 @@ public class VentasController {
 
     public boolean obtenerTransacciones() {
         ResultSet rs = ventaDao.obtenerTransacciones();
-
         if (rs != null) {
             try {
                 modelTran.setNumRows(0);
@@ -61,7 +60,6 @@ public class VentasController {
 
     public boolean obtenerDatosTransaccion(int venta_id) {
         ResultSet rs = ventaDao.obtenerDatosTransaccion(venta_id);
-
         if (rs != null) {
             try {
                 modelFac.setNumRows(0);
@@ -87,7 +85,6 @@ public class VentasController {
 
     public boolean filtrarPorCliente(String nombre) {
         ResultSet rs = ventaDao.filtrarPorCliente(nombre);
-
         if (rs != null) {
             try {
                 modelTran.setNumRows(0);
@@ -120,7 +117,6 @@ public class VentasController {
         } else {
             System.out.println("\nVentasCon: No se pudo registrar la venta!!");
         }
-
         return check;
     }
 
@@ -130,7 +126,6 @@ public class VentasController {
 
     public Boolean buscarProductos(String nombre) {
         ResultSet rs = ventaDao.buscarProductos(nombre);
-
         if (rs != null) {
             try {
                 modelPro.setNumRows(0);
@@ -157,7 +152,6 @@ public class VentasController {
 
     public Boolean buscarClientes(String nombre) {
         ResultSet rs = ventaDao.buscarClientes(nombre);
-
         if (rs != null) {
             try {
                 modelCli.setNumRows(0);
@@ -175,11 +169,31 @@ public class VentasController {
             } catch (SQLException e) {
                 System.out.println("VentaCon: Error al recorrer los clientes " + e);
             }
-
         } else {
             System.out.println("VentaCon: No se recibieron datos de clientes, null");
         }
+        return false;
+    }
 
+    public Boolean modificarVenta(VentaVo venta, ArrayList<Integer> eliminar, ArrayList<Integer> devuelto) {
+        if (ventaDao.modificarVenta(venta, eliminar, devuelto)) {
+            System.out.println("VentaCon: Venta con id " + venta.getId() + " modificada correctamente!");
+            obtenerTransacciones();
+            return true;
+        } else {
+            System.out.println("VentaCon: Error al modificar la venta con id " + venta.getId());
+        }
+        return false;
+    }
+
+    public Boolean eliminarVenta(int id) {
+        if (ventaDao.eliminarVenta(id)) {
+            System.out.println("VentaCon: venta eliminada correctamente");
+            obtenerTransacciones();
+            return true;
+        } else {
+            System.out.println("VentaCon: error al tratar de eliminar venta");
+        }
         return false;
     }
 

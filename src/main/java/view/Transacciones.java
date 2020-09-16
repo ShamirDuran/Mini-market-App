@@ -567,6 +567,7 @@ public class Transacciones extends javax.swing.JFrame {
 
         ModificarV modVen = new ModificarV();
         modVen.setLocationRelativeTo(null);
+        modVen.setVentasCon(ventasCon);
         modVen.setData(data);
         modVen.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         modVen.setVisible(true);
