@@ -62,7 +62,7 @@ public class ModificarV extends javax.swing.JFrame {
         lblFecha = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnConfirmar1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnFactura = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -258,14 +258,14 @@ public class ModificarV extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(172, 78, 233));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("GENERAR FACTURA");
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnFactura.setBackground(new java.awt.Color(172, 78, 233));
+        btnFactura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnFactura.setForeground(new java.awt.Color(255, 255, 255));
+        btnFactura.setText("GENERAR FACTURA");
+        btnFactura.setBorderPainted(false);
+        btnFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnFacturaActionPerformed(evt);
             }
         });
 
@@ -280,7 +280,7 @@ public class ModificarV extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnFactura)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnConfirmar1)))
                 .addGap(100, 100, 100))
@@ -294,7 +294,7 @@ public class ModificarV extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConfirmar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -411,13 +411,13 @@ public class ModificarV extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_btnConfirmar1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
         try {
             ventasCon.hacerReporte(Integer.parseInt(data.get(0)));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al tratar de generar factura", "Error", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnFacturaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -532,8 +532,8 @@ public class ModificarV extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar1;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnFactura;
     private javax.swing.JPanel factura;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;

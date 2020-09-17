@@ -121,10 +121,6 @@ public class VentasController {
         return check;
     }
 
-    public ArrayList<VentaVo> obtenerListaVentas() {
-        return ventaDao.getListaVentas();
-    }
-
     public Boolean buscarProductos(String nombre) {
         ResultSet rs = ventaDao.buscarProductos(nombre);
         if (rs != null) {

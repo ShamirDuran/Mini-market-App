@@ -37,11 +37,7 @@ public class VentaDao {
 
     int contador = 1;
 
-    private ArrayList<VentaVo> listaVentas;
-
     public VentaDao() {
-        this.listaVentas = new ArrayList<VentaVo>();
-
         c = new Conexion();
         con = c.getConexion();
     }
@@ -263,10 +259,6 @@ public class VentaDao {
         }
 
         return false;
-    }
-
-    public ArrayList<VentaVo> getListaVentas() {
-        return listaVentas;
     }
 
     public void hacerReporte(int venta_id) {

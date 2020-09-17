@@ -78,7 +78,7 @@ WHERE v.id = $P!{id_venta};]]>
 				<text><![CDATA[Cliente: ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="77" y="16" width="100" height="20" uuid="3156223d-6cfc-493b-88e9-f2e5ef7f85b1"/>
+				<reportElement x="77" y="16" width="170" height="20" uuid="3156223d-6cfc-493b-88e9-f2e5ef7f85b1"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Segoe UI" size="12"/>
 				</textElement>
@@ -92,21 +92,21 @@ WHERE v.id = $P!{id_venta};]]>
 				<text><![CDATA[Dirección:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="77" y="36" width="100" height="20" uuid="fd2b40d1-9f77-4066-ad4c-0e15d0dd5d41"/>
+				<reportElement x="77" y="36" width="170" height="20" uuid="fd2b40d1-9f77-4066-ad4c-0e15d0dd5d41"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Segoe UI" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DIRECCION}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="337" y="16" width="170" height="20" uuid="41e96218-caa4-47f8-ad05-4d277bab7770"/>
+				<reportElement x="379" y="16" width="170" height="20" uuid="41e96218-caa4-47f8-ad05-4d277bab7770"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Segoe UI" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="227" y="16" width="100" height="20" uuid="3e6f831b-62bf-40bf-ad9d-8762b6566622"/>
+				<reportElement x="269" y="16" width="100" height="20" uuid="3e6f831b-62bf-40bf-ad9d-8762b6566622"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Segoe UI" size="12" isBold="true"/>
 				</textElement>
