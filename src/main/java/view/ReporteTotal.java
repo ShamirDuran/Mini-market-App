@@ -682,7 +682,9 @@ public class ReporteTotal extends javax.swing.JFrame {
         Graph1.setVisible(true);
         Graph2.setVisible(true);
         Graph3.setVisible(true);
-
+        /**
+        * primer grafico de torta que contiene todos los productos vendidos en total
+        */
         JFreeChart chart = ChartFactory.createPieChart3D(
                 "Total productos vendidos",
                 proCon.getPieDataset(),
@@ -694,7 +696,9 @@ public class ReporteTotal extends javax.swing.JFrame {
         chartPanel.setBounds(5, 10, 440, 530);
         Graph1.add(chartPanel);
         Graph1.repaint();
-
+        /**
+        * tercer grafico que es un grafico de barras y contiene las compras de los clientes
+        */
         JFreeChart chart2 = ChartFactory.createBarChart(
                 "Compras totales clientes",
                 "Clientes",
@@ -711,6 +715,9 @@ public class ReporteTotal extends javax.swing.JFrame {
         Graph3.repaint();
 
 //        
+        /**
+        * segundo grafico que muestra las ventas de los vendedores en total
+        */
         JFreeChart chart3 = ChartFactory.createPieChart3D(
                 "Ventas totales vendedores",
                 userCon.getPieDataset3(),
@@ -905,7 +912,9 @@ public class ReporteTotal extends javax.swing.JFrame {
             }
         });
     }
-
+    /**
+     * Regresa todos los productos registrados en la bd mediante una consulta
+     */
     private void mostrarProductos() {
         proCon.setTable(tblVentasProductos);
         if (proCon.obtenerListaProductosReporte()) {
@@ -915,7 +924,9 @@ public class ReporteTotal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al cargar los productos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    /**
+     * lista de productos que se imprimiran en las graficas de reportes
+     */
     private void mostrarProductosGrafico() {
 
         if (proCon.obtenerListaProductosReporteGrafico()) {
@@ -925,7 +936,9 @@ public class ReporteTotal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al cargar los productos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    /**
+     * muestra la lista de usuarios registrados en la bd
+     */
     private void mostrarUsuarios() {
         userCon.setTable(tblComprasCliente);
         if (userCon.obtenerListaUsuariosReporte()) {
@@ -934,7 +947,9 @@ public class ReporteTotal extends javax.swing.JFrame {
             System.out.println("Error al cargar los usuarios a la tabla");
         }
     }
-
+    /**
+     * muestra usuarios de la bd en los graficos
+     */
     private void mostrarUsuariosGrafico() {
 
         if (userCon.obtenerListaUsuariosReporte2Grafico()) {
@@ -943,7 +958,9 @@ public class ReporteTotal extends javax.swing.JFrame {
             System.out.println("Error al cargar los usuarios a la tabla");
         }
     }
-
+    /**
+     * muestra vendedores registrados en la bd mediante grafico
+     */
     private void mostrarVendedoresGrafico() {
 
         if (userCon.obtenerListaUsuariosReporte3Grafico()) {
@@ -952,7 +969,9 @@ public class ReporteTotal extends javax.swing.JFrame {
             System.out.println("Error al cargar los vendedores a la tabla");
         }
     }
-
+    /**
+     * muestra vendedores registrados en la bd
+     */
     private void mostrarVendedores() {
         userCon.setTable(tblVentasVendedor);
         if (userCon.obtenerListaVendedorReporte()) {

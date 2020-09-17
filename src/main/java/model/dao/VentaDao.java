@@ -37,11 +37,7 @@ public class VentaDao {
 
     int contador = 1;
 
-    private ArrayList<VentaVo> listaVentas;
-
     public VentaDao() {
-        this.listaVentas = new ArrayList<VentaVo>();
-
         c = new Conexion();
         con = c.getConexion();
     }
@@ -92,7 +88,7 @@ public class VentaDao {
     }
 
     public ResultSet buscarClientes(String nombre) {
-        String sql = "SELECT * FROM t_usuarios WHERE nombre LIKE '" + nombre + "%'";
+        String sql = "SELECT * FROM t_usuarios WHERE nombre LIKE '" + nombre + "%' AND nombre!=\"Desconocido\"";
         return queryWithResultSet(sql);
     }
 
@@ -263,10 +259,6 @@ public class VentaDao {
         }
 
         return false;
-    }
-
-    public ArrayList<VentaVo> getListaVentas() {
-        return listaVentas;
     }
 
     public void hacerReporte(int venta_id) {
