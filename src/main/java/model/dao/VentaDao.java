@@ -283,7 +283,6 @@ public class VentaDao {
             
             view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             view.setLocationRelativeTo(null);
-            view.setAlwaysOnTop(true);
             view.setVisible(true);
         } catch (JRException ex) {
             Logger.getLogger(VentaDao.class.getName()).log(Level.SEVERE, null, ex);
