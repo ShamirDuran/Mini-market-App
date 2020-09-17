@@ -1011,7 +1011,6 @@ public class RealizarVenta extends javax.swing.JFrame {
                     VentaVo venta = new VentaVo();
                     cargarDatosVenta(venta);
                     if (ventaCon.registrarVenta(venta)) {
-                        JOptionPane.showMessageDialog(this, "Venta registrada correctamente");
                         RealizarVenta reVenta = new RealizarVenta();
                         reVenta.setLocationRelativeTo(null);
                         reVenta.setVisible(true);

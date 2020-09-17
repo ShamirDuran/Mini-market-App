@@ -114,6 +114,7 @@ public class VentasController {
         boolean check = ventaDao.registrarVenta(venta);
         if (check) {
             System.out.println("\nVentasCon: Se registro la venta correctamente!!");
+            check = true;
         } else {
             System.out.println("\nVentasCon: No se pudo registrar la venta!!");
         }
@@ -216,5 +217,8 @@ public class VentasController {
         this.tblFac = table;
         modelFac = (DefaultTableModel) tblFac.getModel();
     }
-
+    
+    public void hacerReporte(int venta_id) {
+        ventaDao.hacerReporte(venta_id);
+    }
 }

@@ -19,6 +19,7 @@ view\registrar\RealizarVenta$7.class
 view\ReporteTotal$8.class
 view\modificar\ModificarV$6.class
 model\vo\VentaVo.class
+view\registrar\RealizarVenta.class
 view\Usuario$1.class
 view\Usuario$7.class
 view\Transacciones$1.class
@@ -207,6 +208,7 @@ view\Producto$18.class
 view\ReporteTotal$12.class
 view\modificar\ModificarP$11.class
 view\modificar\ModificarP$5.class
+view\modificar\ModificarV$7.class
 view\Producto$9.class
 view\registrar\RealizarVenta$25.class
 view\ReporteDiario$7.class

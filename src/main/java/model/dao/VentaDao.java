@@ -11,8 +11,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import model.conexion.Conexion;
 import model.vo.VentaVo;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -67,9 +78,11 @@ public class VentaDao {
         if (venta_id > 0) {
             sql = "{CALL registrar_venta_producto(?,?,?)}";
             if (queryCallInsertPro(sql, venta, venta_id)) {
+                hacerReporte(venta_id);
                 return true;
             }
         }
+
         return false;
     }
 
@@ -254,5 +267,26 @@ public class VentaDao {
 
     public ArrayList<VentaVo> getListaVentas() {
         return listaVentas;
+    }
+
+    public void hacerReporte(int venta_id) {
+        try {
+            JasperReport reporte = null;
+            String path = "src\\main\\java\\model\\factura\\factura.jasper"; //ruta de mi reporte
+            
+            Map param = new HashMap();
+            param.put("id_venta", venta_id);
+            
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, param, con); //cargando el reporte
+            JasperViewer view = new JasperViewer(jprint, false); // se crea la vista del reporte
+            
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            view.setLocationRelativeTo(null);
+            view.setAlwaysOnTop(true);
+            view.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(VentaDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
