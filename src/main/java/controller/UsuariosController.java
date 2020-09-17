@@ -25,8 +25,9 @@ public class UsuariosController {
     private UsuarioDao usuarioDao;
     private JTable table;
     private DefaultTableModel model;
-    private DefaultCategoryDataset  pieDataset2 = new DefaultCategoryDataset();
+    private DefaultCategoryDataset pieDataset2 = new DefaultCategoryDataset();
     private DefaultPieDataset pieDataset3 = new DefaultPieDataset();
+
     public UsuariosController() {
         usuarioDao = new UsuarioDao();
         table = null;
@@ -68,8 +69,14 @@ public class UsuariosController {
         }
         return false;
     }
-    
-     public Boolean obtenerListaUsuariosReporte() {
+
+    /**
+     * Metodo que pide al modelo la lista de usuarios registrados en la db Para
+     * esta entrega se utilizara para mostrar la lista de usuarios
+     *
+     * @return Retorna la lista de usuarios registrados.
+     */
+    public Boolean obtenerListaUsuariosReporte() {
         ResultSet rs = usuarioDao.obtenerUsuariosReporte();
 
         if (rs != null && table != null && model != null) {
@@ -94,15 +101,21 @@ public class UsuariosController {
         }
         return false;
     }
-          public Boolean obtenerListaUsuariosReporte2Grafico() {
+
+    /**
+     * Metodo que pide al modelo la lista de usuarios registrados en la db Para
+     * esta entrega se utilizara para mostrar la lista de usuarios
+     *
+     * @return Retorna la lista de usuarios registrados.
+     */
+    public Boolean obtenerListaUsuariosReporte2Grafico() {
         ResultSet rs = usuarioDao.obtenerUsuariosReporte();
 
-        if (rs != null ) {
+        if (rs != null) {
             try {
-                
 
                 while (rs.next()) {
-                    pieDataset2.setValue( rs.getInt("t_usuarios.transacciones"),rs.getString("t_usuarios.nombre")," ");
+                    pieDataset2.setValue(rs.getInt("t_usuarios.transacciones"), rs.getString("t_usuarios.nombre"), " ");
                 }
                 return true;
             } catch (Exception e) {
@@ -113,15 +126,21 @@ public class UsuariosController {
         }
         return false;
     }
-                    public Boolean obtenerListaUsuariosReporte3Grafico() {
+
+        /**
+     * Metodo que pide al modelo la lista de usuarios registrados en la db Para
+     * esta entrega se utilizara para mostrar la lista de usuarios
+     *
+     * @return Retorna la lista de usuarios registrados.
+     */
+    public Boolean obtenerListaUsuariosReporte3Grafico() {
         ResultSet rs = usuarioDao.obtenerVendedorReporte();
 
-        if (rs != null ) {
+        if (rs != null) {
             try {
-                
 
                 while (rs.next()) {
-                    pieDataset3.setValue( rs.getString("t_usuarios.nombre"),rs.getInt("t_usuarios.transacciones"));
+                    pieDataset3.setValue(rs.getString("t_usuarios.nombre"), rs.getInt("t_usuarios.transacciones"));
                 }
                 return true;
             } catch (Exception e) {
@@ -132,15 +151,20 @@ public class UsuariosController {
         }
         return false;
     }
+    /**
+     * Metodo que pide al modelo la lista de usuarios registrados en la db Para
+     * esta entrega se utilizara para mostrar la lista de usuarios
+     *
+     * @return Retorna la lista de usuarios registrados.
+     */
     public Boolean obtenerListaUsuariosReporte2GraficoD() {
         ResultSet rs = usuarioDao.obtenerUsuariosReporteD();
 
-        if (rs != null ) {
+        if (rs != null) {
             try {
-                
 
                 while (rs.next()) {
-                    pieDataset2.setValue( rs.getInt("transacciones"),rs.getString("t_usuarios.nombre")," ");
+                    pieDataset2.setValue(rs.getInt("transacciones"), rs.getString("t_usuarios.nombre"), " ");
                 }
                 return true;
             } catch (Exception e) {
@@ -151,13 +175,17 @@ public class UsuariosController {
         }
         return false;
     }
-    
-        public Boolean obtenerListaVendedoresReporte3GraficoD() {
+    /**
+     * Metodo que pide al modelo la lista de usuarios registrados en la db Para
+     * esta entrega se utilizara para mostrar la lista de usuarios
+     *
+     * @return Retorna la lista de usuarios registrados.
+     */
+    public Boolean obtenerListaVendedoresReporte3GraficoD() {
         ResultSet rs = usuarioDao.obtenerVendedorReporteD();
 
-        if (rs != null ) {
+        if (rs != null) {
             try {
-                
 
                 while (rs.next()) {
                     pieDataset3.setValue(rs.getString("t_usuarios.nombre"), rs.getInt("transacciones"));
@@ -171,8 +199,13 @@ public class UsuariosController {
         }
         return false;
     }
-     
-         public Boolean obtenerListaUsuariosReporteD() {
+    /**
+     * Metodo que pide al modelo la lista de usuarios registrados en la db Para
+     * esta entrega se utilizara para mostrar la lista de usuarios
+     *
+     * @return Retorna la lista de usuarios registrados.
+     */
+    public Boolean obtenerListaUsuariosReporteD() {
         ResultSet rs = usuarioDao.obtenerUsuariosReporteD();
 
         if (rs != null && table != null && model != null) {
@@ -197,7 +230,13 @@ public class UsuariosController {
         }
         return false;
     }
-     public Boolean obtenerListaVendedorReporte() {
+    /**
+     * Metodo que pide al modelo la lista de usuarios registrados en la db Para
+     * esta entrega se utilizara para mostrar la lista de usuarios
+     *
+     * @return Retorna la lista de usuarios registrados.
+     */
+    public Boolean obtenerListaVendedorReporte() {
         ResultSet rs = usuarioDao.obtenerVendedorReporte();
 
         if (rs != null && table != null && model != null) {
@@ -222,7 +261,8 @@ public class UsuariosController {
         }
         return false;
     }
-          public Boolean obtenerListaVendedorReporteD() {
+
+    public Boolean obtenerListaVendedorReporteD() {
         ResultSet rs = usuarioDao.obtenerVendedorReporteD();
 
         if (rs != null && table != null && model != null) {
@@ -247,7 +287,6 @@ public class UsuariosController {
         }
         return false;
     }
-
 
     public Boolean buscarUsuario(String nombre) {
         ResultSet rs = usuarioDao.buscarUsuario(nombre);

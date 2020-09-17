@@ -67,7 +67,12 @@ public class ProductosController {
         }
         return false;
     }
-    
+       /**
+     * Este metodo carga los productos registrados en la tabla de la reportetotal
+     * Productos
+     *
+     * @return
+     */
         public Boolean obtenerListaProductosReporte() {
         ResultSet rs = productoDao.obtenerProductosReporte();
 
@@ -94,7 +99,12 @@ public class ProductosController {
         }
         return false;
     }
-        
+      /**
+     * Este metodo carga los productos registrados en el grafico de la vista
+     * Productos
+     *
+     * @return
+     */
         public Boolean obtenerListaProductosReporteGrafico() {
         ResultSet rs = productoDao.obtenerProductosReporteGrafico();
         
@@ -117,6 +127,12 @@ public class ProductosController {
         }
         return false;
     }
+           /**
+     * Este metodo carga los productos registrados en el grafico de la vista reportediario
+     * Productos
+     *
+     * @return
+     */
                 public Boolean obtenerListaProductosReporteGraficoD() {
         ResultSet rs = productoDao.obtenerProductosReporteD();
         
@@ -140,7 +156,12 @@ public class ProductosController {
         return false;
     }
    
-     
+        /**
+     * Este metodo carga los productos registrados en la tabla de la vista ReporteDiario
+     * Productos
+     *
+     * @return
+     */
         public Boolean obtenerListaProductosReporteD() {
         ResultSet rs = productoDao.obtenerProductosReporteD();
 
