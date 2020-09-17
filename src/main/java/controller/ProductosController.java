@@ -214,15 +214,6 @@ public class ProductosController {
         }
         return false;
     }
-
-//
-//    private void limpiarTabla() {
-//        DefaultTableModel model = (DefaultTableModel) table.getModel();
-//        int rowCount = model.getRowCount();
-//        for (int i = rowCount - 1; i >= 0; i--) {
-//            model.removeRow(i);
-//        }
-//    }
     
     public Boolean buscarProducto(String nombre, String vista) {
         ResultSet rs = productoDao.buscarProducto(nombre);
@@ -317,7 +308,7 @@ public class ProductosController {
         if (check) {
             System.out.println("\nProducto modificado correctamente!!");
 //            limpiarTabla();
-            obtenerListaProductos();
+            obtenerListaInventario();
         } else {
             System.out.println("\nNo se encontro el Producto!!");
         }
