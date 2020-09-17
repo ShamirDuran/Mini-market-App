@@ -5,6 +5,7 @@
  */
 package view;
 
+import view.registrar.RealizarVenta;
 import controller.ProductosController;
 import controller.UsuariosController;
 import javax.swing.JOptionPane;
@@ -120,8 +121,20 @@ public class ReporteDiario extends javax.swing.JFrame {
             new String [] {
                 "ID Producto", "Nombre", "# Ventas", "Dinero total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblGananciaDia);
+        if (tblGananciaDia.getColumnModel().getColumnCount() > 0) {
+            tblGananciaDia.getColumnModel().getColumn(0).setResizable(false);
+            tblGananciaDia.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         body.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 195, -1, 544));
 
@@ -139,7 +152,15 @@ public class ReporteDiario extends javax.swing.JFrame {
             new String [] {
                 "ID Vendedor", "Nombre", "# Ventas", "Dinero recibido"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tblVentaVendedor);
 
         body.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 195, -1, 245));
@@ -158,7 +179,15 @@ public class ReporteDiario extends javax.swing.JFrame {
             new String [] {
                 "ID Cliente", "Nombre", "# Compras", "Dinero invertido"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(tblComprasCliente);
 
         body.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 494, -1, 245));

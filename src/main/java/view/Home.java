@@ -5,6 +5,8 @@
  */
 package view;
 
+import view.registrar.RealizarVenta;
+
 /**
  *
  * @author Shamir

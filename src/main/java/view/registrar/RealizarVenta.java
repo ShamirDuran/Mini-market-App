@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.registrar;
 
 import controller.VentasController;
 import java.awt.event.MouseAdapter;
@@ -14,6 +14,12 @@ import javax.swing.JRootPane;
 import javax.swing.table.DefaultTableModel;
 import model.Singleton;
 import model.vo.VentaVo;
+import view.Home;
+import view.Inventario;
+import view.Producto;
+import view.ReporteDiario;
+import view.Transacciones;
+import view.Usuario;
 
 /**
  *

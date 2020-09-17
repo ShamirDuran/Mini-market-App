@@ -5,6 +5,9 @@
  */
 package view;
 
+import view.registrar.RealizarVenta;
+import view.registrar.RegistrarU;
+import view.modificar.ModificarU;
 import controller.UsuariosController;
 import java.util.ArrayList;
 

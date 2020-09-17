@@ -5,6 +5,8 @@
  */
 package view;
 
+import view.registrar.RealizarVenta;
+import view.modificar.ModificarP;
 import controller.ProductosController;
 import javax.swing.JOptionPane;
 import model.vo.ProductoVo;

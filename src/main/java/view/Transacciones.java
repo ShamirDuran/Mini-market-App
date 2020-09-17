@@ -5,6 +5,8 @@
  */
 package view;
 
+import view.registrar.RealizarVenta;
+import view.modificar.ModificarV;
 import controller.VentasController;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
