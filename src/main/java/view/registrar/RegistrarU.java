@@ -7,6 +7,7 @@ package view.registrar;
 
 import controller.UsuariosController;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import model.vo.UsuarioVo;
 
 /**
@@ -255,59 +256,61 @@ public class RegistrarU extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // Verificamos que los camposr equeridos no esten vacios
         // Se asigna 0 o null a los valores que no se quieren ingresar al sistema
-        
+
         int generoSelected = cbGenero.getSelectedIndex();
-        
+
         if (!etNombre.getText().equals("") && generoSelected != 0) {
-            int edad, cedula, genero;
-            
-            if (generoSelected == 1) {
-                genero = 1;
-            } else {
-                genero = 0;
-            }
-            
-            String correo, direccion;
+            if (!validarCampos()) {
+                int edad, cedula, genero;
 
-            if (!etEdad.getText().equals("")) {
-                edad = Integer.parseInt(etEdad.getText());
-            } else {
-                edad = 0;
-            }
+                if (generoSelected == 1) {
+                    genero = 1;
+                } else {
+                    genero = 0;
+                }
 
-            if (!etCedula.getText().equals("")) {
-                cedula = Integer.parseInt(etCedula.getText());
-            } else {
-                cedula = 0;
-            }
+                String correo, direccion;
 
-            if (!etCorreo.getText().equals("")) {
-                correo = etCorreo.getText();
-            } else {
-                correo = null;
-            }
+                if (!etEdad.getText().equals("")) {
+                    edad = Integer.parseInt(etEdad.getText());
+                } else {
+                    edad = 0;
+                }
 
-            if (!etDireccion.getText().equals("")) {
-                direccion = etDireccion.getText();
-            } else {
-                direccion = null;
-            }
+                if (!etCedula.getText().equals("")) {
+                    cedula = Integer.parseInt(etCedula.getText());
+                } else {
+                    cedula = 0;
+                }
 
-            Boolean check = userCon.añadirUsuario(
-                    4,
-                    edad,
-                    genero,
-                    etNombre.getText(),
-                    correo,
-                    direccion,
-                    cedula
-            );
+                if (!etCorreo.getText().equals("")) {
+                    correo = etCorreo.getText();
+                } else {
+                    correo = null;
+                }
 
-            if (check) {
-                this.dispose();
-                JOptionPane.showMessageDialog(null, "Cliente registrado!");
-            } else {
-                JOptionPane.showMessageDialog(this, "No se registro el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+                if (!etDireccion.getText().equals("")) {
+                    direccion = etDireccion.getText();
+                } else {
+                    direccion = null;
+                }
+
+                Boolean check = userCon.añadirUsuario(
+                        4,
+                        edad,
+                        genero,
+                        etNombre.getText(),
+                        correo,
+                        direccion,
+                        cedula
+                );
+
+                if (check) {
+                    this.dispose();
+                    JOptionPane.showMessageDialog(null, "Cliente registrado!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se registro el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
@@ -384,5 +387,108 @@ public class RegistrarU extends javax.swing.JFrame {
      */
     public void setUserCon(UsuariosController userCon) {
         this.userCon = userCon;
+    }
+
+    /**
+     * Valida los campos del formulario. Los campos opcionales se validan solo
+     * si estan llenos, es decir, si se desean usar
+     *
+     * @return true si todos los campos son validos y false de lo contrario
+     */
+    private boolean validarCampos() {
+        boolean error = false;
+
+        if (!validarNombre()) {
+            error = true;
+        }
+
+        if (!etCorreo.getText().equals("") && !validarCorreo()) {
+            error = true;
+        }
+
+        if (!etDireccion.getText().equals("") && !validarDireccion()) {
+            error = true;
+        }
+
+        if (!etEdad.getText().equals("") && !validarEdad()) {
+            error = true;
+        }
+
+        if (!etCedula.getText().equals("") && !validarCedula()) {
+            error = true;
+        }
+
+        return error;
+    }
+
+    private boolean validarNombre() {
+        boolean checkNombre = validarCampo(etNombre);
+        if (checkNombre) {
+            etNombre.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba un nombre valido", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validarCorreo() {
+        boolean checkCorreo = validarCampo(etCorreo);
+        if (checkCorreo) {
+            etCorreo.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba un correo valido", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validarDireccion() {
+        boolean checkDir = validarCampo(etDireccion);
+        if (checkDir) {
+            etDireccion.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba una dirección valida", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validarEdad() {
+        boolean checkEdad = validarCampo(etEdad);
+        if (!checkEdad) {
+            etEdad.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba una edad valida", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validarCedula() {
+        boolean checkCedula = validarCampo(etCedula);
+        if (!checkCedula) {
+            etCedula.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba una cédula valida", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Metodo para validar que tipo de input tiene el campo
+     *
+     * @param campo InputText que se quiere calidar
+     * @return True si es númerico, False si es string
+     */
+    private boolean validarCampo(JTextField campo) {
+        try {
+            double valor = Double.parseDouble(campo.getText());
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error campos " + e);
+            return false;
+        }
     }
 }

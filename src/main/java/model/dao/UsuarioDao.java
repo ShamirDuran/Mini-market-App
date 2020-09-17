@@ -37,26 +37,31 @@ public class UsuarioDao {
         String sql = "SELECT * FROM t_usuarios";
         return queryWithResultSet(sql);
     }
+
     public ResultSet obtenerUsuariosReporte() {
         String sql = "SELECT t_usuarios.id, t_usuarios.nombre,t_usuarios.transacciones, SUM(t_ventas.total) AS gasto FROM t_usuarios INNER JOIN t_ventas ON t_usuarios.id=t_ventas.fk_comprador GROUP BY t_usuarios.id ORDER BY transacciones DESC";
         return queryWithResultSet(sql);
     }
-        public ResultSet obtenerUsuariosReporteD() {
-        String sql = "SELECT t_usuarios.id, t_usuarios.nombre,COUNT(t_usuarios.transacciones) AS transacciones , SUM(t_ventas.total) AS gasto FROM t_usuarios \n" +
-"INNER JOIN t_ventas ON t_usuarios.id=t_ventas.fk_comprador \n" +
-"WHERE (SELECT Date_format(CURDATE(),'%Y-%m-%d')= STR_TO_DATE(t_ventas.fecha,'%d-%m-%Y')) GROUP BY t_usuarios.id ORDER BY transacciones DESC";
+
+    public ResultSet obtenerUsuariosReporteD() {
+        String sql = "SELECT t_usuarios.id, t_usuarios.nombre,COUNT(t_usuarios.transacciones) AS transacciones , SUM(t_ventas.total) AS gasto FROM t_usuarios \n"
+                + "INNER JOIN t_ventas ON t_usuarios.id=t_ventas.fk_comprador \n"
+                + "WHERE (SELECT Date_format(CURDATE(),'%Y-%m-%d')= STR_TO_DATE(t_ventas.fecha,'%d-%m-%Y')) GROUP BY t_usuarios.id ORDER BY transacciones DESC";
         return queryWithResultSet(sql);
     }
+
     public ResultSet obtenerVendedorReporte() {
         String sql = "SELECT t_usuarios.id, t_usuarios.nombre,t_usuarios.transacciones, SUM(t_ventas.total) AS gasto FROM t_usuarios INNER JOIN t_ventas ON t_usuarios.id=t_ventas.fk_vendedor GROUP BY t_usuarios.id ORDER BY t_usuarios.transacciones DESC";
         return queryWithResultSet(sql);
     }
-        public ResultSet obtenerVendedorReporteD() {
-        String sql = "SELECT t_usuarios.id, t_usuarios.nombre,COUNT(t_usuarios.transacciones) AS transacciones , SUM(t_ventas.total) AS gasto FROM t_usuarios \n" +
-"INNER JOIN t_ventas ON t_usuarios.id=t_ventas.fk_vendedor\n" +
-"WHERE (SELECT Date_format(CURDATE(),'%Y-%m-%d')= STR_TO_DATE(t_ventas.fecha,'%d-%m-%Y')) GROUP BY t_usuarios.id ORDER BY t_usuarios.transacciones DESC";
+
+    public ResultSet obtenerVendedorReporteD() {
+        String sql = "SELECT t_usuarios.id, t_usuarios.nombre,COUNT(t_usuarios.transacciones) AS transacciones , SUM(t_ventas.total) AS gasto FROM t_usuarios \n"
+                + "INNER JOIN t_ventas ON t_usuarios.id=t_ventas.fk_vendedor\n"
+                + "WHERE (SELECT Date_format(CURDATE(),'%Y-%m-%d')= STR_TO_DATE(t_ventas.fecha,'%d-%m-%Y')) GROUP BY t_usuarios.id ORDER BY t_usuarios.transacciones DESC";
         return queryWithResultSet(sql);
     }
+
     /**
      * Metodo que agrega nuevos usuarios a la lista de registrados. Retorna un
      * boolean dependiendo de si se realizo la operación o no.

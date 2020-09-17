@@ -7,6 +7,7 @@ package view.modificar;
 
 import controller.UsuariosController;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import model.vo.UsuarioVo;
 
 /**
@@ -274,46 +275,48 @@ public class ModificarU extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         user.setId(user.getId());
         int generoSelected = cbGenero.getSelectedIndex();
-        // Los else setenado null y 0 es para representar cuando el usuario quiere eliminar ese dato
+        // Los else seteando null y 0 es para representar cuando el usuario quiere eliminar ese dato
         // entoncesal recibir 0 o null el UsuarioDao los manda a la db como null y asi se eliminan.
         if (!etNombre.getText().equals("") && generoSelected != 0) {
-            user.setNombre(etNombre.getText());
+            if (!validarCampos()) {
+                user.setNombre(etNombre.getText());
 
-            if (!etCorreo.getText().equals("")) {
-                user.setCorreo(etCorreo.getText());
-            } else {
-                user.setCorreo(null);
-            }
+                if (!etCorreo.getText().equals("")) {
+                    user.setCorreo(etCorreo.getText());
+                } else {
+                    user.setCorreo(null);
+                }
 
-            if (!etDireccion.getText().equals("")) {
-                user.setDireccion(etDireccion.getText());
-            } else {
-                user.setDireccion(null);
-            }
+                if (!etDireccion.getText().equals("")) {
+                    user.setDireccion(etDireccion.getText());
+                } else {
+                    user.setDireccion(null);
+                }
 
-            if (!etEdad.getText().equals("")) {
-                user.setEdad(Integer.parseInt(etEdad.getText()));
-            } else {
-                user.setEdad(0);
-            }
+                if (!etEdad.getText().equals("")) {
+                    user.setEdad(Integer.parseInt(etEdad.getText()));
+                } else {
+                    user.setEdad(0);
+                }
 
-            if (generoSelected == 1) {
-                user.setGenero(1);
-            } else {
-                user.setGenero(0);
-            }
+                if (generoSelected == 1) {
+                    user.setGenero(1);
+                } else {
+                    user.setGenero(0);
+                }
 
-            if (!etCedula.getText().equals("")) {
-                user.setCedula(Integer.parseInt(etCedula.getText()));
-            } else {
-                user.setCedula(0);
-            }
+                if (!etCedula.getText().equals("")) {
+                    user.setCedula(Integer.parseInt(etCedula.getText()));
+                } else {
+                    user.setCedula(0);
+                }
 
-            if (usercon.modificarUsuario(user)) {
-                this.dispose();
-                JOptionPane.showMessageDialog(null, "Usuario modificado correctamente!");
-            } else {
-                JOptionPane.showMessageDialog(this, "No se modifico el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+                if (usercon.modificarUsuario(user)) {
+                    this.dispose();
+                    JOptionPane.showMessageDialog(null, "Usuario modificado correctamente!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se modifico el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos obligatorios");
@@ -396,7 +399,7 @@ public class ModificarU extends javax.swing.JFrame {
     public void setUser(UsuarioVo user) {
         this.user = user;
         etNombre.setText(user.getNombre());
-        
+
         if (user.getGenero() == 0) { // mujer
             cbGenero.setSelectedIndex(2);
         } else {
@@ -425,5 +428,108 @@ public class ModificarU extends javax.swing.JFrame {
      */
     public void setUsercon(UsuariosController usercon) {
         this.usercon = usercon;
+    }
+
+    /**
+     * Valida los campos del formulario. Los campos opcionales se validan solo
+     * si estan llenos, es decir, si se desean usar
+     *
+     * @return true si todos los campos son validos y false de lo contrario
+     */
+    private boolean validarCampos() {
+        boolean error = false;
+
+        if (!validarNombre()) {
+            error = true;
+        }
+
+        if (!etCorreo.getText().equals("") && !validarCorreo()) {
+            error = true;
+        }
+
+        if (!etDireccion.getText().equals("") && !validarDireccion()) {
+            error = true;
+        }
+
+        if (!etEdad.getText().equals("") && !validarEdad()) {
+            error = true;
+        }
+
+        if (!etCedula.getText().equals("") && !validarCedula()) {
+            error = true;
+        }
+
+        return error;
+    }
+
+    private boolean validarNombre() {
+        boolean checkNombre = validarCampo(etNombre);
+        if (checkNombre) {
+            etNombre.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba un nombre valido", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validarCorreo() {
+        boolean checkCorreo = validarCampo(etCorreo);
+        if (checkCorreo) {
+            etCorreo.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba un correo valido", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validarDireccion() {
+        boolean checkDir = validarCampo(etDireccion);
+        if (checkDir) {
+            etDireccion.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba una dirección valida", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validarEdad() {
+        boolean checkEdad = validarCampo(etEdad);
+        if (!checkEdad) {
+            etEdad.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba una edad valida", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validarCedula() {
+        boolean checkCedula = validarCampo(etCedula);
+        if (!checkCedula) {
+            etCedula.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba una cédula valida", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Metodo para validar que tipo de input tiene el campo
+     *
+     * @param campo InputText que se quiere calidar
+     * @return True si es númerico, False si es string
+     */
+    private boolean validarCampo(JTextField campo) {
+        try {
+            double valor = Double.parseDouble(campo.getText());
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error campos " + e);
+            return false;
+        }
     }
 }

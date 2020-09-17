@@ -293,35 +293,45 @@ public class ModificarV extends javax.swing.JFrame {
         if (colSeleccionada == 3) {
             int filaSeleccionada = tblFactura.getSelectedRow();
             double cost_uni = Double.parseDouble(model.getValueAt(filaSeleccionada, 2).toString());
-            int cantidad = Integer.parseInt(JOptionPane.showInputDialog(this, "Cantidad"));
-            int cantidad_actual = Integer.parseInt(model.getValueAt(filaSeleccionada, 3).toString());
-
-            if (cantidad > 0) {
-                // verificamos que no se esten agregando nuevos productos
-                if (cantidad <= cantidad_actual) {
-                    double total = cost_uni * cantidad;
-                    int nueva_cantidad = cantidad_actual - cantidad;
-                    model.setValueAt(cantidad, filaSeleccionada, 3);
-                    model.setValueAt(total, filaSeleccionada, 4);
-                    if (nueva_cantidad != cantidad_actual) {
-                        devuelto.set(filaSeleccionada, devuelto.get(filaSeleccionada) + nueva_cantidad);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Para agregar más productos realice una nueva venta", "Aviso", JOptionPane.WARNING_MESSAGE);
-                }
-            } else { // coloco una valor menor o igual que a 0
-                int click = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea cambiar la cantidad a 0?. \n\n"
-                        + "Se eliminara el producto de la factura", "Confirmación", JOptionPane.YES_NO_OPTION);
-
-                if (click == JOptionPane.YES_OPTION) {
-                    int id_pro = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
-                    // Se guarda el id del producto que se elimino de la factura
-                    eliminar.add(id_pro);
-                    devuelto.remove(filaSeleccionada);
-                    model.removeRow(filaSeleccionada);
-                }
+            int cantidad = 0;
+            boolean check = false;
+            try {
+                cantidad = Integer.parseInt(JOptionPane.showInputDialog(this, "Cantidad"));
+                check = true;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Escriba una cantidad valida", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
-            calcularTotal();
+
+            if (check) {
+                int cantidad_actual = Integer.parseInt(model.getValueAt(filaSeleccionada, 3).toString());
+
+                if (cantidad > 0) {
+                    // verificamos que no se esten agregando nuevos productos
+                    if (cantidad <= cantidad_actual) {
+                        double total = cost_uni * cantidad;
+                        int nueva_cantidad = cantidad_actual - cantidad;
+                        model.setValueAt(cantidad, filaSeleccionada, 3);
+                        model.setValueAt(total, filaSeleccionada, 4);
+                        if (nueva_cantidad != cantidad_actual) {
+                            devuelto.set(filaSeleccionada, devuelto.get(filaSeleccionada) + nueva_cantidad);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Para agregar más productos realice una nueva venta", "Aviso", JOptionPane.WARNING_MESSAGE);
+                    }
+                } else { // coloco una valor menor o igual que a 0
+                    int click = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea cambiar la cantidad a 0?. \n\n"
+                            + "Se eliminara el producto de la factura", "Confirmación", JOptionPane.YES_NO_OPTION);
+
+                    if (click == JOptionPane.YES_OPTION) {
+                        int id_pro = Integer.parseInt(model.getValueAt(filaSeleccionada, 0).toString());
+                        // Se guarda el id del producto que se elimino de la factura
+                        eliminar.add(id_pro);
+                        devuelto.remove(filaSeleccionada);
+                        model.removeRow(filaSeleccionada);
+                    }
+                }
+                calcularTotal();
+            }
         }
     }//GEN-LAST:event_tblFacturaMouseClicked
 
@@ -366,7 +376,6 @@ public class ModificarV extends javax.swing.JFrame {
             }
         }
 
-
         if (eliminar.size() > 0) {
             for (int i = 0; i < eliminar.size(); i++) {
                 System.out.println("Se eliminara id " + eliminar.get(i));
@@ -376,7 +385,6 @@ public class ModificarV extends javax.swing.JFrame {
             System.out.println("No hay nada para eliminar");
             System.out.println("\n");
         }
-
 
 //        VentaVo prueba = new VentaVo();
 //        cargarDatosVenta(prueba);

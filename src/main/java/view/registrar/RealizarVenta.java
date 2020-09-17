@@ -42,7 +42,7 @@ public class RealizarVenta extends javax.swing.JFrame {
         ventaCon = new VentasController();
         model = (DefaultTableModel) tblFactura.getModel();
         clienteData = new ArrayList<>();
-        
+
         mouseHover(plVenta);
 
         lblNombreVen.setText(Singleton.getInstance().getNombre());
@@ -892,42 +892,50 @@ public class RealizarVenta extends javax.swing.JFrame {
         if (tblProductos.getSelectedRow() >= 0) {
             int filaSeleccionada = tblProductos.getSelectedRow();
             int stock = Integer.parseInt(tblProductos.getValueAt(filaSeleccionada, 3).toString());
-            int cantidad = Integer.parseInt(JOptionPane.showInputDialog("Cantidad a comprar")); // cantidad a comprar
-            String pro_id = tblProductos.getValueAt(filaSeleccionada, 0).toString(); //id del producto que se quiere agregar
+            int cantidad = 0;
 
-            String ref = buscarEnFactura(pro_id); //se busca si en la factura ya se encuentra el producto
-
-            if (ref != null) { // si el producto se encuentra en la factura
-                int fila = Integer.parseInt(ref); // fila en la que se encontro el producto ya en la factura
-                int cantidad_total = cantidad + Integer.parseInt(model.getValueAt(fila, 3).toString()); // cantidad que ya se habia solicitado más la que se solicita ahora
-
-                if (validarVenta(stock, cantidad_total)) { // si la cantidad total del producto solicitado es menor a las unidades en stock
-                    double precio = Double.parseDouble(tblProductos.getValueAt(filaSeleccionada, 2).toString()); // precio x unidad del producto
-                    int total = (int) (cantidad_total * precio);  //se calcula el precio total
-
-                    String[] pro = new String[5];
-
-                    model.setValueAt(cantidad_total, fila, 3);
-                    model.setValueAt(total, fila, 4);
-                }
-            } else { // no se encontro al producto en la factura. Primera vez que se agrega
-                if (validarVenta(stock, cantidad)) {
-                    double precio = Double.parseDouble(tblProductos.getValueAt(filaSeleccionada, 2).toString()); // precio x unidad del producto
-                    int total = (int) (cantidad * precio);  //se calcula el precio total
-
-                    String[] pro = new String[5];
-
-                    pro[0] = pro_id;  //id
-                    pro[1] = tblProductos.getValueAt(filaSeleccionada, 1).toString();  //Nombre
-                    pro[2] = String.valueOf(precio);
-                    pro[3] = String.valueOf(cantidad);
-                    pro[4] = String.valueOf(total);
-
-                    addRowFacture(pro);
-                }
+            try {
+                cantidad = Integer.parseInt(JOptionPane.showInputDialog("Cantidad a comprar")); // cantidad a comprar
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Añada una cantidad valida", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
-            calcularTotal();
 
+            if (cantidad > 0) {
+                String pro_id = tblProductos.getValueAt(filaSeleccionada, 0).toString(); //id del producto que se quiere agregar
+
+                String ref = buscarEnFactura(pro_id); //se busca si en la factura ya se encuentra el producto
+
+                if (ref != null) { // si el producto se encuentra en la factura
+                    int fila = Integer.parseInt(ref); // fila en la que se encontro el producto ya en la factura
+                    int cantidad_total = cantidad + Integer.parseInt(model.getValueAt(fila, 3).toString()); // cantidad que ya se habia solicitado más la que se solicita ahora
+
+                    if (validarVenta(stock, cantidad_total)) { // si la cantidad total del producto solicitado es menor a las unidades en stock
+                        double precio = Double.parseDouble(tblProductos.getValueAt(filaSeleccionada, 2).toString()); // precio x unidad del producto
+                        int total = (int) (cantidad_total * precio);  //se calcula el precio total
+
+                        String[] pro = new String[5];
+
+                        model.setValueAt(cantidad_total, fila, 3);
+                        model.setValueAt(total, fila, 4);
+                    }
+                } else { // no se encontro al producto en la factura. Primera vez que se agrega
+                    if (validarVenta(stock, cantidad)) {
+                        double precio = Double.parseDouble(tblProductos.getValueAt(filaSeleccionada, 2).toString()); // precio x unidad del producto
+                        int total = (int) (cantidad * precio);  //se calcula el precio total
+
+                        String[] pro = new String[5];
+
+                        pro[0] = pro_id;  //id
+                        pro[1] = tblProductos.getValueAt(filaSeleccionada, 1).toString();  //Nombre
+                        pro[2] = String.valueOf(precio);
+                        pro[3] = String.valueOf(cantidad);
+                        pro[4] = String.valueOf(total);
+
+                        addRowFacture(pro);
+                    }
+                }
+                calcularTotal();
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione un producto", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
@@ -1026,14 +1034,24 @@ public class RealizarVenta extends javax.swing.JFrame {
         if (colSeleccionada == 3) {
             int filaSeleccionada = tblFactura.getSelectedRow();
             double cost_uni = Double.parseDouble(model.getValueAt(filaSeleccionada, 2).toString());
-            double cantidad = Double.parseDouble(JOptionPane.showInputDialog("Cantidad a comprar"));
+            double cantidad = 0;
+            boolean check = false;
 
-            if (cantidad > 0) {
-                double total = cost_uni * cantidad;
-                model.setValueAt((int) cantidad, filaSeleccionada, 3);
-                model.setValueAt((int) total, filaSeleccionada, 4);
-            } else {
-                model.removeRow(filaSeleccionada);
+            try {
+                cantidad = Double.parseDouble(JOptionPane.showInputDialog("Cantidad a comprar"));
+                check = true;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Escriba una cantidad valida", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+
+            if (check) {
+                if (cantidad > 0) {
+                    double total = cost_uni * cantidad;
+                    model.setValueAt((int) cantidad, filaSeleccionada, 3);
+                    model.setValueAt((int) total, filaSeleccionada, 4);
+                } else {
+                    model.removeRow(filaSeleccionada);
+                }
             }
 
             calcularTotal();

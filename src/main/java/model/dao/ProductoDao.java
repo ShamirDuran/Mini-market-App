@@ -37,14 +37,17 @@ public class ProductoDao {
         String sql = "SELECT * FROM t_productos";
         return queryWithResultSet(sql, 0);
     }
+
     public ResultSet obtenerProductosReporte() {
         String sql = "SELECT id, nombre, cantidad_vendidos,precio FROM t_productos ORDER BY cantidad_vendidos DESC";
         return queryWithResultSet(sql, 0);
     }
-        public ResultSet obtenerProductosReporteGrafico() {
+
+    public ResultSet obtenerProductosReporteGrafico() {
         String sql = "SELECT  nombre, cantidad_vendidos FROM t_productos";
         return queryWithResultSet(sql, 0);
     }
+
     public ResultSet obtenerProductosReporteD() {
         String sql = "SELECT t_productos.id, t_productos.nombre,SUM(t_venta_producto.cantidad) as cantidad,t_productos.precio FROM t_productos INNER JOIN t_venta_producto ON t_venta_producto.fk_producto=t_productos.id INNER JOIN t_ventas ON t_ventas.id = t_venta_producto.fk_venta WHERE (SELECT Date_format(CURDATE(),'%Y-%m-%d')= STR_TO_DATE(t_ventas.fecha,'%d-%m-%Y')) GROUP BY t_productos.id ORDER BY cantidad_vendidos DESC";
         return queryWithResultSet(sql, 0);
@@ -62,10 +65,7 @@ public class ProductoDao {
                 uni_medida,
                 cantidad
         );
-
-        Boolean check = queryWithBoolean(sql, pro, "execute");
-
-        return check;
+        return queryWithBoolean(sql, pro, "execute");
     }
 
 //    public ProductoVo obtenerProductoId(int id) {
@@ -76,12 +76,11 @@ public class ProductoDao {
 //        }
 //        return null;
 //    }
-
     public ResultSet buscarProducto(String nombre) {
         String sql = "SELECT *FROM t_productos WHERE nombre LIKE '" + nombre + "%'";
         return queryWithResultSet(sql, 0);
     }
-    
+
     public ResultSet buscarProductoId(int id) {
         String sql = "SELECT *FROM t_productos WHERE id = ?";
         return queryWithResultSet(sql, id);
@@ -90,7 +89,7 @@ public class ProductoDao {
     public boolean modificarProducto(ProductoVo dataProducto) {
         boolean check = false;
 
-        String sql = "UPDATE t_productos SET nombre = ?, precio = ?, cant_medida = ?, uni_medida = ?, cantidad = ?, cantidad_vendidos = ? WHERE id = ?";
+        String sql = "UPDATE t_productos SET nombre = ?, precio = ?, cant_medida = ?, uni_medida = ?, cantidad = ? WHERE id = ?";
         check = queryWithBoolean(sql, dataProducto, "executeUpdate");
 
         return check;
@@ -104,7 +103,7 @@ public class ProductoDao {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.execute();
-            
+
             return true;
         } catch (Exception e) {
             System.out.println("Error al eliminar producto: " + e);
@@ -118,12 +117,12 @@ public class ProductoDao {
 
         try {
             ps = con.prepareStatement(sql);
-            
+
             // Al ser mayor de cero se entiende que se quiere buscar por id
             if (id > 0) {
                 ps.setInt(1, id);
             }
-            
+
             rs = ps.executeQuery();
         } catch (Exception e) {
             System.out.println("Error traer datos productos: " + e);
@@ -143,15 +142,15 @@ public class ProductoDao {
                 ps.setDouble(3, pro.getCant_medida());
                 ps.setString(4, pro.getUni_medida());
                 ps.setInt(5, pro.getCantidad());
-                ps.setInt(6, pro.getCantidadVendidos());
 
                 switch (type) {
                     case "execute":
+                        ps.setInt(6, pro.getCantidadVendidos());
                         ps.execute();
                         break;
 
                     case "executeUpdate":
-                        ps.setInt(7, pro.getId());
+                        ps.setInt(6, pro.getId());
                         ps.executeUpdate();
                         break;
 

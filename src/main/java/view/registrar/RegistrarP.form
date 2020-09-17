@@ -117,7 +117,7 @@
                       <Component id="etContNeto" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="etUniMedida" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="etCantidad" min="-2" pref="40" max="-2" attributes="0"/>

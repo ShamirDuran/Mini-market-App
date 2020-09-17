@@ -7,6 +7,7 @@ package view.modificar;
 
 import controller.ProductosController;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import model.vo.ProductoVo;
 
 /**
@@ -174,15 +175,15 @@ public class ModificarP extends javax.swing.JFrame {
                         .addComponent(edCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bodyLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGuardar))
+                    .addGroup(bodyLayout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(edPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(edUniMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(bodyLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGuardar)))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(50, 50, 50))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -268,20 +269,22 @@ public class ModificarP extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // Verificamos que ningun campo este vacio
         if (!edNombre.getText().equals("") && !edPrecio.getText().equals("") && !edContNeto.getText().equals("") && !edUniMedida.getText().equals("") && !edCantidad.getText().equals("")) {
-            ProductoVo proData = new ProductoVo(
-                    edNombre.getText().toUpperCase(),
-                    Double.parseDouble(edPrecio.getText()),
-                    Double.parseDouble(edContNeto.getText()),
-                    edUniMedida.getText().toLowerCase(),
-                    Integer.parseInt(edCantidad.getText())
-            );
+            if (validarCampos()) {
+                ProductoVo proData = new ProductoVo(
+                        edNombre.getText().toUpperCase(),
+                        Double.parseDouble(edPrecio.getText()),
+                        Double.parseDouble(edContNeto.getText()),
+                        edUniMedida.getText().toLowerCase(),
+                        Integer.parseInt(edCantidad.getText())
+                );
 
-            proData.setId(pro.getId());
-            if (proCon.modificarProducto(proData)) {
-                this.dispose();
-                JOptionPane.showMessageDialog(null, "Producto modificado correctamente!");
-            } else {
-                JOptionPane.showMessageDialog(this, "No se modifico el producto", "Error", JOptionPane.ERROR_MESSAGE);
+                proData.setId(pro.getId());
+                if (proCon.modificarProducto(proData)) {
+                    this.dispose();
+                    JOptionPane.showMessageDialog(null, "Producto modificado correctamente!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se modifico el producto", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
@@ -352,6 +355,7 @@ public class ModificarP extends javax.swing.JFrame {
         edCantidad.setText(String.valueOf(pro.getCantidad()));
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel body;
     private javax.swing.JButton btnCancelar;
@@ -368,4 +372,59 @@ public class ModificarP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validarCampos() {
+        boolean checkCantidad = validarCampo(edCantidad);
+        boolean checkNeto = validarCampo(edContNeto);
+        boolean checkPrecio = validarCampo(edPrecio);
+        boolean checkUni = validarCampo(edUniMedida);
+
+        if (checkNeto && checkCantidad && checkPrecio && !checkUni) {
+            return true;
+        }
+
+        if (!checkNeto && !checkCantidad && !checkPrecio) {
+            edContNeto.setText(null);
+            edCantidad.setText(null);
+            edPrecio.setText(null);
+            JOptionPane.showMessageDialog(this, "Solo se aceptan números en precio, cantidad y Cont. Neto\n\n Escriba un valor valido", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (!checkPrecio) {
+            edPrecio.setText(null);
+            JOptionPane.showMessageDialog(this, "Solo se aceptan números en precio \n\n Escriba un valor valido", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (!checkNeto) {
+            edContNeto.setText(null);
+            JOptionPane.showMessageDialog(this, "Solo se aceptan números en Cont. Neto \n\n Escriba un valor valido", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (checkUni) {
+            edUniMedida.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba una unidad de medida valida", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (!checkCantidad) {
+            edCantidad.setText(null);
+            JOptionPane.showMessageDialog(this, "Solo se aceptan números en cantidad \n\n Escriba un valor valido", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        return false;
+    }
+
+    private boolean validarCampo(JTextField campo) {
+        try {
+            double valor = Double.parseDouble(campo.getText());
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error campos " + e);
+            return false;
+        }
+    }
 }

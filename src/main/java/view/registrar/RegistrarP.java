@@ -7,6 +7,7 @@ package view.registrar;
 
 import controller.ProductosController;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import model.dao.ProductoDao;
 import model.vo.ProductoVo;
 
@@ -177,7 +178,7 @@ public class RegistrarP extends javax.swing.JFrame {
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etContNeto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etUniMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(etCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,19 +224,21 @@ public class RegistrarP extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // Verificamos que ningun campo este vacio
         if (!etNombre.getText().equals("") && !etPrecio.getText().equals("") && !etContNeto.getText().equals("") && !etUniMedida.getText().equals("") && !etCantidad.getText().equals("")) {
-            Boolean check = proCon.añadirProducto(
-                    etNombre.getText().toUpperCase(),
-                    Double.parseDouble(etPrecio.getText()),
-                    Double.parseDouble(etContNeto.getText()),
-                    etUniMedida.getText().toLowerCase(),
-                    Integer.parseInt(etCantidad.getText())
-            );
+            if (validarCampos()) {
+                Boolean check = proCon.añadirProducto(
+                        etNombre.getText().toUpperCase(),
+                        Double.parseDouble(etPrecio.getText()),
+                        Double.parseDouble(etContNeto.getText()),
+                        etUniMedida.getText().toLowerCase(),
+                        Integer.parseInt(etCantidad.getText())
+                );
 
-            if (check) {
-                this.dispose();
-                JOptionPane.showMessageDialog(null, "Producto registrado!");
-            } else {
-                JOptionPane.showMessageDialog(this, "No se registro el producto", "Error", JOptionPane.ERROR_MESSAGE);
+                if (check) {
+                    this.dispose();
+                    JOptionPane.showMessageDialog(null, "Producto registrado!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se registro el producto", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos");
@@ -297,4 +300,72 @@ public class RegistrarP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validarCampos() {
+        boolean checkNombre = validarCampo(etNombre);
+        boolean checkCantidad = validarCampo(etCantidad);
+        boolean checkNeto = validarCampo(etContNeto);
+        boolean checkPrecio = validarCampo(etPrecio);
+        boolean checkUni = validarCampo(etUniMedida);
+
+        if (!checkNombre && checkNeto && checkCantidad && checkPrecio && !checkUni) {
+            return true;
+        }
+
+        if (checkNombre) {
+            etNombre.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba un nombre valido", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (!checkNeto && !checkCantidad && !checkPrecio) {
+            etContNeto.setText(null);
+            etCantidad.setText(null);
+            etPrecio.setText(null);
+            JOptionPane.showMessageDialog(this, "Solo se aceptan números en precio, cantidad y Cont. Neto\n\n Escriba un valor valido", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (!checkPrecio) {
+            etPrecio.setText(null);
+            JOptionPane.showMessageDialog(this, "Solo se aceptan números en precio \n\n Escriba un valor valido", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (!checkNeto) {
+            etContNeto.setText(null);
+            JOptionPane.showMessageDialog(this, "Solo se aceptan números en Cont. Neto \n\n Escriba un valor valido", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (checkUni) {
+            etUniMedida.setText(null);
+            JOptionPane.showMessageDialog(this, "Escriba una unidad de medida valida", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (!checkCantidad) {
+            etCantidad.setText(null);
+            JOptionPane.showMessageDialog(this, "Solo se aceptan números en cantidad \n\n Escriba un valor valido", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        return false;
+    }
+
+    /**
+     * Metodo para validar que tipo de input tiene el campo
+     *
+     * @param campo InputText que se quiere calidar
+     * @return True si es númerico, False si es string
+     */
+    private boolean validarCampo(JTextField campo) {
+        try {
+            double valor = Double.parseDouble(campo.getText());
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error campos " + e);
+            return false;
+        }
+    }
 }
