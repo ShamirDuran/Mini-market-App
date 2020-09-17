@@ -48,13 +48,13 @@ public class UsuarioDao {
         return queryWithResultSet(sql);
     }
     public ResultSet obtenerVendedorReporte() {
-        String sql = "SELECT t_usuarios.id, t_usuarios.nombre,t_usuarios.transacciones, SUM(t_ventas.total) AS gasto FROM t_usuarios INNER JOIN t_ventas ON t_usuarios.id=t_ventas.fk_vendedor GROUP BY t_usuarios.id";
+        String sql = "SELECT t_usuarios.id, t_usuarios.nombre,t_usuarios.transacciones, SUM(t_ventas.total) AS gasto FROM t_usuarios INNER JOIN t_ventas ON t_usuarios.id=t_ventas.fk_vendedor GROUP BY t_usuarios.id ORDER BY t_usuarios.transacciones DESC";
         return queryWithResultSet(sql);
     }
         public ResultSet obtenerVendedorReporteD() {
         String sql = "SELECT t_usuarios.id, t_usuarios.nombre,COUNT(t_usuarios.transacciones) AS transacciones , SUM(t_ventas.total) AS gasto FROM t_usuarios \n" +
 "INNER JOIN t_ventas ON t_usuarios.id=t_ventas.fk_vendedor\n" +
-"WHERE (SELECT Date_format(CURDATE(),'%Y-%m-%d')= STR_TO_DATE(t_ventas.fecha,'%d-%m-%Y')) GROUP BY t_usuarios.id";
+"WHERE (SELECT Date_format(CURDATE(),'%Y-%m-%d')= STR_TO_DATE(t_ventas.fecha,'%d-%m-%Y')) GROUP BY t_usuarios.id ORDER BY t_usuarios.transacciones DESC";
         return queryWithResultSet(sql);
     }
     /**
