@@ -92,7 +92,7 @@ public class VentaDao {
     }
 
     public ResultSet buscarClientes(String nombre) {
-        String sql = "SELECT * FROM t_usuarios WHERE nombre LIKE '" + nombre + "%'";
+        String sql = "SELECT * FROM t_usuarios WHERE nombre LIKE '" + nombre + "%' AND nombre!=\"Desconocido\"";
         return queryWithResultSet(sql);
     }
 

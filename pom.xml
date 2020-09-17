@@ -67,4 +67,21 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <name>Minimarket</name>
+      <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.3.2</version>      
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>view.Home</mainClass>
+            </manifest>
+          </archive>
+        </configuration>     
+      </plugin>
+    </plugins>
+  </build>
 </project>

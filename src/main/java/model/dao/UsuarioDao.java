@@ -34,7 +34,7 @@ public class UsuarioDao {
     }
 
     public ResultSet obtenerUsuarios() {
-        String sql = "SELECT * FROM t_usuarios";
+        String sql = "SELECT * FROM t_usuarios where nombre!=\"Desconocido\"";
         return queryWithResultSet(sql);
     }
 
@@ -107,7 +107,7 @@ public class UsuarioDao {
      * @return True si se pudo eliminar, False si no.
      */
     public boolean eliminarUsuario(int id) {
-        String sql = "DELETE FROM t_usuarios WHERE id = ?";
+        String sql = "UPDATE t_usuarios SET edad=null,genero=NULL,nombre=\"Desconocido\",correo=null,direccion=null,cedula=null WHERE id=?";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
