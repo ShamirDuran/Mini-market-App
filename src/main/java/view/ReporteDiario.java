@@ -8,7 +8,9 @@ package view;
 import view.registrar.RealizarVenta;
 import controller.ProductosController;
 import controller.UsuariosController;
+import java.awt.Color;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -27,11 +29,14 @@ public class ReporteDiario extends javax.swing.JFrame {
      */
     ProductosController proCon;
     UsuariosController userCon;
+
     public ReporteDiario() {
         initComponents();
         proCon = new ProductosController();
         userCon = new UsuariosController();
 
+        mouseHover(plReportes);
+        
         mostrarUsuarios();
         mostrarUsuariosGraficoD();
         mostrarVendedoresD();
@@ -93,9 +98,11 @@ public class ReporteDiario extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         lblTransacciones = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        lblAcercaDe = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(243, 243, 243));
+        setResizable(false);
 
         parent.setBackground(new java.awt.Color(243, 243, 243));
 
@@ -103,7 +110,8 @@ public class ReporteDiario extends javax.swing.JFrame {
         body.setPreferredSize(new java.awt.Dimension(1026, 785));
         body.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Gill Sans MT", 0, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("REPORTE DIARIO");
         body.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 45, -1, -1));
 
@@ -138,7 +146,8 @@ public class ReporteDiario extends javax.swing.JFrame {
 
         body.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 195, -1, 544));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("GANANCIA TOTAL DEL DÍA");
         body.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 164, -1, -1));
 
@@ -165,7 +174,8 @@ public class ReporteDiario extends javax.swing.JFrame {
 
         body.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 195, -1, 245));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(51, 51, 51));
         jLabel13.setText("VENTA POR VENDEDOR");
         body.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 164, -1, -1));
 
@@ -192,7 +202,8 @@ public class ReporteDiario extends javax.swing.JFrame {
 
         body.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 494, -1, 245));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(51, 51, 51));
         jLabel14.setText("COMPRAS POR CLIENTE");
         body.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 463, -1, -1));
 
@@ -211,25 +222,30 @@ public class ReporteDiario extends javax.swing.JFrame {
         });
         body.add(btnReporteTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 99, 42, 38));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Gill Sans MT", 0, 36)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(51, 51, 51));
         jLabel21.setText("REPORTE TOTAL");
-        body.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(741, 45, -1, -1));
+        body.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(172, 78, 233));
         jLabel2.setText("Ver graficos");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
-        body.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, -1));
+        body.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, -1, -1));
 
-        jLabel4.setText("ver tablas");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(172, 78, 233));
+        jLabel4.setText("Ver tablas");
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
         });
-        body.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
+        body.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, -1, -1));
 
         Graph1.setBackground(new java.awt.Color(243, 243, 243));
 
@@ -284,6 +300,12 @@ public class ReporteDiario extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plIinicioMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plIinicioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plIinicioMouseExited(evt);
+            }
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -316,6 +338,12 @@ public class ReporteDiario extends javax.swing.JFrame {
         plClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plClientesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plClientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plClientesMouseExited(evt);
             }
         });
 
@@ -355,6 +383,12 @@ public class ReporteDiario extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plProductosMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plProductosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plProductosMouseExited(evt);
+            }
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -393,6 +427,12 @@ public class ReporteDiario extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plVentaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plVentaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plVentaMouseExited(evt);
+            }
         });
 
         lblVenta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -426,6 +466,12 @@ public class ReporteDiario extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plReportesMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plReportesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plReportesMouseExited(evt);
+            }
         });
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -458,6 +504,12 @@ public class ReporteDiario extends javax.swing.JFrame {
         plInventario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plInventarioMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plInventarioMouseExited(evt);
             }
         });
 
@@ -497,6 +549,12 @@ public class ReporteDiario extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plTransaccionesMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plTransaccionesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plTransaccionesMouseExited(evt);
+            }
         });
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -530,6 +588,16 @@ public class ReporteDiario extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Mini Market");
 
+        lblAcercaDe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAcercaDe.setForeground(new java.awt.Color(255, 255, 255));
+        lblAcercaDe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAcercaDe.setText("Acerca de...");
+        lblAcercaDe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAcercaDeMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout sidepanelLayout = new javax.swing.GroupLayout(sidepanel);
         sidepanel.setLayout(sidepanelLayout);
         sidepanelLayout.setHorizontalGroup(
@@ -542,6 +610,10 @@ public class ReporteDiario extends javax.swing.JFrame {
             .addComponent(plReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(plVenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(sidepanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAcercaDe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         sidepanelLayout.setVerticalGroup(
             sidepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -562,7 +634,9 @@ public class ReporteDiario extends javax.swing.JFrame {
                 .addComponent(plTransacciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(plReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAcercaDe)
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout parentLayout = new javax.swing.GroupLayout(parent);
@@ -605,73 +679,6 @@ public class ReporteDiario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnReporteTotalMouseClicked
 
-    private void plIinicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseClicked
-        Home home = new Home();
-        home.setLocationRelativeTo(null);
-        home.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plIinicioMouseClicked
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        Usuario cliente = new Usuario();
-        cliente.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
-
-    private void plClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseClicked
-        Usuario cliente = new Usuario();
-        cliente.setVisible(true);
-        cliente.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_plClientesMouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        Producto producto = new Producto();
-        producto.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void plProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseClicked
-        Producto producto = new Producto();
-        producto.setVisible(true);
-        producto.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_plProductosMouseClicked
-
-    private void plVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseClicked
-        RealizarVenta venta = new RealizarVenta();
-        venta.setLocationRelativeTo(null);
-        venta.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plVentaMouseClicked
-
-    private void plReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseClicked
-        ReporteDiario reportDay = new ReporteDiario();
-        reportDay.setLocationRelativeTo(null);
-        reportDay.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plReportesMouseClicked
-
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        Inventario inventario = new Inventario();
-        inventario.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel15MouseClicked
-
-    private void plInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseClicked
-        Inventario inventario = new Inventario();
-        inventario.setVisible(true);
-        inventario.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_plInventarioMouseClicked
-
-    private void plTransaccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseClicked
-        Transacciones transac = new Transacciones();
-        transac.setLocationRelativeTo(null);
-        transac.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plTransaccionesMouseClicked
-
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         //DESHABILITAR las tablas
         jScrollPane1.setVisible(false);
@@ -684,7 +691,6 @@ public class ReporteDiario extends javax.swing.JFrame {
         Graph2.setVisible(true);
         Graph3.setVisible(true);
 
-        
         JFreeChart chart = ChartFactory.createPieChart3D(
                 "Productos vendidos en el dia",
                 proCon.getPieDataset(),
@@ -692,11 +698,10 @@ public class ReporteDiario extends javax.swing.JFrame {
                 true,
                 false
         );
-        ChartPanel chartPanel= new ChartPanel(chart);
-        chartPanel.setBounds(5,10,440,530);
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setBounds(5, 10, 440, 530);
         Graph1.add(chartPanel);
         Graph1.repaint();
-
 
         JFreeChart chart2 = ChartFactory.createBarChart(
                 "Compras del dia clientes",
@@ -709,10 +714,9 @@ public class ReporteDiario extends javax.swing.JFrame {
                 false
         );
         ChartPanel chartPanel2 = new ChartPanel(chart2);
-        chartPanel2.setBounds(5,10,440,240);
+        chartPanel2.setBounds(5, 10, 440, 240);
         Graph3.add(chartPanel2);
         Graph3.repaint();
-
 
         //GRAFICO3
 //        DefaultPieDataset pieDataset3 = new DefaultPieDataset();
@@ -722,7 +726,6 @@ public class ReporteDiario extends javax.swing.JFrame {
 //        pieDataset3.setValue("PODEMOS", new Integer(25));
 //        pieDataset3.setValue("IU", new Integer(8));
 //        pieDataset3.setValue("Otros", new Integer(3));
-        
         JFreeChart chart3 = ChartFactory.createPieChart3D(
                 "Ventas vendedores en el dia",
                 userCon.getPieDataset3(),
@@ -731,7 +734,7 @@ public class ReporteDiario extends javax.swing.JFrame {
                 false
         );
         ChartPanel chartPanel3 = new ChartPanel(chart3);
-        chartPanel3.setBounds(5,10,440,240);
+        chartPanel3.setBounds(5, 10, 440, 240);
         Graph2.add(chartPanel3);
         Graph2.repaint();
     }//GEN-LAST:event_jLabel2MouseClicked
@@ -747,6 +750,146 @@ public class ReporteDiario extends javax.swing.JFrame {
         Graph2.setVisible(false);
         Graph3.setVisible(false);
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void plIinicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseClicked
+        Home home = new Home();
+        home.setLocationRelativeTo(null);
+        home.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plIinicioMouseClicked
+
+    private void plIinicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseEntered
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plIinicioMouseEntered
+
+    private void plIinicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseExited
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plIinicioMouseExited
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        Usuario cliente = new Usuario();
+        cliente.setLocationRelativeTo(null);
+        cliente.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void plClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseClicked
+        Usuario cliente = new Usuario();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_plClientesMouseClicked
+
+    private void plClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseEntered
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plClientesMouseEntered
+
+    private void plClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseExited
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plClientesMouseExited
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        Producto producto = new Producto();
+        producto.setLocationRelativeTo(null);
+        producto.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void plProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseClicked
+        Producto producto = new Producto();
+        producto.setVisible(true);
+        producto.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_plProductosMouseClicked
+
+    private void plProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseEntered
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plProductosMouseEntered
+
+    private void plProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plProductosMouseExited
+
+    private void plVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseClicked
+        RealizarVenta venta = new RealizarVenta();
+        venta.setLocationRelativeTo(null);
+        venta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plVentaMouseClicked
+
+    private void plVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseEntered
+        // TODO add your handling code here:
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plVentaMouseEntered
+
+    private void plVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plVentaMouseExited
+
+    private void plReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseClicked
+        ReporteDiario reportDay = new ReporteDiario();
+        reportDay.setLocationRelativeTo(null);
+        reportDay.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plReportesMouseClicked
+
+    private void plReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseEntered
+
+    }//GEN-LAST:event_plReportesMouseEntered
+
+    private void plReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseExited
+
+    }//GEN-LAST:event_plReportesMouseExited
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        Inventario inventario = new Inventario();
+        inventario.setLocationRelativeTo(null);
+        inventario.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void plInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseClicked
+        Inventario inventario = new Inventario();
+        inventario.setVisible(true);
+        inventario.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_plInventarioMouseClicked
+
+    private void plInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseEntered
+        // TODO add your handling code here:
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plInventarioMouseEntered
+
+    private void plInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plInventarioMouseExited
+
+    private void plTransaccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseClicked
+        Transacciones transac = new Transacciones();
+        transac.setLocationRelativeTo(null);
+        transac.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plTransaccionesMouseClicked
+
+    private void plTransaccionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseEntered
+        // TODO add your handling code here:
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plTransaccionesMouseEntered
+
+    private void plTransaccionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plTransaccionesMouseExited
+
+    private void lblAcercaDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDeMouseClicked
+        // TODO add your handling code here:
+        AcercaDe about = new AcercaDe();
+        about.setLocationRelativeTo(null);
+        about.setVisible(true);
+    }//GEN-LAST:event_lblAcercaDeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -782,8 +925,8 @@ public class ReporteDiario extends javax.swing.JFrame {
             }
         });
     }
-    
-        private void mostrarProductos() {
+
+    private void mostrarProductos() {
         proCon.setTable(tblGananciaDia);
         if (proCon.obtenerListaProductosReporteD()) {
             System.out.println("Productos cargados correctamente");
@@ -792,8 +935,9 @@ public class ReporteDiario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al cargar los productos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     private void mostrarProductosGrafico() {
- 
+
         if (proCon.obtenerListaProductosReporteGraficoD()) {
             System.out.println("Productos cargados correctamente");
         } else {
@@ -801,7 +945,8 @@ public class ReporteDiario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al cargar los productos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-        private void mostrarUsuarios() {
+
+    private void mostrarUsuarios() {
         userCon.setTable(tblComprasCliente);
         if (userCon.obtenerListaUsuariosReporteD()) {
             System.out.println("Usuarios cargados correctamente");
@@ -809,25 +954,26 @@ public class ReporteDiario extends javax.swing.JFrame {
             System.out.println("Error al cargar los usuarios a la tabla");
         }
     }
-     
-        private void mostrarUsuariosGraficoD() {
-  
+
+    private void mostrarUsuariosGraficoD() {
+
         if (userCon.obtenerListaUsuariosReporte2GraficoD()) {
             System.out.println("Usuarios cargados correctamente");
         } else {
             System.out.println("Error al cargar los usuarios a la tabla");
         }
     }
-        private void mostrarVendedoresGraficoD() {
-  
+
+    private void mostrarVendedoresGraficoD() {
+
         if (userCon.obtenerListaVendedoresReporte3GraficoD()) {
             System.out.println("Usuarios cargados correctamente");
         } else {
             System.out.println("Error al cargar los usuarios a la tabla");
         }
     }
-        
-        private void mostrarVendedoresD() {
+
+    private void mostrarVendedoresD() {
         userCon.setTable(tblVentaVendedor);
         if (userCon.obtenerListaVendedorReporteD()) {
             System.out.println("Usuarios cargados correctamente");
@@ -861,6 +1007,7 @@ public class ReporteDiario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblAcercaDe;
     private javax.swing.JLabel lblClientes;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblInventario;
@@ -881,4 +1028,14 @@ public class ReporteDiario extends javax.swing.JFrame {
     private javax.swing.JTable tblGananciaDia;
     private javax.swing.JTable tblVentaVendedor;
     // End of variables declaration//GEN-END:variables
+
+    private void mouseHover(JPanel btn) {
+        btn.setBackground(Color.decode("#BC70EE"));
+    }
+
+    private void mouseExit(JPanel btn) {
+        btn.setBackground(Color.decode("#AC4EE9"));
+
+    }
+
 }

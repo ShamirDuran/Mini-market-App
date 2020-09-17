@@ -8,8 +8,10 @@ package view;
 import view.registrar.RealizarVenta;
 import view.modificar.ModificarV;
 import controller.VentasController;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +31,7 @@ public class Transacciones extends javax.swing.JFrame {
         initComponents();
         ventasCon = new VentasController();
         model = (DefaultTableModel) tblTransacciones.getModel();
+        mouseHover(plTransacciones);
         mostrarTransacciones();
     }
 
@@ -72,14 +75,19 @@ public class Transacciones extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         lblTransacciones = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        lblAcercaDe = new javax.swing.JLabel();
+        lblAcercaDe1 = new javax.swing.JLabel();
+        lblAcercaDe2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         parent.setBackground(new java.awt.Color(243, 243, 243));
 
         body.setBackground(new java.awt.Color(243, 243, 243));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Gill Sans MT", 0, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("TRANSACCIONES");
 
         tblTransacciones.setModel(new javax.swing.table.DefaultTableModel(
@@ -129,7 +137,7 @@ public class Transacciones extends javax.swing.JFrame {
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jLabel7)
@@ -138,7 +146,7 @@ public class Transacciones extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 999, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addGap(45, 45, 45))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +161,7 @@ public class Transacciones extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         sidepanel.setBackground(new java.awt.Color(172, 78, 233));
@@ -163,6 +171,12 @@ public class Transacciones extends javax.swing.JFrame {
         plIinicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plIinicioMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plIinicioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plIinicioMouseExited(evt);
             }
         });
 
@@ -196,6 +210,12 @@ public class Transacciones extends javax.swing.JFrame {
         plClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plClientesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plClientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plClientesMouseExited(evt);
             }
         });
 
@@ -235,6 +255,12 @@ public class Transacciones extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plProductosMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plProductosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plProductosMouseExited(evt);
+            }
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -273,6 +299,12 @@ public class Transacciones extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plVentaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plVentaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plVentaMouseExited(evt);
+            }
         });
 
         lblVenta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -306,6 +338,12 @@ public class Transacciones extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plReportesMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plReportesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plReportesMouseExited(evt);
+            }
         });
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -338,6 +376,12 @@ public class Transacciones extends javax.swing.JFrame {
         plInventario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plInventarioMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plInventarioMouseExited(evt);
             }
         });
 
@@ -377,6 +421,12 @@ public class Transacciones extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plTransaccionesMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plTransaccionesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plTransaccionesMouseExited(evt);
+            }
         });
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -410,6 +460,36 @@ public class Transacciones extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Mini Market");
 
+        lblAcercaDe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAcercaDe.setForeground(new java.awt.Color(255, 255, 255));
+        lblAcercaDe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAcercaDe.setText("Acerca de...");
+        lblAcercaDe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAcercaDeMouseClicked(evt);
+            }
+        });
+
+        lblAcercaDe1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAcercaDe1.setForeground(new java.awt.Color(255, 255, 255));
+        lblAcercaDe1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAcercaDe1.setText("Acerca de...");
+        lblAcercaDe1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAcercaDe1MouseClicked(evt);
+            }
+        });
+
+        lblAcercaDe2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAcercaDe2.setForeground(new java.awt.Color(255, 255, 255));
+        lblAcercaDe2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAcercaDe2.setText("Acerca de...");
+        lblAcercaDe2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAcercaDe2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout sidepanelLayout = new javax.swing.GroupLayout(sidepanel);
         sidepanel.setLayout(sidepanelLayout);
         sidepanelLayout.setHorizontalGroup(
@@ -422,6 +502,20 @@ public class Transacciones extends javax.swing.JFrame {
             .addComponent(plReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(plVenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidepanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAcercaDe2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(sidepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(sidepanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(lblAcercaDe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(sidepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(sidepanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(lblAcercaDe1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         sidepanelLayout.setVerticalGroup(
             sidepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,7 +536,19 @@ public class Transacciones extends javax.swing.JFrame {
                 .addComponent(plTransacciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(plReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAcercaDe2)
+                .addGap(22, 22, 22))
+            .addGroup(sidepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(sidepanelLayout.createSequentialGroup()
+                    .addGap(382, 382, 382)
+                    .addComponent(lblAcercaDe)
+                    .addContainerGap(383, Short.MAX_VALUE)))
+            .addGroup(sidepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidepanelLayout.createSequentialGroup()
+                    .addContainerGap(392, Short.MAX_VALUE)
+                    .addComponent(lblAcercaDe1)
+                    .addGap(373, 373, 373)))
         );
 
         javax.swing.GroupLayout parentLayout = new javax.swing.GroupLayout(parent);
@@ -452,7 +558,7 @@ public class Transacciones extends javax.swing.JFrame {
             .addGroup(parentLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(sidepanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         parentLayout.setVerticalGroup(
@@ -474,73 +580,6 @@ public class Transacciones extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void plIinicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseClicked
-        Home home = new Home();
-        home.setLocationRelativeTo(null);
-        home.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plIinicioMouseClicked
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        Usuario cliente = new Usuario();
-        cliente.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
-
-    private void plClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseClicked
-        Usuario cliente = new Usuario();
-        cliente.setVisible(true);
-        cliente.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_plClientesMouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        Producto producto = new Producto();
-        producto.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void plProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseClicked
-        Producto producto = new Producto();
-        producto.setVisible(true);
-        producto.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_plProductosMouseClicked
-
-    private void plVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseClicked
-        RealizarVenta venta = new RealizarVenta();
-        venta.setLocationRelativeTo(null);
-        venta.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plVentaMouseClicked
-
-    private void plReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseClicked
-        ReporteDiario reportDay = new ReporteDiario();
-        reportDay.setLocationRelativeTo(null);
-        reportDay.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plReportesMouseClicked
-
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        Inventario inventario = new Inventario();
-        inventario.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel15MouseClicked
-
-    private void plInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseClicked
-        Inventario inventario = new Inventario();
-        inventario.setVisible(true);
-        inventario.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_plInventarioMouseClicked
-
-    private void plTransaccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseClicked
-        Transacciones transac = new Transacciones();
-        transac.setLocationRelativeTo(null);
-        transac.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plTransaccionesMouseClicked
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String ref = edBuscar.getText();
@@ -574,6 +613,159 @@ public class Transacciones extends javax.swing.JFrame {
         modVen.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         modVen.setVisible(true);
     }//GEN-LAST:event_tblTransaccionesMouseClicked
+
+    private void plIinicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseClicked
+        Home home = new Home();
+        home.setLocationRelativeTo(null);
+        home.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plIinicioMouseClicked
+
+    private void plIinicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseEntered
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plIinicioMouseEntered
+
+    private void plIinicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseExited
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plIinicioMouseExited
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        Usuario cliente = new Usuario();
+        cliente.setLocationRelativeTo(null);
+        cliente.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void plClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseClicked
+        Usuario cliente = new Usuario();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_plClientesMouseClicked
+
+    private void plClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseEntered
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plClientesMouseEntered
+
+    private void plClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseExited
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plClientesMouseExited
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        Producto producto = new Producto();
+        producto.setLocationRelativeTo(null);
+        producto.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void plProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseClicked
+        Producto producto = new Producto();
+        producto.setVisible(true);
+        producto.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_plProductosMouseClicked
+
+    private void plProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseEntered
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plProductosMouseEntered
+
+    private void plProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plProductosMouseExited
+
+    private void plVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseClicked
+        RealizarVenta venta = new RealizarVenta();
+        venta.setLocationRelativeTo(null);
+        venta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plVentaMouseClicked
+
+    private void plVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseEntered
+        // TODO add your handling code here:
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plVentaMouseEntered
+
+    private void plVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plVentaMouseExited
+
+    private void plReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseClicked
+        ReporteDiario reportDay = new ReporteDiario();
+        reportDay.setLocationRelativeTo(null);
+        reportDay.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plReportesMouseClicked
+
+    private void plReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseEntered
+        // TODO add your handling code here:
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plReportesMouseEntered
+
+    private void plReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plReportesMouseExited
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        Inventario inventario = new Inventario();
+        inventario.setLocationRelativeTo(null);
+        inventario.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void plInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseClicked
+        Inventario inventario = new Inventario();
+        inventario.setVisible(true);
+        inventario.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_plInventarioMouseClicked
+
+    private void plInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseEntered
+        // TODO add your handling code here:
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plInventarioMouseEntered
+
+    private void plInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plInventarioMouseExited
+
+    private void plTransaccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseClicked
+        Transacciones transac = new Transacciones();
+        transac.setLocationRelativeTo(null);
+        transac.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plTransaccionesMouseClicked
+
+    private void plTransaccionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseEntered
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_plTransaccionesMouseEntered
+
+    private void plTransaccionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseExited
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_plTransaccionesMouseExited
+
+    private void lblAcercaDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDeMouseClicked
+        // TODO add your handling code here:
+        AcercaDe about = new AcercaDe();
+        about.setLocationRelativeTo(null);
+        about.setVisible(true);
+    }//GEN-LAST:event_lblAcercaDeMouseClicked
+
+    private void lblAcercaDe1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDe1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblAcercaDe1MouseClicked
+
+    private void lblAcercaDe2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDe2MouseClicked
+        // TODO add your handling code here:
+        AcercaDe about = new AcercaDe();
+        about.setLocationRelativeTo(null);
+        about.setVisible(true);
+    }//GEN-LAST:event_lblAcercaDe2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -634,6 +826,9 @@ public class Transacciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAcercaDe;
+    private javax.swing.JLabel lblAcercaDe1;
+    private javax.swing.JLabel lblAcercaDe2;
     private javax.swing.JLabel lblClientes;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblInventario;
@@ -652,4 +847,13 @@ public class Transacciones extends javax.swing.JFrame {
     private javax.swing.JPanel sidepanel;
     private javax.swing.JTable tblTransacciones;
     // End of variables declaration//GEN-END:variables
+
+    private void mouseHover(JPanel btn) {
+        btn.setBackground(Color.decode("#BC70EE"));
+    }
+
+    private void mouseExit(JPanel btn) {
+        btn.setBackground(Color.decode("#AC4EE9"));
+
+    }
 }

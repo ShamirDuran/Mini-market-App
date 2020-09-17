@@ -8,7 +8,9 @@ package view;
 import view.registrar.RealizarVenta;
 import view.modificar.ModificarP;
 import controller.ProductosController;
+import java.awt.Color;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import model.vo.ProductoVo;
 
 /**
@@ -26,7 +28,7 @@ public class Inventario extends javax.swing.JFrame {
         initComponents();
 
         proCon = new ProductosController();
-
+        mouseHover(plInventario);
         mostrarInventario();
     }
 
@@ -70,15 +72,17 @@ public class Inventario extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         lblTransacciones = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        lblAcercaDe1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         parent.setBackground(new java.awt.Color(243, 243, 243));
 
         menu.setBackground(new java.awt.Color(243, 243, 243));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setFont(new java.awt.Font("Gill Sans MT", 0, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("INVENTARIO");
 
         edBuscar.setForeground(new java.awt.Color(102, 102, 102));
@@ -179,7 +183,7 @@ public class Inventario extends javax.swing.JFrame {
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,12 +192,12 @@ public class Inventario extends javax.swing.JFrame {
                         .addComponent(edBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -203,7 +207,7 @@ public class Inventario extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         sidepanel.setBackground(new java.awt.Color(172, 78, 233));
@@ -213,6 +217,12 @@ public class Inventario extends javax.swing.JFrame {
         plIinicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plIinicioMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plIinicioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plIinicioMouseExited(evt);
             }
         });
 
@@ -246,6 +256,12 @@ public class Inventario extends javax.swing.JFrame {
         plClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plClientesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plClientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plClientesMouseExited(evt);
             }
         });
 
@@ -285,6 +301,12 @@ public class Inventario extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plProductosMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plProductosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plProductosMouseExited(evt);
+            }
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -323,6 +345,12 @@ public class Inventario extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plVentaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plVentaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plVentaMouseExited(evt);
+            }
         });
 
         lblVenta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -356,6 +384,12 @@ public class Inventario extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plReportesMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plReportesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plReportesMouseExited(evt);
+            }
         });
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -388,6 +422,12 @@ public class Inventario extends javax.swing.JFrame {
         plInventario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plInventarioMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plInventarioMouseExited(evt);
             }
         });
 
@@ -427,6 +467,12 @@ public class Inventario extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plTransaccionesMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                plTransaccionesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                plTransaccionesMouseExited(evt);
+            }
         });
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -460,6 +506,16 @@ public class Inventario extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Mini Market");
 
+        lblAcercaDe1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAcercaDe1.setForeground(new java.awt.Color(255, 255, 255));
+        lblAcercaDe1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAcercaDe1.setText("Acerca de...");
+        lblAcercaDe1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAcercaDe1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout sidepanelLayout = new javax.swing.GroupLayout(sidepanel);
         sidepanel.setLayout(sidepanelLayout);
         sidepanelLayout.setHorizontalGroup(
@@ -472,6 +528,10 @@ public class Inventario extends javax.swing.JFrame {
             .addComponent(plReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(plVenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(sidepanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAcercaDe1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         sidepanelLayout.setVerticalGroup(
             sidepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -492,7 +552,9 @@ public class Inventario extends javax.swing.JFrame {
                 .addComponent(plTransacciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(plReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAcercaDe1)
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout parentLayout = new javax.swing.GroupLayout(parent);
@@ -506,15 +568,19 @@ public class Inventario extends javax.swing.JFrame {
         );
         parentLayout.setVerticalGroup(
             parentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(sidepanel, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
+            .addGroup(parentLayout.createSequentialGroup()
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(parent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(parent, javax.swing.GroupLayout.PREFERRED_SIZE, 1316, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,73 +593,6 @@ public class Inventario extends javax.swing.JFrame {
     private void edBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edBuscarActionPerformed
-
-    private void plIinicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseClicked
-        Home home = new Home();
-        home.setLocationRelativeTo(null);
-        home.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plIinicioMouseClicked
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        Usuario cliente = new Usuario();
-        cliente.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
-
-    private void plClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseClicked
-        Usuario cliente = new Usuario();
-        cliente.setVisible(true);
-        cliente.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_plClientesMouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        Producto producto = new Producto();
-        producto.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void plProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseClicked
-        Producto producto = new Producto();
-        producto.setVisible(true);
-        producto.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_plProductosMouseClicked
-
-    private void plVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseClicked
-        RealizarVenta venta = new RealizarVenta();
-        venta.setLocationRelativeTo(null);
-        venta.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plVentaMouseClicked
-
-    private void plReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseClicked
-        ReporteDiario reportDay = new ReporteDiario();
-        reportDay.setLocationRelativeTo(null);
-        reportDay.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plReportesMouseClicked
-
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        Inventario inventario = new Inventario();
-        inventario.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel15MouseClicked
-
-    private void plInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseClicked
-        Inventario inventario = new Inventario();
-        inventario.setVisible(true);
-        inventario.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_plInventarioMouseClicked
-
-    private void plTransaccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseClicked
-        Transacciones transac = new Transacciones();
-        transac.setLocationRelativeTo(null);
-        transac.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_plTransaccionesMouseClicked
 
     private void tblInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInventarioMouseClicked
         int filaSeleccionada = tblInventario.getSelectedRow();
@@ -624,6 +623,146 @@ public class Inventario extends javax.swing.JFrame {
     private void edBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edBuscarMouseClicked
         edBuscar.setText(null);
     }//GEN-LAST:event_edBuscarMouseClicked
+
+    private void plIinicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseClicked
+        Home home = new Home();
+        home.setLocationRelativeTo(null);
+        home.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plIinicioMouseClicked
+
+    private void plIinicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseEntered
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plIinicioMouseEntered
+
+    private void plIinicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plIinicioMouseExited
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plIinicioMouseExited
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        Usuario cliente = new Usuario();
+        cliente.setLocationRelativeTo(null);
+        cliente.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void plClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseClicked
+        Usuario cliente = new Usuario();
+        cliente.setVisible(true);
+        cliente.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_plClientesMouseClicked
+
+    private void plClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseEntered
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plClientesMouseEntered
+
+    private void plClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plClientesMouseExited
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plClientesMouseExited
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        Producto producto = new Producto();
+        producto.setLocationRelativeTo(null);
+        producto.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void plProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseClicked
+        Producto producto = new Producto();
+        producto.setVisible(true);
+        producto.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_plProductosMouseClicked
+
+    private void plProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseEntered
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plProductosMouseEntered
+
+    private void plProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plProductosMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plProductosMouseExited
+
+    private void plVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseClicked
+        RealizarVenta venta = new RealizarVenta();
+        venta.setLocationRelativeTo(null);
+        venta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plVentaMouseClicked
+
+    private void plVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseEntered
+        // TODO add your handling code here:
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plVentaMouseEntered
+
+    private void plVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plVentaMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plVentaMouseExited
+
+    private void plReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseClicked
+        ReporteDiario reportDay = new ReporteDiario();
+        reportDay.setLocationRelativeTo(null);
+        reportDay.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plReportesMouseClicked
+
+    private void plReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseEntered
+        // TODO add your handling code here:
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plReportesMouseEntered
+
+    private void plReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plReportesMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plReportesMouseExited
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        Inventario inventario = new Inventario();
+        inventario.setLocationRelativeTo(null);
+        inventario.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void plInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseClicked
+        Inventario inventario = new Inventario();
+        inventario.setVisible(true);
+        inventario.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_plInventarioMouseClicked
+
+    private void plInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseEntered
+
+    }//GEN-LAST:event_plInventarioMouseEntered
+
+    private void plInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plInventarioMouseExited
+
+    }//GEN-LAST:event_plInventarioMouseExited
+
+    private void plTransaccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseClicked
+        Transacciones transac = new Transacciones();
+        transac.setLocationRelativeTo(null);
+        transac.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_plTransaccionesMouseClicked
+
+    private void plTransaccionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseEntered
+        // TODO add your handling code here:
+        mouseHover((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plTransaccionesMouseEntered
+
+    private void plTransaccionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plTransaccionesMouseExited
+        // TODO add your handling code here:
+        mouseExit((JPanel) evt.getComponent());
+    }//GEN-LAST:event_plTransaccionesMouseExited
+
+    private void lblAcercaDe1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDe1MouseClicked
+        // TODO add your handling code here:
+        AcercaDe about = new AcercaDe();
+        about.setLocationRelativeTo(null);
+        about.setVisible(true);
+    }//GEN-LAST:event_lblAcercaDe1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -685,6 +824,8 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAcercaDe;
+    private javax.swing.JLabel lblAcercaDe1;
     private javax.swing.JLabel lblClientes;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblInventario;
@@ -704,4 +845,14 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JPanel sidepanel;
     private javax.swing.JTable tblInventario;
     // End of variables declaration//GEN-END:variables
+
+    private void mouseHover(JPanel btn) {
+        btn.setBackground(Color.decode("#BC70EE"));
+    }
+
+    private void mouseExit(JPanel btn) {
+        btn.setBackground(Color.decode("#AC4EE9"));
+
+    }
+
 }
