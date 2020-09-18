@@ -5,12 +5,15 @@
  */
 package model.dao;
 
+import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.io.FileInputStream; 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -20,10 +23,10 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import model.conexion.Conexion;
 import model.vo.VentaVo;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -264,14 +267,22 @@ public class VentaDao {
 
     public void hacerReporte(int venta_id) {
         try {
+            String path = "/assets/factura.jasper"; //ruta de mi reporte
+            InputStream is = null;
+            try {
+                is = new FileInputStream("assets/factura.jrxml");
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(VentaDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
             JasperReport reporte = null;
-            String path = "src\\main\\java\\model\\factura\\factura.jasper"; //ruta de mi reporte
             
             Map param = new HashMap();
             param.put("id_venta", venta_id);
-            
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+            reporte = (JasperReport) JasperCompileManager.compileReport(is);
+            System.out.println("compile");
             JasperPrint jprint = JasperFillManager.fillReport(reporte, param, con); //cargando el reporte
+            System.out.println("filemanager");
             JasperViewer view = new JasperViewer(jprint, false); // se crea la vista del reporte
             
             view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

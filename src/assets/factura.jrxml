@@ -57,7 +57,7 @@ WHERE v.id = $P!{id_venta};]]>
 			</staticText>
 			<image scaleImage="FillFrame">
 				<reportElement x="0" y="11" width="170" height="72" uuid="4b5f0507-d5b9-4355-b0cd-71cc4a0634cb"/>
-				<imageExpression><![CDATA["C:\\Users\\Shamir\\Downloads\\logo.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\Shamir\\Desktop\\Minimarket\\src\\main\\resources\\img\\logo.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="202" y="62" width="145" height="20" uuid="9f81b074-2550-4312-adf6-594987826da6"/>
