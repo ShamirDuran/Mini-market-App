@@ -26,7 +26,7 @@ BEGIN
     
     UPDATE t_productos p
     SET p.cantidad_vendidos = (SELECT SUM(cantidad) AS cantidad FROM t_venta_producto WHERE fk_producto = producto),
-    p.cantidad = p.cantidad - (SELECT SUM(cantidad) AS cantidad FROM t_venta_producto WHERE fk_producto = producto)
+    p.cantidad = p.cantidad - comprados
     WHERE p.id = producto;
 END; $$
 

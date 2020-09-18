@@ -12,12 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import model.conexion.Conexion;
@@ -76,8 +72,9 @@ public class VentaDao {
         String sql = "{CALL registrar_venta(?,?,?,?)}";
         int venta_id = queryCallInsert(sql, venta);
         if (venta_id > 0) {
+            venta.setId(venta_id);
             sql = "{CALL registrar_venta_producto(?,?,?)}";
-            if (queryCallInsertPro(sql, venta, venta_id)) {
+            if (queryCallInsertPro(sql, venta)) {
                 hacerReporte(venta_id);
                 return true;
             }
@@ -238,19 +235,21 @@ public class VentaDao {
         return venta_id;
     }
 
-    private Boolean queryCallInsertPro(String sql, VentaVo venta, int venta_id) {
+    private Boolean queryCallInsertPro(String sql, VentaVo venta) {
         try {
             ResultSet rs = null;
             CallableStatement call = null;
-
+            System.out.println("Numero de productos en venta: " + venta.getProductos().size());
             for (int i = 0; i < venta.getProductos().size(); i++) { //para cada producto registrado en la factura
                 int producto_id = Integer.parseInt(venta.getProductos().get(i).toString());
                 int cantidad = Integer.parseInt(venta.getCantidad().get(i).toString());
 
-                System.out.println("cantidad: " + cantidad);
-
+                System.out.println("Iteración: " + i);
+                System.out.println("Producto: " + venta.getProductos().get(i));
+                System.out.println("Cantidad comprada: " + venta.getCantidad().get(i));
+                
                 call = con.prepareCall(sql);
-                call.setInt(1, venta_id);
+                call.setInt(1, venta.getId());
                 call.setInt(2, producto_id);
                 call.setInt(3, cantidad);
 
@@ -261,7 +260,6 @@ public class VentaDao {
         } catch (Exception e) {
             System.out.println("VentaDao: Error al registrar productos en tabla t_ventas_productos " + e);
         }
-
         return false;
     }
 

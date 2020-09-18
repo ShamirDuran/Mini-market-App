@@ -10,14 +10,10 @@ package controller;
  * @author NICOLAS
  */
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import model.dao.ProductoDao;
 import model.vo.ProductoVo;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 public class ProductosController {
@@ -25,8 +21,7 @@ public class ProductosController {
     private ProductoDao productoDao;
     private JTable table;
     private DefaultTableModel model;
-    private DefaultPieDataset pieDataset=new DefaultPieDataset();
-
+    private DefaultPieDataset pieDataset = new DefaultPieDataset();
 
     public ProductosController() {
         productoDao = new ProductoDao();
@@ -58,7 +53,7 @@ public class ProductosController {
                     model.addRow(producto);
                 }
                 return true;
-                
+
             } catch (Exception e) {
                 System.out.println("Error al recorrer productos: " + e);;
             }
@@ -67,13 +62,14 @@ public class ProductosController {
         }
         return false;
     }
-       /**
-     * Este metodo carga los productos registrados en la tabla de la reportetotal
-     * Productos
+
+    /**
+     * Este metodo carga los productos registrados en la tabla de la
+     * reportetotal Productos
      *
      * @return
      */
-        public Boolean obtenerListaProductosReporte() {
+    public Boolean obtenerListaProductosReporte() {
         ResultSet rs = productoDao.obtenerProductosReporte();
 
         if (rs != null) {
@@ -85,12 +81,12 @@ public class ProductosController {
                     producto[0] = rs.getString("id");
                     producto[1] = rs.getString("nombre");
                     producto[2] = rs.getString("cantidad_vendidos");
-                    producto[3] = Integer.toString(rs.getInt("precio")*rs.getInt("cantidad_vendidos"));
+                    producto[3] = Integer.toString(rs.getInt("precio") * rs.getInt("cantidad_vendidos"));
 
                     model.addRow(producto);
                 }
                 return true;
-                
+
             } catch (Exception e) {
                 System.out.println("Error al recorrer productos: " + e);;
             }
@@ -99,26 +95,22 @@ public class ProductosController {
         }
         return false;
     }
-      /**
+
+    /**
      * Este metodo carga los productos registrados en el grafico de la vista
      * Productos
      *
      * @return
      */
-        public Boolean obtenerListaProductosReporteGrafico() {
+    public Boolean obtenerListaProductosReporteGrafico() {
         ResultSet rs = productoDao.obtenerProductosReporteGrafico();
-        
+
         if (rs != null) {
             try {
-                
-
-
                 while (rs.next()) {
                     pieDataset.setValue(rs.getString("nombre"), rs.getInt("cantidad_vendidos"));
-
                 }
                 return true;
-                
             } catch (Exception e) {
                 System.out.println("Error al recorrer productos: " + e);;
             }
@@ -127,26 +119,23 @@ public class ProductosController {
         }
         return false;
     }
-           /**
-     * Este metodo carga los productos registrados en el grafico de la vista reportediario
-     * Productos
+
+    /**
+     * Este metodo carga los productos registrados en el grafico de la vista
+     * reportediario Productos
      *
      * @return
      */
-                public Boolean obtenerListaProductosReporteGraficoD() {
+    public Boolean obtenerListaProductosReporteGraficoD() {
         ResultSet rs = productoDao.obtenerProductosReporteD();
-        
+
         if (rs != null) {
             try {
-                
-
-
                 while (rs.next()) {
                     pieDataset.setValue(rs.getString("t_productos.nombre"), rs.getInt("cantidad"));
-
                 }
                 return true;
-                
+
             } catch (Exception e) {
                 System.out.println("Error al recorrer productos: " + e);;
             }
@@ -155,16 +144,15 @@ public class ProductosController {
         }
         return false;
     }
-   
-        /**
-     * Este metodo carga los productos registrados en la tabla de la vista ReporteDiario
-     * Productos
+
+    /**
+     * Este metodo carga los productos registrados en la tabla de la vista
+     * ReporteDiario Productos
      *
      * @return
      */
-        public Boolean obtenerListaProductosReporteD() {
+    public Boolean obtenerListaProductosReporteD() {
         ResultSet rs = productoDao.obtenerProductosReporteD();
-
         if (rs != null) {
             try {
                 model.setNumRows(0);
@@ -174,12 +162,10 @@ public class ProductosController {
                     producto[0] = rs.getString("id");
                     producto[1] = rs.getString("nombre");
                     producto[2] = rs.getString("cantidad");
-                    producto[3] = Integer.toString(rs.getInt("precio")*rs.getInt("cantidad"));
-
+                    producto[3] = Integer.toString(rs.getInt("precio") * rs.getInt("cantidad"));
                     model.addRow(producto);
                 }
                 return true;
-                
             } catch (Exception e) {
                 System.out.println("Error al recorrer productos: " + e);;
             }
@@ -191,7 +177,6 @@ public class ProductosController {
 
     public Boolean obtenerListaInventario() {
         ResultSet rs = productoDao.obtenerProductos();
-
         if (rs != null) {
             try {
                 model.setNumRows(0);
@@ -202,7 +187,6 @@ public class ProductosController {
                     producto[1] = rs.getString("nombre");
                     producto[2] = rs.getString("cant_medida");
                     producto[3] = rs.getString("cantidad");
-
                     model.addRow(producto);
                 }
                 return true;
@@ -214,15 +198,13 @@ public class ProductosController {
         }
         return false;
     }
-    
+
     public Boolean buscarProducto(String nombre, String vista) {
         ResultSet rs = productoDao.buscarProducto(nombre);
-
         if (rs != null) {
             try {
                 model.setNumRows(0);
                 String[] producto = new String[7];
-
                 while (rs.next()) {
                     switch (vista) {
                         case "producto":
@@ -241,7 +223,6 @@ public class ProductosController {
                             producto[3] = rs.getString("cantidad");
                             break;
                     }
-                    
                     model.addRow(producto);
                 }
                 return true;
@@ -256,7 +237,6 @@ public class ProductosController {
 
     public ProductoVo buscarProductoId(int id) {
         ResultSet rs = productoDao.buscarProductoId(id);
-
         if (rs != null) {
             try {
                 while (rs.next()) {
@@ -293,7 +273,6 @@ public class ProductosController {
         } else {
             System.out.println("\nError al registrar nuevo Producto!!");
         }
-
         return check;
     }
 
@@ -308,11 +287,14 @@ public class ProductosController {
         if (check) {
             System.out.println("\nProducto modificado correctamente!!");
 //            limpiarTabla();
-            obtenerListaInventario();
+            if (model.getColumnCount() > 4) {
+                obtenerListaProductos();
+            } else {
+                obtenerListaInventario();
+            }
         } else {
             System.out.println("\nNo se encontro el Producto!!");
         }
-
         return check;
     }
 
@@ -331,14 +313,12 @@ public class ProductosController {
         } else {
             System.out.println("\nNo se encontro producto con id " + id);
         }
-
         return check;
     }
 
 //    public void setProductoDao(ProductoDao productoDao) {
 //        this.productoDao = productoDao;
 //    }
-
     public void setTable(JTable table) {
         this.table = table;
         model = (DefaultTableModel) table.getModel();
