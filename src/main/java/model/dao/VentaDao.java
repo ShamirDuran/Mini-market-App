@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.io.FileInputStream; 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
@@ -267,15 +267,16 @@ public class VentaDao {
 
     public void hacerReporte(int venta_id) {
         try {
-            String path = "/assets/factura.jasper"; //ruta de mi reporte
+            String path = "/assets/factura.jrxml"; //ruta de mi reporte
             InputStream is = null;
             try {
-                is = new FileInputStream("assets/factura.jrxml");
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(VentaDao.class.getName()).log(Level.SEVERE, null, ex);
+                is = getClass().getResourceAsStream(path);
+            } catch (Exception e) {
+                System.out.println("Error getclas " + e);
             }
+
             JasperReport reporte = null;
-            
+
             Map param = new HashMap();
             param.put("id_venta", venta_id);
 
@@ -284,7 +285,7 @@ public class VentaDao {
             JasperPrint jprint = JasperFillManager.fillReport(reporte, param, con); //cargando el reporte
             System.out.println("filemanager");
             JasperViewer view = new JasperViewer(jprint, false); // se crea la vista del reporte
-            
+
             view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             view.setLocationRelativeTo(null);
             view.setVisible(true);
