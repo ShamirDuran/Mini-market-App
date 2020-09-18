@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import model.conexion.Conexion;
 import model.vo.VentaVo;
@@ -277,7 +278,7 @@ public class VentaDao {
             view.setLocationRelativeTo(null);
             view.setVisible(true);
         } catch (JRException ex) {
-            Logger.getLogger(VentaDao.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al generar factura " + ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

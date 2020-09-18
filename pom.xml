@@ -68,7 +68,7 @@
     </properties>
     <name>Minimarket</name>
     
-   <build>
+    <build>
         <finalName>Minimarket</finalName>
         <plugins>        
             <plugin>
