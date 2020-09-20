@@ -94,6 +94,8 @@ Al realizar la venta se genera una factura, la cual puede ser guardada en difere
 
 ![image](https://user-images.githubusercontent.com/40668021/93691780-ca641980-faaf-11ea-9d8f-b8f9d8cfce34.png)
 
+**Nota:** La dirección y el telélefono son ficticios.
+
 ## Inventario
 Es una vista sencilla, cuyo objetivo es facilitar la visualización del inventario del negocio, para así, saber si necesitamos más unidades de un producto en específico.
 
