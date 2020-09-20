@@ -10,11 +10,11 @@ y el negocio crezca.
 
 **Desarrollada en 2020 utilizando Apache NetBeans IDE 12.0**
 
-## Tecnología usadas en el proyecto
+## Librerias usadas en el proyecto
 * **JasperReport** para generar la vista de factura.
 * **JFreeChart:** para generar las gráficas de los reportes.
 
-Y algunas otras librerias que se ya vienen en el proyecto.
+Y algunas otras librerias que pueden detallar en el archivo pom.xml del proyecto.
 
 ## Como iniciar el proyecto
 
@@ -61,15 +61,65 @@ se debe cambiar despues del *localhost* el *minimarket* por el nombre usado en l
 <br><br>
 **Con esto ya tendriamos todo el proyecto funcionando junto a la opción de generar factura, ya sea para guardarla o imprimirla.**
 
+# Vistas
+
+## Inicio
+![image](https://user-images.githubusercontent.com/40668021/93691663-00080300-faae-11ea-95cd-06e6994d1b8f.png)
+
+## Clientes
+En la vista de Clientes se muestra la información de todos los usuarios registrados en la base de datos. 
+
+![image](https://user-images.githubusercontent.com/40668021/93691701-dbf8f180-faae-11ea-9da0-a78530475e1e.png)
+
+Se puede realizar búsqueda por nombre, registrar, modificar o eliminar usuarios.
+
+![image](https://user-images.githubusercontent.com/40668021/93691714-09459f80-faaf-11ea-8aa5-97606dc65e1b.png)
+
+## Productos
+Se muestran todos los productos registrados.
+
+![image](https://user-images.githubusercontent.com/40668021/93691718-224e5080-faaf-11ea-8bd0-db92ed9d5408.png)
+
+
+Se puede realizar búsqueda por nombre, registrar, modificar o eliminar productos.
+
+![image](https://user-images.githubusercontent.com/40668021/93691752-79ecbc00-faaf-11ea-8727-44d425d39879.png)
+
+## Venta
+En esta vista se debe seleccionar los productos que el cliente desea comprar y también seleccionar el cliente que realiza la compra.
+
+![image](https://user-images.githubusercontent.com/40668021/93691754-7d804300-faaf-11ea-9ecb-d26d800a9957.png)
+
+Al realizar la venta se genera una factura, la cual puede ser guardada en diferentes formatos (.jpg, pdf entre otros) o impresa (debe tener conectado el dispositivo)
+
+![image](https://user-images.githubusercontent.com/40668021/93691780-ca641980-faaf-11ea-9d8f-b8f9d8cfce34.png)
+
+## Inventario
+Es una vista sencilla, cuyo objetivo es facilitar la visualización del inventario del negocio, para así, saber si necesitamos más unidades de un producto en específico.
+
+![image](https://user-images.githubusercontent.com/40668021/93691791-fed7d580-faaf-11ea-8303-cd1288ac9fae.png)
+
+## Transacciones
+Se muestra las ventas realizadas, de la más reciente a las más antigua. Estas ventas se pueden modificar en el caso de que el
+usuario desea realizar el reembolso de algún producto.
+
+![image](https://user-images.githubusercontent.com/40668021/93691803-2c248380-fab0-11ea-8785-2f1fbef68297.png)
+
+ Para devolver un producto se hace click sobre la columna de cantidad, se ingresa la cantidad que quedaría con la devolución (ejem: si devuelve 1 desgrasante se debe escribir 3) 
+
+![image](https://user-images.githubusercontent.com/40668021/93691807-30e93780-fab0-11ea-9210-cd6fb2ff7014.png)
+
+## Reportes
+
+En esta vista se muestran un reporte sobre las ventas, ganancias del día y también un reporte total (desde que se implementa la aplicación).
+
+![image](https://user-images.githubusercontent.com/40668021/93691832-989f8280-fab0-11ea-9c9a-a3e6d3714351.png)
+
+![image](https://user-images.githubusercontent.com/40668021/93691834-99d0af80-fab0-11ea-9291-dd2c277546ae.png)
+
 
 ## Autores
 
 - Shamir Duran.   Contacto: shamirduran15@gmail.com
 - Nicolas Galvan. Contacto: nicogalvan1@hotmail.com
 
-## Instrucciones
-
-Al ejecutar la aplicación se muestra un menu con las diferentes opciones que hay. Al hacer click en alguna opción se
-muestra su respectiva interfaz para que se ueda interactuar.
-<br><br>
-En las interfaces se dejaron mensajes para ayudar al usuario a utilizar algunas interfaces que necesitan seguir ciertos pasos.
