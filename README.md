@@ -119,6 +119,9 @@ En esta vista se muestran un reporte sobre las ventas, ganancias del día y tamb
 
 ![image](https://user-images.githubusercontent.com/40668021/93691834-99d0af80-fab0-11ea-9291-dd2c277546ae.png)
 
+## Aclaraciones
+No cuenta con login o validación de roles implementados, por tanto, si se desea cambiar la información del vendedor, se debe modificar la clase *Singleton* que es la que
+contiene los datos de este.
 
 ## Autores
 
